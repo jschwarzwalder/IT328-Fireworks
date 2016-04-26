@@ -32,16 +32,6 @@ Template.hello.events({
 	 image: "Blue 1.png"
  },
  {
-	 cardValue : 1, 
-	 cardColor: Blue,
-	 image: "Blue 1.png"
- },
- {
-	 cardValue : 2, 
-	 cardColor: Blue,
-	 image: "Blue 2.png"
- },
- {
 	 cardValue : 2, 
 	 cardColor: Blue,
 	 image: "Blue 2.png"
@@ -50,15 +40,6 @@ Template.hello.events({
 	 cardValue : 3, 
 	 cardColor: Blue,
 	 image: "Blue 3.png"
- },{
-	 cardValue : 3, 
-	 cardColor: Blue,
-	 image: "Blue 3.png"
- },
- {
-	 cardValue : 4, 
-	 cardColor: Blue,
-	 image: "Blue 4.png"
  },
  {
 	 cardValue : 4, 
@@ -71,11 +52,6 @@ Template.hello.events({
 	 image: "Blue 5.png"
  },
   {
-	 cardValue : 1, 
-	 cardColor: Black,
-	 image: "Black 1.png"
- },
- {
 	 cardValue : 1, 
 	 cardColor: Black,
 	 image: "Black 1.png"
@@ -120,3 +96,137 @@ Template.hello.events({
 	 image: "Black 5.png"
  }
  ];
+ 
+ var discards = [
+ {
+	 cardValue : 1, 
+	 cardColor: Yellow,
+	 image: "Yellow 1.png"
+ },
+ {
+	 cardValue : 1, 
+	 cardColor: Yellow,
+	 image: "Yellow 1.png"
+ },
+ {
+	 cardValue : 2, 
+	 cardColor: Yellow,
+	 image: "Yellow 2.png"
+ },
+ {
+	 cardValue : 3, 
+	 cardColor: Yellow,
+	 image: "Yellow 3.png"
+ },
+ {
+	 cardValue : 4, 
+	 cardColor: Yellow,
+	 image: "Yellow 4.png"
+ },
+ {
+	 cardValue : 4, 
+	 cardColor: Yellow,
+	 image: "Yellow 4.png"
+ },
+ {
+	 cardValue : 5, 
+	 cardColor: Yellow,
+	 image: "Yellow 5.png"
+ },
+  {
+	 cardValue : 1, 
+	 cardColor: Red,
+	 image: "Red 1.png"
+ },
+ {
+	 cardValue : 1, 
+	 cardColor: Red,
+	 image: "Red 1.png"
+ },
+ {
+	 cardValue : 2, 
+	 cardColor: Red,
+	 image: "Red 2.png"
+ },
+ {
+	 cardValue : 3, 
+	 cardColor: Red,
+	 image: "Red 3.png"
+ },{
+	 cardValue : 3, 
+	 cardColor: Red,
+	 image: "Red 3.png"
+ },
+ {
+	 cardValue : 4, 
+	 cardColor: Red,
+	 image: "Red 4.png"
+ },
+ {
+	 cardValue : 4, 
+	 cardColor: Red,
+	 image: "Red 4.png"
+ },
+ {
+	 cardValue : 5, 
+	 cardColor: Red,
+	 image: "Red 5.png"
+ }
+ ];
+ play_area [
+	[{
+		 cardValue : 1, 
+		 cardColor: Red,
+		 image: "Red 1.png"
+	 },
+	 {
+		 cardValue : 2, 
+		 cardColor: Red,
+		 image: "Red 2.png"
+	 }
+	],
+	
+	[{
+		 cardValue : 1, 
+		 cardColor: Yellow,
+		 image: "Yellow 1.png"
+	 },
+	 {
+		 cardValue : 2, 
+		 cardColor: Yellow,
+		 image: "Yellow 2.png"
+	 }
+	 {
+		 cardValue : 3, 
+		 cardColor: Yellow,
+		 image: "Yellow 3.png"
+	 }
+	],
+	[{
+		 cardValue : 1, 
+		 cardColor: Black,
+		 image: "Black 1.png"
+	 }
+	 ],
+	 [{
+		 cardValue : 1, 
+		 cardColor: Blue,
+		 image: "Blue 1.png"
+	 },
+	 {
+		 cardValue : 2, 
+		 cardColor: Blue,
+		 image: "Blue 2.png"
+	 },
+	 {
+		 cardValue : 3, 
+		 cardColor: Blue,
+		 image: "Blue 3.png"
+	 }
+	 {
+		 cardValue : 4, 
+		 cardColor: Blue,
+		 image: "Blue 4.png"
+	 }
+	],
+]
