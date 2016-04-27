@@ -11,16 +11,20 @@
 </body>
 
 <template name="start">
-  <button>Start Button</button>
-  <img src="">This is an image</img>
-</template>
-
-<template name="start">
-  <h2>Learn Meteor!</h2>
-  
+  <button url="New Game.png">Start Button</button>
+  <img src="fireworks.png" class="img-responsive">
 </template>
 
 <template name="player">
-  <h2>Learn Meteor!</h2>
+  {{#each card}}
+	<img src="card-back.png" class="img-responsive">
+  {{/each}}
+  
+</template>
+
+<template name="opponent">
+  {{#each card}}
+	<img src="{{this.url}}" class="img-responsive">
+  {{/each}}
   
 </template>
