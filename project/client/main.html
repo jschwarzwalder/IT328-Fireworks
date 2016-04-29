@@ -10,6 +10,7 @@
 		  {{> opponentHand}}
 		  {{> play_area }}
 		  {{> playerHand}}
+		  {{> playerActions}}
 		</div>
 		<div class="col-lg-4">
 		  {{> Counters}}
@@ -52,4 +53,8 @@
   <h3> Fireworks: {{error}}</h3>
   
   <h3> Clues Left: {{clues}} </h3>
+</template>
+
+<template name="playerActions">
+  <button id="play" name="play"> Play </button>
 </template>

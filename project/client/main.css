@@ -3,6 +3,18 @@ img{
 	
 	width: 100px;
 }
-li {
-	display: inline;
+#play {
+	width: 150px;
+    height: 150px;
+    background-image: url(Play.png);
+    background-repeat: no-repeat;
+}
+button #cluenum {
+background: url('clue number.png') no-repeat;
+}
+button #cluecolor {
+background: url('clue color.png') no-repeat;
+}
+button #discard {
+background: url('Discard.png') no-repeat;
 }

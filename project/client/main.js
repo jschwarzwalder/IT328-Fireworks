@@ -277,3 +277,6 @@ Template.Counters.helpers({
 	
 });	
 
+Template.playerActions.events({
+  'click play': function(event, template) {}
+})
