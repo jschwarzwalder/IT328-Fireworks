@@ -275,6 +275,7 @@ Session.set("play_area", play_area);
 Session.set("opponentHand", opponentHand);
 Session.set("playerHand", playerHand);
 
+//Get opponent hand
 Template.opponentHand.helpers({
 	card: function() {
 		return Session.get('opponentHand');
@@ -282,6 +283,7 @@ Template.opponentHand.helpers({
 	
 });
 
+//Get Player Hand 
 Template.playerHand.helpers({
 	card: function() {
 		return Session.get('playerHand');
