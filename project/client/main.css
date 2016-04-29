@@ -5,31 +5,31 @@ img{
 }
 #play {
 	width: 80px;
-    height: 60px;
-	background-size: 80px 60px;
+    height: 48px;
+	background-size: 80px 48px;
     background-image: url(Play.png);
     background-repeat: no-repeat;
 }
 #cluenum {
 	width: 80px;
-    height: 60px;
-	background-size: 80px 60px;
+    height: 48px;
+	background-size: 80px 48px;
     background-image: url('clue number.png');
     background-repeat: no-repeat;
 
 }
 #cluecolor {
 	width: 80px;
-    height: 60px;
-	background-size: 80px 60px;
+    height: 48px;
+	background-size: 80px 48px;
     background-image: url('clue color.png');
     background-repeat: no-repeat;
 
 }
 #discard {
 	width: 80px;
-    height: 60px;
-	background-size: 80px 60px;
+    height: 48px;
+	background-size: 80px 48px;
     background-image: url('Discard.png');
     background-repeat: no-repeat;
 

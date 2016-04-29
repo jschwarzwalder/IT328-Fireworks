@@ -25,28 +25,33 @@
 </template>
 
 <template name="playerHand">
+<div class="text-center">
 <ul class="list-inline">
   {{#each card}}
 <li>	<img src="card back.png" class="img-responsive"> </li>
   {{/each}}
 </ul>
+</div>
 </template>
 
 <template name="opponentHand">
+<div class="text-center">
 <ul class="list-inline">
   {{#each card}}
 	<li> <img src="{{this.image}}" class="img-responsive"> </li>
   {{/each}}
  </ul>
+ </div>
 </template>
 
 <template name="play_area">
+<div class="text-center">
 <ul class="list-inline">
   {{#each card}}
   <li><img src="{{this.image}}" class="img-responsive"> </li>
   {{/each}}
 </ul>
-  
+  </div>
 </template>
 
 <template name="Counters">
@@ -55,6 +60,14 @@
   <h3> Clues Left: {{clues}} </h3>
 </template>
 
+<!-- Player actions --> 
 <template name="playerActions">
-  <button id="play" name="play"> Play </button>
+<div class="text-center">
+  <button id="play" name="play"> </button>
+  <button id="cluenum" name="cluenum"> </button>
+  <button id="cluecolor" name="cluecolor"> </button>
+  <button id="discard" name="discard"> </button>
+</div> 
+  
 </template>
+
