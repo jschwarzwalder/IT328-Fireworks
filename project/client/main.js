@@ -1,10 +1,8 @@
-import { Template } from 'meteor/templating';
-import { ReactiveVar } from 'meteor/reactive-var';
-
 import './main.html';
  
-
- var deck = [
+var errors = 0;
+var clues = 8;
+var deck = [
  {
 	 cardValue : 1, 
 	 cardColor: "Blue",
@@ -80,7 +78,7 @@ import './main.html';
 	 image: "Black 5.png"
  }
  ];
- var discards = [
+var discards = [
  {
 	 cardValue : 1, 
 	 cardColor: "Yellow",
@@ -160,7 +158,7 @@ import './main.html';
  /*Array of arrays
  This is a sample play area which is stack of 5 columns of cards. The first column is red cards with 1 and 2 .... 
  */
- var play_area = [
+var play_area = [
 	[{
 		 cardValue : 1, 
 		 cardColor: "Red",
