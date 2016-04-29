@@ -172,7 +172,11 @@ Template.hello.events({
 	 image: "Red 5.png"
  }
  ];
- var play_area [
+ 
+ /*Array of arrays
+ This is a sample play area which is stack of 5 columns of cards. The first column is red cards with 1 and 2 .... 
+ */
+ var play_area = [
 	[{
 		 cardValue : 1, 
 		 cardColor: Red,
@@ -228,7 +232,7 @@ Template.hello.events({
 		 image: "Blue 4.png"
 	 }
 	]
-]
+];
 var playerHand = [];
 var opponentHand = [];
 
