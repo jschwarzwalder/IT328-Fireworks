@@ -236,3 +236,4 @@ var opponentHand = [];
 Session.set("deck", deck); 
 Session.set("discards", discards); 
 Session.set("play_area", play_area); 
+
