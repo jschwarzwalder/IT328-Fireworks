@@ -2,6 +2,9 @@ import './main.html';
  
 var errors = 0;
 var clues = 8;
+Session.set("errors", errors);
+Session.set("clues", clues);
+
 var deck = [
  {
 	 cardValue : 1, 
@@ -269,14 +272,39 @@ Template.play_area.helpers({
 
 Template.Counters.helpers({
 	error: function() {
-		return errors;
+		return Session.get('errors');
 	},
 	clues: function() {
-		return clues;
+		return Session.get('clues');
 	}
 	
 });	
 
 Template.playerActions.events({
-  'click play': function(event, template) {}
+  'click #play': function(event, template) {
+	  var errors = Session.get('errors');
+	  errors ++;
+	  console.log(errors)
+	  Session.set("errors", errors);
+  }, 
+  'click #cluenum': function(event, template) {
+	  var clues = Session.get('clues');
+	  clues --;
+	  console.log(clues)
+	  Session.set("clues", clues);
+  },
+  'click #cluecolor': function(event, template) {
+	  var clues = Session.get('clues');
+	  clues --;
+	  console.log(clues)
+	  Session.set("clues", clues);
+  }, 
+  'click #discard': function(event, template) {
+	  var clues = Session.get('clues');
+	  clues ++;
+	  console.log(clues)
+	  Session.set("clues", clues);
+  }
+  
+  
 })
