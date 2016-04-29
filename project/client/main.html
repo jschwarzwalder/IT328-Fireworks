@@ -5,9 +5,19 @@
 
 <body>
   <h1>Firework Game!</h1>
-	
+	<div class="row-fluid">
+			<div class="col-lg-8">
   {{> opponentHand}}
+  {{> play_area }}
   {{> playerHand}}
+  
+  </div>
+  <div class="col-lg-4">
+  <h3> Fireworks </h3>
+  
+  <h3> Clues Left </h3>
+  </div>
+  </div>
 </body>
 
 <!-- this template is for the splash screen --> 
@@ -33,7 +43,7 @@
 </template>
 
 <template name="play_area">
-<ul>
+<ul class="list-inline">
   {{#each card}}
   <li><img src="{{this.image}}" class="img-responsive"> </li>
   {{/each}}

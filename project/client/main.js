@@ -161,61 +161,31 @@ import './main.html';
  This is a sample play area which is stack of 5 columns of cards. The first column is red cards with 1 and 2 .... 
  */
  var play_area = [
-	[{
-		 cardValue : 1, 
-		 cardColor: "Red",
-		 image: "Red 1.png"
-	 },
+	
 	 {
 		 cardValue : 2, 
 		 cardColor: "Red",
 		 image: "Red 2.png"
 	 }
-	],
-	
-	[{
-		 cardValue : 1, 
-		 cardColor: "Yellow",
-		 image: "Yellow 1.png"
-	 },
-	 {
-		 cardValue : 2, 
-		 cardColor: "Yellow",
-		 image: "Yellow 2.png"
-	 },
+	,
 	 {
 		 cardValue : 3, 
 		 cardColor: "Yellow",
 		 image: "Yellow 3.png"
 	 }
-	],
-	[{
+	,
+	{
 		 cardValue : 1, 
 		 cardColor: "Black",
 		 image: "Black 1.png"
 	 }
-	 ],
-	 [{
-		 cardValue : 1, 
-		 cardColor: "Blue",
-		 image: "Blue 1.png"
-	 },
-	 {
-		 cardValue : 2, 
-		 cardColor: "Blue",
-		 image: "Blue 2.png"
-	 },
-	 {
-		 cardValue : 3, 
-		 cardColor: "Blue",
-		 image: "Blue 3.png"
-	 },
+	 ,
 	 {
 		 cardValue : 4, 
 		 cardColor: "Blue",
 		 image: "Blue 4.png"
 	 }
-	]
+
 ];
 var playerHand = [{
 	 cardValue : 1, 
@@ -290,3 +260,10 @@ Template.playerHand.helpers({
 	}
 	
 });	
+
+Template.play_area.helpers({
+	card: function() {
+		return Session.get('play_area');
+	}
+	
+});
