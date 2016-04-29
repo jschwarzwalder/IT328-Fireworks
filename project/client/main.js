@@ -23,152 +23,152 @@ Template.hello.events({
  var deck = [
  {
 	 cardValue : 1, 
-	 cardColor: Blue,
+	 cardColor: "Blue",
 	 image: "Blue 1.png"
  },
  {
 	 cardValue : 1, 
-	 cardColor: Blue,
+	 cardColor: "Blue",
 	 image: "Blue 1.png"
  },
  {
 	 cardValue : 2, 
-	 cardColor: Blue,
+	 cardColor: "Blue",
 	 image: "Blue 2.png"
  },
  {
 	 cardValue : 3, 
-	 cardColor: Blue,
+	 cardColor: "Blue",
 	 image: "Blue 3.png"
  },
  {
 	 cardValue : 4, 
-	 cardColor: Blue,
+	 cardColor: "Blue",
 	 image: "Blue 4.png"
  },
  {
 	 cardValue : 5, 
-	 cardColor: Blue,
+	 cardColor: "Blue",
 	 image: "Blue 5.png"
  },
   {
 	 cardValue : 1, 
-	 cardColor: Black,
+	 cardColor: "Black",
 	 image: "Black 1.png"
  },
  {
 	 cardValue : 1, 
-	 cardColor: Black,
+	 cardColor: "Black",
 	 image: "Black 1.png"
  },
  {
 	 cardValue : 2, 
-	 cardColor: Black,
+	 cardColor: "Black",
 	 image: "Black 2.png"
  },
  {
 	 cardValue : 2, 
-	 cardColor: Black,
+	 cardColor: "Black",
 	 image: "Black 2.png"
  },
  {
 	 cardValue : 3, 
-	 cardColor: Black,
+	 cardColor: "Black",
 	 image: "Black 3.png"
  },{
 	 cardValue : 3, 
-	 cardColor: Black,
+	 cardColor: "Black",
 	 image: "Black 3.png"
  },
  {
 	 cardValue : 4, 
-	 cardColor: Black,
+	 cardColor: "Black",
 	 image: "Black 4.png"
  },
  {
 	 cardValue : 4, 
-	 cardColor: Black,
+	 cardColor: "Black",
 	 image: "Black 4.png"
  },
  {
 	 cardValue : 5, 
-	 cardColor: Black,
+	 cardColor: "Black",
 	 image: "Black 5.png"
  }
  ];
  var discards = [
  {
 	 cardValue : 1, 
-	 cardColor: Yellow,
+	 cardColor: "Yellow",
 	 image: "Yellow 1.png"
  },
  {
 	 cardValue : 1, 
-	 cardColor: Yellow,
+	 cardColor: "Yellow",
 	 image: "Yellow 1.png"
  },
  {
 	 cardValue : 2, 
-	 cardColor: Yellow,
+	 cardColor: "Yellow",
 	 image: "Yellow 2.png"
  },
  {
 	 cardValue : 3, 
-	 cardColor: Yellow,
+	 cardColor: "Yellow",
 	 image: "Yellow 3.png"
  },
  {
 	 cardValue : 4, 
-	 cardColor: Yellow,
+	 cardColor: "Yellow",
 	 image: "Yellow 4.png"
  },
  {
 	 cardValue : 4, 
-	 cardColor: Yellow,
+	 cardColor: "Yellow",
 	 image: "Yellow 4.png"
  },
  {
 	 cardValue : 5, 
-	 cardColor: Yellow,
+	 cardColor: "Yellow",
 	 image: "Yellow 5.png"
  },
   {
 	 cardValue : 1, 
-	 cardColor: Red,
+	 cardColor: "Red",
 	 image: "Red 1.png"
  },
  {
 	 cardValue : 1, 
-	 cardColor: Red,
+	 cardColor: "Red",
 	 image: "Red 1.png"
  },
  {
 	 cardValue : 2, 
-	 cardColor: Red,
+	 cardColor: "Red",
 	 image: "Red 2.png"
  },
  {
 	 cardValue : 3, 
-	 cardColor: Red,
+	 cardColor: "Red",
 	 image: "Red 3.png"
  },{
 	 cardValue : 3, 
-	 cardColor: Red,
+	 cardColor: "Red",
 	 image: "Red 3.png"
  },
  {
 	 cardValue : 4, 
-	 cardColor: Red,
+	 cardColor: "Red",
 	 image: "Red 4.png"
  },
  {
 	 cardValue : 4, 
-	 cardColor: Red,
+	 cardColor: "Red",
 	 image: "Red 4.png"
  },
  {
 	 cardValue : 5, 
-	 cardColor: Red,
+	 cardColor: "Red",
 	 image: "Red 5.png"
  }
  ];
@@ -179,56 +179,56 @@ Template.hello.events({
  var play_area = [
 	[{
 		 cardValue : 1, 
-		 cardColor: Red,
+		 cardColor: "Red",
 		 image: "Red 1.png"
 	 },
 	 {
 		 cardValue : 2, 
-		 cardColor: Red,
+		 cardColor: "Red",
 		 image: "Red 2.png"
 	 }
 	],
 	
 	[{
 		 cardValue : 1, 
-		 cardColor: Yellow,
+		 cardColor: "Yellow",
 		 image: "Yellow 1.png"
 	 },
 	 {
 		 cardValue : 2, 
-		 cardColor: Yellow,
+		 cardColor: "Yellow",
 		 image: "Yellow 2.png"
 	 },
 	 {
 		 cardValue : 3, 
-		 cardColor: Yellow,
+		 cardColor: "Yellow",
 		 image: "Yellow 3.png"
 	 }
 	],
 	[{
 		 cardValue : 1, 
-		 cardColor: Black,
+		 cardColor: "Black",
 		 image: "Black 1.png"
 	 }
 	 ],
 	 [{
 		 cardValue : 1, 
-		 cardColor: Blue,
+		 cardColor: "Blue",
 		 image: "Blue 1.png"
 	 },
 	 {
 		 cardValue : 2, 
-		 cardColor: Blue,
+		 cardColor: "Blue",
 		 image: "Blue 2.png"
 	 },
 	 {
 		 cardValue : 3, 
-		 cardColor: Blue,
+		 cardColor: "Blue",
 		 image: "Blue 3.png"
 	 },
 	 {
 		 cardValue : 4, 
-		 cardColor: Blue,
+		 cardColor: "Blue",
 		 image: "Blue 4.png"
 	 }
 	]
