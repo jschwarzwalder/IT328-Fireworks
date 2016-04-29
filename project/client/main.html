@@ -1,5 +1,6 @@
 <head>
   <title>simple</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 
 <body>
@@ -16,17 +17,19 @@
 </template>
 
 <template name="playerHand">
+<ul class="list-inline">
   {{#each card}}
-	<img src="card back.png" class="img-responsive">
+<li>	<img src="card back.png" class="img-responsive"> </li>
   {{/each}}
-  
+</ul>
 </template>
 
 <template name="opponentHand">
+<ul class="list-inline">
   {{#each card}}
-	<img src="{{this.image}}" class="img-responsive">
+	<li> <img src="{{this.image}}" class="img-responsive"> </li>
   {{/each}}
-  
+ </ul>
 </template>
 
 <template name="play_area">
