@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
-
+ 
 Template.start.onCreated(function startGame() {
   // counter starts at 0
   this.counter = new ReactiveVar(0);
@@ -96,7 +96,6 @@ Template.hello.events({
 	 image: "Black 5.png"
  }
  ];
- 
  var discards = [
  {
 	 cardValue : 1, 
@@ -173,7 +172,7 @@ Template.hello.events({
 	 image: "Red 5.png"
  }
  ];
- play_area [
+ var play_area [
 	[{
 		 cardValue : 1, 
 		 cardColor: Red,
@@ -202,14 +201,12 @@ Template.hello.events({
 		 image: "Yellow 3.png"
 	 }
 	],
-	
 	[{
 		 cardValue : 1, 
 		 cardColor: Black,
 		 image: "Black 1.png"
 	 }
 	 ],
-	 
 	 [{
 		 cardValue : 1, 
 		 cardColor: Blue,
@@ -232,3 +229,10 @@ Template.hello.events({
 	 }
 	]
 ]
+var playerHand = [];
+var opponentHand = [];
+
+//Define sessions  
+Session.set("deck", deck); 
+Session.set("discards", discards); 
+Session.set("play_area", play_area); 
