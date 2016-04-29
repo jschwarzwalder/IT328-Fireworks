@@ -288,3 +288,13 @@ Template.playerHand.helpers({
 	}
 	
 });	
+
+Template.Counters.helpers({
+	error: function() {
+		return errors;
+	}
+	clues: function() {
+		return clues;
+	}
+	
+});	
