@@ -195,19 +195,21 @@ Template.hello.events({
 		 cardValue : 2, 
 		 cardColor: Yellow,
 		 image: "Yellow 2.png"
-	 }
+	 },
 	 {
 		 cardValue : 3, 
 		 cardColor: Yellow,
 		 image: "Yellow 3.png"
 	 }
 	],
+	
 	[{
 		 cardValue : 1, 
 		 cardColor: Black,
 		 image: "Black 1.png"
 	 }
 	 ],
+	 
 	 [{
 		 cardValue : 1, 
 		 cardColor: Blue,
