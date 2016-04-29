@@ -160,13 +160,7 @@ var discards = [
  */
 
 var play_area = [
-	[{
-		 cardValue : 1, 
-		 cardColor: "Red",
-		 image: "Red 1.png"
-	 },
-
-	 {
+	{
 		 cardValue : 2, 
 		 cardColor: "Red",
 		 image: "Red 2.png"
