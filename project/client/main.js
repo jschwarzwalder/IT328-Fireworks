@@ -224,11 +224,11 @@ Template.hello.events({
 		 cardValue : 3, 
 		 cardColor: Blue,
 		 image: "Blue 3.png"
-	 }
+	 },
 	 {
 		 cardValue : 4, 
 		 cardColor: Blue,
 		 image: "Blue 4.png"
 	 }
-	],
+	]
 ]
