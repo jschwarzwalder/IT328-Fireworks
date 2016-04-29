@@ -158,17 +158,14 @@ var discards = [
  /*Array of arrays
  This is a sample play area which is stack of 5 columns of cards. The first column is red cards with 1 and 2 .... 
  */
-<<<<<<< HEAD
- var play_area = [
-	
-=======
+
 var play_area = [
 	[{
 		 cardValue : 1, 
 		 cardColor: "Red",
 		 image: "Red 1.png"
 	 },
->>>>>>> origin/master
+
 	 {
 		 cardValue : 2, 
 		 cardColor: "Red",
@@ -268,14 +265,14 @@ Template.playerHand.helpers({
 	
 });	
 
-<<<<<<< HEAD
+
 Template.play_area.helpers({
 	card: function() {
 		return Session.get('play_area');
 	}
 	
 });
-=======
+
 Template.Counters.helpers({
 	error: function() {
 		return errors;
@@ -285,4 +282,4 @@ Template.Counters.helpers({
 	}
 	
 });	
->>>>>>> origin/master
+
