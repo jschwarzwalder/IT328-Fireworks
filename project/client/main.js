@@ -217,16 +217,74 @@ import './main.html';
 	 }
 	]
 ];
-var playerHand = [];
-var opponentHand = [];
+var playerHand = [{
+	 cardValue : 1, 
+	 cardColor: "Blue",
+	 image: "Blue 1.png"
+ },
+ {
+	 cardValue : 1, 
+	 cardColor: "Blue",
+	 image: "Blue 1.png"
+ },
+ {
+	 cardValue : 2, 
+	 cardColor: "Blue",
+	 image: "Blue 2.png"
+ },
+ {
+	 cardValue : 3, 
+	 cardColor: "Blue",
+	 image: "Blue 3.png"
+ },
+ {
+	 cardValue : 4, 
+	 cardColor: "Blue",
+	 image: "Blue 4.png"
+ }];
+var opponentHand = [{
+	 cardValue : 1, 
+	 cardColor: "Blue",
+	 image: "Blue 1.png"
+ },
+ {
+	 cardValue : 1, 
+	 cardColor: "Blue",
+	 image: "Blue 1.png"
+ },
+ {
+	 cardValue : 2, 
+	 cardColor: "Blue",
+	 image: "Blue 2.png"
+ },
+ {
+	 cardValue : 3, 
+	 cardColor: "Blue",
+	 image: "Blue 3.png"
+ },
+ {
+	 cardValue : 4, 
+	 cardColor: "Blue",
+	 image: "Blue 4.png"
+ }];
 
 //Define sessions  
 Session.set("deck", deck); 
 Session.set("discards", discards); 
 Session.set("play_area", play_area); 
+Session.set("opponentHand", opponentHand);
+Session.set("playerHand", playerHand);
 
-Template.play_area.helpers({
-	play_area: function() {
-		return Session.get('play_area');
+Template.opponentHand.helpers({
+	card: function() {
+		return Session.get('opponentHand');
 	}
+	
 });
+
+Template.playerHand.helpers({
+	card: function() {
+		return Session.get('playerHand');
+	}
+	
+});	

@@ -4,9 +4,9 @@
 
 <body>
   <h1>Firework Game!</h1>
-	{{> play_area}}
-  {{> opponent}}
-  {{> player}}
+	
+  {{> opponentHand}}
+  {{> playerHand}}
 </body>
 
 <!-- this template is for the splash screen --> 
@@ -15,24 +15,24 @@
   <img src="fireworks.png" class="img-responsive">
 </template>
 
-<template name="player">
+<template name="playerHand">
   {{#each card}}
-	<img src="card-back.png" class="img-responsive">
+	<img src="card back.png" class="img-responsive">
   {{/each}}
   
 </template>
 
-<template name="opponent">
+<template name="opponentHand">
   {{#each card}}
-	<img src="{{this.url}}" class="img-responsive">
+	<img src="{{this.image}}" class="img-responsive">
   {{/each}}
   
 </template>
 
 <template name="play_area">
 <ul>
-  {{#each play_area}}
-  <li><img src="card back.png" class="img-responsive"> </li>
+  {{#each card}}
+  <li><img src="{{this.image}}" class="img-responsive"> </li>
   {{/each}}
 </ul>
   
