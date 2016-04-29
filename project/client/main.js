@@ -270,7 +270,7 @@ Template.play_area.helpers({
 Template.Counters.helpers({
 	error: function() {
 		return errors;
-	}
+	},
 	clues: function() {
 		return clues;
 	}
