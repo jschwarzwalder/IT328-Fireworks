@@ -3,23 +3,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 import './main.html';
  
-Template.start.onCreated(function startGame() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
-});
 
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
-});
-
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
-});
  var deck = [
  {
 	 cardValue : 1, 
@@ -241,3 +225,8 @@ Session.set("deck", deck);
 Session.set("discards", discards); 
 Session.set("play_area", play_area); 
 
+Template.play_area.helpers({
+	play_area: function() {
+		return Session.get('play_area');
+	}
+});

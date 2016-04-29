@@ -4,7 +4,7 @@
 
 <body>
   <h1>Firework Game!</h1>
-	
+	{{> play_area}}
   {{> opponent}}
   {{> player}}
 </body>
@@ -26,5 +26,14 @@
   {{#each card}}
 	<img src="{{this.url}}" class="img-responsive">
   {{/each}}
+  
+</template>
+
+<template name="play_area">
+<ul>
+  {{#each play_area}}
+  <li><img src="card back.png" class="img-responsive"> </li>
+  {{/each}}
+</ul>
   
 </template>
