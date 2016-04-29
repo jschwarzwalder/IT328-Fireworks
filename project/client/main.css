@@ -4,17 +4,33 @@ img{
 	width: 100px;
 }
 #play {
-	width: 150px;
-    height: 150px;
+	width: 80px;
+    height: 60px;
+	background-size: 80px 60px;
     background-image: url(Play.png);
     background-repeat: no-repeat;
 }
-button #cluenum {
-background: url('clue number.png') no-repeat;
+#cluenum {
+	width: 80px;
+    height: 60px;
+	background-size: 80px 60px;
+    background-image: url('clue number.png');
+    background-repeat: no-repeat;
+
 }
-button #cluecolor {
-background: url('clue color.png') no-repeat;
+#cluecolor {
+	width: 80px;
+    height: 60px;
+	background-size: 80px 60px;
+    background-image: url('clue color.png');
+    background-repeat: no-repeat;
+
 }
-button #discard {
-background: url('Discard.png') no-repeat;
+#discard {
+	width: 80px;
+    height: 60px;
+	background-size: 80px 60px;
+    background-image: url('Discard.png');
+    background-repeat: no-repeat;
+
 }
