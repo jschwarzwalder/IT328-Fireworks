@@ -328,3 +328,22 @@ Template.playerActions.events({
   
 });
 
+Template.newGame.events({
+	'click #newGame': function(event, template) {
+	  var deck = Session.get('deck');
+	  var player1 = [];
+	  var player2 = Session.get('opponentHand');
+	  
+	  for (i = 0; i< 5; i++){
+		player1.push(deck.pop);  
+		player2.push(deck.pop);  
+	  }
+	  
+	  console.log(player2);
+	  
+	Session.set("deck", deck); 
+	Session.set("playerHand", player1);
+	Session.set("opponentHand", player2);
+  }, 
+});
+
