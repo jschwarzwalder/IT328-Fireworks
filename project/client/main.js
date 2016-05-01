@@ -326,4 +326,5 @@ Template.playerActions.events({
   }
   
   
-})
+});
+
