@@ -1,6 +1,9 @@
 import './main.html';
  
 var errors = 0;
+/*
+Authors: Sahba Bahizad, Jami Schwarzwalder
+*/
 var clues = 8;
 Session.set("errors", errors);
 Session.set("clues", clues);
@@ -283,27 +286,43 @@ Template.Counters.helpers({
 Template.playerActions.events({
   'click #play': function(event, template) {
 	  var errors = Session.get('errors');
+	  if(errors < 3){
 	  errors ++;
 	  console.log(errors)
 	  Session.set("errors", errors);
+  }else{
+	  console.log("Game Over!");
+  }
   }, 
   'click #cluenum': function(event, template) {
 	  var clues = Session.get('clues');
+	  if(clues <= 8 && clues >0 ){
 	  clues --;
-	  console.log(clues)
+	  console.log(clues);
 	  Session.set("clues", clues);
+  }else{
+	  console.log("Do Nothing... Cannot have negative clues!");
+  }
   },
   'click #cluecolor': function(event, template) {
 	  var clues = Session.get('clues');
+	  if(clues <= 8 && clues >0 ){
 	  clues --;
-	  console.log(clues)
+	  console.log(clues);
 	  Session.set("clues", clues);
+  }else{
+	  console.log("Do Nothing... Cannot have negative clues!");
+  }
   }, 
   'click #discard': function(event, template) {
 	  var clues = Session.get('clues');
+	  if(clues < 8 && clues > 0 ){
 	  clues ++;
-	  console.log(clues)
+	  console.log(clues);
 	  Session.set("clues", clues);
+	  }else{
+		  console.log("Do Nothing... Cannot have negative clues!");
+	  }
   }
   
   
