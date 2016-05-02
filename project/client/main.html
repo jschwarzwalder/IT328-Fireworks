@@ -1,4 +1,3 @@
-<!-- Authors: Sahba Bahizad, Jami Schwarzwalder -->
 <head>
   <title>simple</title>
   <link rel="stylesheet" type="text/css" href="main.css">
@@ -59,7 +58,13 @@
   <h3> Fireworks: {{error}}</h3>
   
   <h3> Clues Left: {{clues}} </h3>
-</template>
+  
+	{{> newGame}}
+  
+ </template>
+ <template name="newGame">
+	<button id="newGame" name="newGame"> </button>
+ </template>
 
 <!-- Player actions --> 
 <template name="playerActions">

@@ -34,3 +34,12 @@ img{
     background-repeat: no-repeat;
 
 }
+
+#newGame {
+	width: 85px;
+    height: 50px;
+	background-size: 80px 48px;
+    background-image: url('New Game.png');
+    background-repeat: no-repeat;
+
+}
