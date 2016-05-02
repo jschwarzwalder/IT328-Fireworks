@@ -330,15 +330,23 @@ Template.playerActions.events({
 
 Template.newGame.events({
 	'click #newGame': function(event, template) {
-	  var deck = Session.get('deck');
+	  var deck = Session.get("deck", deck);
 	  var player1 = [];
-	  var player2 = Session.get('opponentHand');
+	  var player2 = [];
 	  
+	  console.log(deck.length);
+	  console.log(deck[deck.length-1]);
+	  console.log(deck.length);
 	  for (i = 0; i< 5; i++){
-		player1.push(deck.pop);  
-		player2.push(deck.pop);  
+		  var card1 = deck[deck.length-1-i];
+		  
+		player1.push(card1);  
+		  var card2 = deck[deck.length-2-i];
+		player2.push(card2);  
 	  }
-	  
+	  console.log("player1");	  
+	  console.log(player1);
+	  console.log("player2");
 	  console.log(player2);
 	  
 	Session.set("deck", deck); 
