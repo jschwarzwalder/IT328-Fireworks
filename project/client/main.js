@@ -1,5 +1,11 @@
 import './main.html';
 import { fireworkCards } from '../collection/collection.js';
+import { deck } from '../collection/collection.js';
+import { discards } from '../collection/collection.js';
+import {  play_area } from '../collection/collection.js';
+import { player_1 } from '../collection/collection.js';
+import { player_2 } from '../collection/collection.js';
+   
  
 var errors = 0;
 /*
@@ -9,14 +15,11 @@ var clues = 8;
 Session.set("errors", errors);
 Session.set("clues", clues);
 
-var deck = 
-var discards = 
- 
+
  /*Array of arrays
  This is a sample play area which is stack of 5 columns of cards. The first column is red cards with 1 and 2 .... 
  */
 
-var play_area = play_area.find();
 var playerHand = player_1.find();
 
 
