@@ -113,7 +113,8 @@ Template.playerActions.events({
 Template.newGame.events({
 	'click #newGame': function(event, template) {
 	//remove any database values that are present
-	fireworkCards.find().forEach(function(card){
+
+	/* fireworkCards.find().forEach(function(card){
 		fireworkCards.remove( {"_id": card._id});
 	});
 	player1HandCollection.find().forEach(function(card){
@@ -125,9 +126,15 @@ Template.newGame.events({
 	player_areaCollection.find().forEach(function(card){
 		player_areaCollection.remove( {"_id": card._id});
 	});
-	/* discardCollection.find().forEach(function(card){
+	discardCollection.find().forEach(function(card){
 		discardCollection.remove( {"_id": card._id});
-	}); */
+	}); 
+
+	//add a card from deck to the hand
+		player1HandCollection.insert(fireworkCards.findOneAndDelete({}));
+		player2HandCollection.insert(fireworkCards.findOneAndDelete({}));
+
+	 */
 	
 	
 	//build deck
@@ -140,14 +147,10 @@ Template.newGame.events({
 	 //deal out hand
 	for (i = 0; i< 5; i++){
 		
-		player1HandCollection.insert(fireworkCards.findOneAndDelete({}));
-		player2HandCollection.insert(fireworkCards.findOneAndDelete({}));
-	}
-	  console.log("player1");	  
-	 
-	  console.log("player2");
+
+	//console.log(Meteor.call('newGame' , 5, fireworkCards, player1HandCollection, player2HandCollection));
+	Meteor.call('startNewGame');
+
 	  
-	
-  }, 
 });
 
