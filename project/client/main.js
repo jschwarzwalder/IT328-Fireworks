@@ -113,33 +113,39 @@ Template.playerActions.events({
 Template.newGame.events({
 	'click #newGame': function(event, template) {
 	//remove any database values that are present
-	fireworkCards.remove({}); 
-	player1HandCollection.remove({}); 
-	player2HandCollection.remove({}); 
-	player_areaCollection.remove({}); 
-	discardCollection.remove({}); 
+	fireworkCards.find().forEach(function(card){
+		fireworkCards.remove( {"_id": card._id});
+	});
+	player1HandCollection.find().forEach(function(card){
+		player1HandCollection.remove( {"_id": card._id});
+	});
+	player2HandCollection.find().forEach(function(card){
+		player2HandCollection.remove( {"_id": card._id});
+	});
+	player_areaCollection.find().forEach(function(card){
+		player_areaCollection.remove( {"_id": card._id});
+	});
+	/* discardCollection.find().forEach(function(card){
+		discardCollection.remove( {"_id": card._id});
+	}); */
+	
 	
 	//build deck
 	for (var i = 0 ; i < deck.length ; i ++) {
 
 		fireworkCards.insert(deck[i]);
 	}
+	 //shuffle deck
 	 
-	  
-	  console.log(deck.length);
-	  console.log(deck[deck.length-1]);
-	  console.log(deck.length);
-	  for (i = 0; i< 5; i++){
-		  var card1 = deck[deck.length-1-i];
-		  
-		player1.push(card1);  
-		  var card2 = deck[deck.length-2-i];
-		player2.push(card2);  
-	  }
+	 //deal out hand
+	for (i = 0; i< 5; i++){
+		
+		player1HandCollection.insert(fireworkCards.findOneAndDelete({}));
+		player2HandCollection.insert(fireworkCards.findOneAndDelete({}));
+	}
 	  console.log("player1");	  
-	  console.log(player1);
+	 
 	  console.log("player2");
-	  console.log(player2);
 	  
 	
   }, 
