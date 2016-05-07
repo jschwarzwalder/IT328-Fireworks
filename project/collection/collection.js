@@ -15,11 +15,6 @@ export const deck = [
 	 image: "Blue 1.png"
  },
  {
-	 cardValue : 1, 
-	 cardColor: "Blue",
-	 image: "Blue 1.png"
- },
- {
 	 cardValue : 2, 
 	 cardColor: "Blue",
 	 image: "Blue 2.png"
@@ -39,49 +34,107 @@ export const deck = [
 	 cardColor: "Blue",
 	 image: "Blue 5.png"
  },
+ {
+	 cardValue : 1, 
+	 cardColor: "Green",
+	 image: "Green 1.png"
+ },
+ {
+	 cardValue : 2, 
+	 cardColor: "Green",
+	 image: "Green 2.png"
+ },
+ {
+	 cardValue : 3, 
+	 cardColor: "Green",
+	 image: "Green 3.png"
+ },
+ {
+	 cardValue : 4, 
+	 cardColor: "Green",
+	 image: "Green 4.png"
+ },
+ {
+	 cardValue : 5, 
+	 cardColor: "Green",
+	 image: "Green 5.png"
+ },
   {
 	 cardValue : 1, 
 	 cardColor: "Black",
 	 image: "Black 1.png"
  },
+
+ {
+	 cardValue : 2, 
+	 cardColor: "Black",
+	 image: "Black 2.png"
+ },
+ 
+ {
+	 cardValue : 3, 
+	 cardColor: "Black",
+	 image: "Black 3.png"
+ },
+ {
+	 cardValue : 4, 
+	 cardColor: "Black",
+	 image: "Black 4.png"
+ },
+ {
+	 cardValue : 4, 
+	 cardColor: "Black",
+	 image: "Black 4.png"
+ },
  {
 	 cardValue : 1, 
-	 cardColor: "Black",
-	 image: "Black 1.png"
+	 cardColor: "White",
+	 image: "White 1.png"
  },
  {
 	 cardValue : 2, 
-	 cardColor: "Black",
-	 image: "Black 2.png"
- },
- {
-	 cardValue : 2, 
-	 cardColor: "Black",
-	 image: "Black 2.png"
+	 cardColor: "White",
+	 image: "White 2.png"
  },
  {
 	 cardValue : 3, 
-	 cardColor: "Black",
-	 image: "Black 3.png"
- },{
-	 cardValue : 3, 
-	 cardColor: "Black",
-	 image: "Black 3.png"
+	 cardColor: "White",
+	 image: "White 3.png"
  },
  {
 	 cardValue : 4, 
-	 cardColor: "Black",
-	 image: "Black 4.png"
- },
- {
-	 cardValue : 4, 
-	 cardColor: "Black",
-	 image: "Black 4.png"
+	 cardColor: "White",
+	 image: "White 4.png"
  },
  {
 	 cardValue : 5, 
-	 cardColor: "Black",
-	 image: "Black 5.png"
+	 cardColor: "White",
+	 image: "White 5.png"
+ },
+ {
+	 cardValue : 1, 
+	 cardColor: "Red",
+	 image: "Red 1.png"
+ },
+ {
+	 cardValue : 2, 
+	 cardColor: "Red",
+	 image: "Red 2.png"
+ },
+ {
+	 cardValue : 3, 
+	 cardColor: "Red",
+	 image: "Red 3.png"
+ },
+ {
+	 cardValue : 4, 
+	 cardColor: "Red",
+	 image: "Red 4.png"
+ },
+ {
+	 cardValue : 5, 
+	 cardColor: "Red",
+	 image: "Red 5.png"
  }
  ];
  

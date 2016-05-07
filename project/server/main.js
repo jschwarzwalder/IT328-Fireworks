@@ -8,35 +8,41 @@ Meteor.startup(() => {
     
     //create the deck
     //remove any database values that are present
-  fireworkCards.remove({}); //delete all records ( this will only work on server side)
+  fireworkCards.remove({});
+  player1HandCollection.remove({});
+  player2HandCollection.remove({});//delete all records ( this will only work on server side)
   //add my dummy values
-  for (var i = 0 ; i < deck.length ; i ++) {
-    fireworkCards.insert(deck[i]);
+  for( var i = 0 ; i < deck.length ; i ++){
+     
+     fireworkCards.insert(deck[i]);
   }
   
+  function drawCard(cardSetName) {
+    //get a random card from the firworksCards 
+    var array = cardSetName.find().fetch();
+    var randomIndex = Math.floor( Math.random() * array.length );
+    var element = array[randomIndex];
+    //remove the element to avoid redundancy
+    cardSetName.remove(element);
+   // array.splice(randomIndex, 1);
+    //show it
+    console.log(element);
+    return element;
+  }
   
-    var HandNum = 5;
-   //clear hands
-       player1HandCollection.remove({});
-       player2HandCollection.remove({});
+function newGame(handSize, deck, player1, player2) {
+    for(var i = 0 ; i<handSize ; i++) {
+   player1.insert(drawCard(deck));
+   player2.insert(drawCard(deck));
+    }
+}
 
-   //draw function
-   function drawCard(cardCount, handName) {
-    for (var i = 0 ; i < cardCount ; i ++) {
-            
-           //get a random card from the fireworks card
-         //  var r = Math.floor(Math.random() * );
-          // var randomElement = db.myCollection.find().limit(1).skip(r);
-           //add it to hand
-           //remove it from fireworks
-            handName.insert(deck[Math.round(Math.random() * deck.length) ]);
-            //remove it from the deck collection
-            fireworkCards.findOne.remove();
+newGame(5, fireworkCards, player1HandCollection, player2HandCollection);
 
-            }
-   }
+  //get number of cards
+  var index = fireworkCards.find().count();
+  console.log(index);
+//player2HandCollection.insert(fireworkCards.find({}));
    
-     
-         
          
 });
