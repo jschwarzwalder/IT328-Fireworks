@@ -24,9 +24,9 @@ Meteor.startup(() => {
 	player1HandCollection.remove({}); //delete all records (this will only work on the server)
 	player2HandCollection.remove({}); 
 	
-	for (var i = 0 ; i < player_1.length ; i + 2) {
+	for (var i = 0 ; i < player_1.length ; i++) {
 
-		player1HandCollection.insert(player_1[i+1]);
+		player1HandCollection.insert(player_1[i]);
 		player2HandCollection.insert(player_2[i]);
 	}
 	

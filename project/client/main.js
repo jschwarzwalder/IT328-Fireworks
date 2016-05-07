@@ -21,44 +21,12 @@ var clues = 8;
 Session.set("errors", errors);
 Session.set("clues", clues);
 
-Meteor.startup(() => {
-	//remove any database values that are present
-	fireworkCards.remove({}); //delete all records (this will only work on the server)
-	
-	for (var i = 0 ; i < deck.length ; i ++) {
 
-		fireworkCards.insert(deck[i]);
-	}
-	
-	//remove any database values that are present
-	player1HandCollection.remove({}); //delete all records (this will only work on the server)
-	
-	for (var i = 0 ; i < player_1.length ; i ++) {
-
-		player1HandCollection.insert(player_1[i]);
-	}
-	
-	//remove any database values that are present
-	player2HandCollection.remove({}); //delete all records (this will only work on the server)
-	
-	for (var i = 0 ; i < player_2.length ; i ++) {
-
-		player2HandCollection.insert(player_2[i]);
-	}
-	
-	//remove any database values that are present
-	player_areaCollection.remove({}); //delete all records (this will only work on the server)
-	
-	for (var i = 0 ; i < play_area.length ; i ++) {
-
-		player_areaCollection.insert(play_area[i]);
-	}
-});
  /*Array of arrays
  This is a sample play area which is stack of 5 columns of cards. The first column is red cards with 1 and 2 .... 
  */
 
-var playerHand = player1HandCollection.find();
+
 
 
 //Get opponent hand
@@ -97,7 +65,9 @@ Template.Counters.helpers({
 
 Template.playerActions.events({
   'click #play': function(event, template) {
-	  var errors = Session.get('errors');
+		//play_areaCollection.find({cardColor: this.cardColor})
+
+	 var errors = Session.get('errors');
 	  if(errors < 3){
 	  errors ++;
 	  console.log(errors)

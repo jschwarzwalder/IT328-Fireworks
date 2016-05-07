@@ -297,13 +297,13 @@ export const play_area = [
 
 export const player_1 = [{
 	 cardValue : 1, 
-	 cardColor: "Blue",
-	 image: "Blue 1.png"
+	 cardColor: "Red",
+	 image: "Red 1.png"
  },
  {
 	 cardValue : 1, 
-	 cardColor: "Blue",
-	 image: "Blue 1.png"
+	 cardColor: "Black",
+	 image: "Black 1.png"
  },
  {
 	 cardValue : 2, 
@@ -312,19 +312,19 @@ export const player_1 = [{
  },
  {
 	 cardValue : 3, 
-	 cardColor: "Blue",
-	 image: "Blue 3.png"
+	 cardColor: "Green",
+	 image: "Green 3.png"
  },
  {
 	 cardValue : 4, 
-	 cardColor: "Blue",
-	 image: "Blue 4.png"
+	 cardColor: "Yellow",
+	 image: "Yellow 4.png"
  }];
 
 export const player_2 = [{
 	 cardValue : 1, 
-	 cardColor: "Blue",
-	 image: "Blue 1.png"
+	 cardColor: "Green",
+	 image: "Green 1.png"
  },
  {
 	 cardValue : 1, 
@@ -333,13 +333,13 @@ export const player_2 = [{
  },
  {
 	 cardValue : 2, 
-	 cardColor: "Blue",
-	 image: "Blue 2.png"
+	 cardColor: "Red",
+	 image: "Red 2.png"
  },
  {
 	 cardValue : 3, 
-	 cardColor: "Blue",
-	 image: "Blue 3.png"
+	 cardColor: "Black",
+	 image: "Black 3.png"
  },
  {
 	 cardValue : 4, 
