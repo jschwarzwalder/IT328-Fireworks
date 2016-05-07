@@ -213,7 +213,7 @@ export const player_1 = [{
 	 image: "Blue 4.png"
  }];
 
- export const player_2 = [{
+export const player_2 = [{
 	 cardValue : 1, 
 	 cardColor: "Blue",
 	 image: "Blue 1.png"

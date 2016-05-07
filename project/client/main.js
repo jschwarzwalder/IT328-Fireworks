@@ -16,20 +16,14 @@ var discards =
  This is a sample play area which is stack of 5 columns of cards. The first column is red cards with 1 and 2 .... 
  */
 
-var play_area = 
-var playerHand = 
+var play_area = play_area.find();
+var playerHand = player_1.find();
 
-//Define sessions  
-Session.set("deck", deck); 
-Session.set("discards", discards); 
-Session.set("play_area", play_area); 
-Session.set("opponentHand", opponentHand);
-Session.set("playerHand", playerHand);
 
 //Get opponent hand
 Template.opponentHand.helpers({
 	card: function() {
-		return Session.get('opponentHand');
+		return player_2.find();
 	}
 	
 });
@@ -37,7 +31,7 @@ Template.opponentHand.helpers({
 //Get Player Hand 
 Template.playerHand.helpers({
 	card: function() {
-		return Session.get('playerHand');
+		return player_1.find();
 	}
 	
 });	
@@ -45,7 +39,7 @@ Template.playerHand.helpers({
 
 Template.play_area.helpers({
 	card: function() {
-		return Session.get('play_area');
+		return play_area.find();
 	}
 	
 });
