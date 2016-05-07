@@ -2,10 +2,9 @@ import './main.html';
 import { fireworkCards } from '../collection/collection.js';
 import { deck } from '../collection/collection.js';
 import { discards } from '../collection/collection.js';
-import {  play_area } from '../collection/collection.js';
-import { player_1 } from '../collection/collection.js';
-import { player_2 } from '../collection/collection.js';
-   
+import { player1HandCollection } from '../collection/collection.js';
+import { player2HandCollection } from '../collection/collection.js';
+import { player_areaCollection } from '../collection/collection.js';  
  
 var errors = 0;
 /*
@@ -20,13 +19,13 @@ Session.set("clues", clues);
  This is a sample play area which is stack of 5 columns of cards. The first column is red cards with 1 and 2 .... 
  */
 
-var playerHand = player_1.find();
+var playerHand = player1HandCollection.find();
 
 
 //Get opponent hand
 Template.opponentHand.helpers({
 	card: function() {
-		return player_2.find();
+		return player2HandCollection.find();
 	}
 	
 });
@@ -34,7 +33,7 @@ Template.opponentHand.helpers({
 //Get Player Hand 
 Template.playerHand.helpers({
 	card: function() {
-		return player_1.find();
+		return player1HandCollection.find();
 	}
 	
 });	
@@ -42,7 +41,7 @@ Template.playerHand.helpers({
 
 Template.play_area.helpers({
 	card: function() {
-		return play_area.find();
+		return player_areaCollection.find();
 	}
 	
 });
