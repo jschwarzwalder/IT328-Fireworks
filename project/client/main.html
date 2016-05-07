@@ -28,7 +28,12 @@
 <div class="text-center">
 <ul class="list-inline">
   {{#each card}}
-<li>	<img src="card back.png" class="img-responsive"> </li>
+	<li>	
+		<!-- removing for single player game
+			<img src="card back.png" class="img-responsive">
+		-->
+		<img src="{{this.image}}" class="img-responsive"> 
+	</li>
   {{/each}}
 </ul>
 </div>

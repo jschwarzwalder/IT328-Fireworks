@@ -88,28 +88,28 @@ export const deck = [
  },
  {
 	 cardValue : 1, 
-	 cardColor: "White",
-	 image: "White 1.png"
+	 cardColor: "Yellow",
+	 image: "Yellow 1.png"
  },
  {
 	 cardValue : 2, 
-	 cardColor: "White",
-	 image: "White 2.png"
+	 cardColor: "Yellow",
+	 image: "Yellow 2.png"
  },
  {
 	 cardValue : 3, 
-	 cardColor: "White",
-	 image: "White 3.png"
+	 cardColor: "Yellow",
+	 image: "Yellow 3.png"
  },
  {
 	 cardValue : 4, 
-	 cardColor: "White",
-	 image: "White 4.png"
+	 cardColor: "Yellow",
+	 image: "Yellow 4.png"
  },
  {
 	 cardValue : 5, 
-	 cardColor: "White",
-	 image: "White 5.png"
+	 cardColor: "Yellow",
+	 image: "Yellow 5.png"
  },
  {
 	 cardValue : 1, 
