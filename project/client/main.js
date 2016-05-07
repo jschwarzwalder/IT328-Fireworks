@@ -1,15 +1,15 @@
 import './main.html';
 import { fireworkCards } from '../collection/collection.js';
-import { deck } from '../collection/collection.js';
-import { discards } from '../collection/collection.js';
+import { discardCollection } from '../collection/collection.js';
 import { player1HandCollection } from '../collection/collection.js';
 import { player2HandCollection } from '../collection/collection.js';
 import { player_areaCollection } from '../collection/collection.js';  
- 
-var errors = 0;
+
+
 /*
 Authors: Sahba Bahizad, Jami Schwarzwalder
 */
+var errors = 0;
 var clues = 8;
 Session.set("errors", errors);
 Session.set("clues", clues);

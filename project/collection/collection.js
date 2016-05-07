@@ -8,7 +8,10 @@ export const player2HandCollection = new Mongo.Collection("player2Hand");
 export const player_areaCollection = new Mongo.Collection("player_area");
 export const discardCollection = new Mongo.Collection("discard");
 //export access to any data to start our application
+
+//all the cards that are needed in a game of Hanabi
 export const deck = [
+
  {
 	 cardValue : 1, 
 	 cardColor: "Blue",
@@ -262,8 +265,12 @@ export const deck = [
  }
 
  ];
- 
+ for (var i = 0 ; i < deck.length ; i ++) {
 
+	fireworkCards.insert(deck[i]);
+}
+
+//dummy data for testing 
 export const play_area = [
 	{
 		 cardValue : 2, 
