@@ -2,7 +2,7 @@
 import { Mongo} from "meteor/mongo";
 
 //export access to my collections
-export const deck = new Mongo.Collection("deck");
+export const fireworkCards = new Mongo.Collection("cards");
 
 //export access to any data to start our application
 export const deck = [
@@ -160,4 +160,81 @@ export const discards = [
  }
  ];
  
- 
+export const play_area = [
+	{
+		 cardValue : 2, 
+		 cardColor: "Red",
+		 image: "Red 2.png"
+	 }
+	,
+	 {
+		 cardValue : 3, 
+		 cardColor: "Yellow",
+		 image: "Yellow 3.png"
+	 }
+	,
+	{
+		 cardValue : 1, 
+		 cardColor: "Black",
+		 image: "Black 1.png"
+	 }
+	 ,
+	 {
+		 cardValue : 4, 
+		 cardColor: "Blue",
+		 image: "Blue 4.png"
+	 }
+
+];
+
+export const player_1 = [{
+	 cardValue : 1, 
+	 cardColor: "Blue",
+	 image: "Blue 1.png"
+ },
+ {
+	 cardValue : 1, 
+	 cardColor: "Blue",
+	 image: "Blue 1.png"
+ },
+ {
+	 cardValue : 2, 
+	 cardColor: "Blue",
+	 image: "Blue 2.png"
+ },
+ {
+	 cardValue : 3, 
+	 cardColor: "Blue",
+	 image: "Blue 3.png"
+ },
+ {
+	 cardValue : 4, 
+	 cardColor: "Blue",
+	 image: "Blue 4.png"
+ }];
+
+ export const player_2 = [{
+	 cardValue : 1, 
+	 cardColor: "Blue",
+	 image: "Blue 1.png"
+ },
+ {
+	 cardValue : 1, 
+	 cardColor: "Blue",
+	 image: "Blue 1.png"
+ },
+ {
+	 cardValue : 2, 
+	 cardColor: "Blue",
+	 image: "Blue 2.png"
+ },
+ {
+	 cardValue : 3, 
+	 cardColor: "Blue",
+	 image: "Blue 3.png"
+ },
+ {
+	 cardValue : 4, 
+	 cardColor: "Blue",
+	 image: "Blue 4.png"
+ }];
