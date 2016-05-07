@@ -265,10 +265,7 @@ export const deck = [
  }
 
  ];
- for (var i = 0 ; i < deck.length ; i ++) {
 
-	fireworkCards.insert(deck[i]);
-}
 
 //dummy data for testing 
 export const play_area = [

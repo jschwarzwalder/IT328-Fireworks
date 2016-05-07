@@ -22,20 +22,15 @@ Meteor.startup(() => {
 	
 	//remove any database values that are present
 	player1HandCollection.remove({}); //delete all records (this will only work on the server)
+	player2HandCollection.remove({}); 
 	
-	for (var i = 0 ; i < player_1.length ; i ++) {
+	for (var i = 0 ; i < player_1.length ; i + 2) {
 
-		player1HandCollection.insert(player_1[i]);
-	}
-	
-	//remove any database values that are present
-	player2HandCollection.remove({}); //delete all records (this will only work on the server)
-	
-	for (var i = 0 ; i < player_2.length ; i ++) {
-
+		player1HandCollection.insert(player_1[i+1]);
 		player2HandCollection.insert(player_2[i]);
 	}
 	
+		
 	//remove any database values that are present
 	player_areaCollection.remove({}); //delete all records (this will only work on the server)
 	
