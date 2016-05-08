@@ -1,5 +1,5 @@
 <head>
-  <title>simple</title>
+  <title>Firework Game!</title>
   <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 
@@ -26,36 +26,39 @@
 
 <template name="playerHand">
 <div class="text-center">
-<ul class="list-inline">
-  {{#each card}}
-	<li>	
-		<!-- removing for single player game
-			<img src="card back.png" class="img-responsive">
-		-->
-		<img src="{{this.image}}" class="img-responsive"> 
-	</li>
-  {{/each}}
-</ul>
+	<h3>Your Hand</h3>
+	<ul class="list-inline">
+	  {{#each card}}
+		<li>	
+			<!-- removing for single player game
+				<img src="card back.png" class="img-responsive">
+			-->
+			<img src="{{this.image}}" class="img-responsive"> 
+		</li>
+	  {{/each}}
+	</ul>
 </div>
 </template>
 
 <template name="opponentHand">
-<div class="text-center">
-<ul class="list-inline">
-  {{#each card}}
-	<li> <img src="{{this.image}}" class="img-responsive"> </li>
-  {{/each}}
- </ul>
- </div>
+	<div class="text-center">
+		<h3>Player 1 - Hand</h3>
+		<ul class="list-inline">
+		  {{#each card}}
+			<li> <img src="{{this.image}}" class="img-responsive"> </li>
+		  {{/each}}
+		 </ul>
+	 </div>
 </template>
 
 <template name="play_area">
 <div class="text-center">
-<ul class="list-inline">
-  {{#each card}}
-  <li><img src="{{this.image}}" class="img-responsive"> </li>
-  {{/each}}
-</ul>
+	<h3>Play Area</h3>
+	<ul class="list-inline">
+	  {{#each card}}
+		<li><img src="{{this.image}}" class="img-responsive"> </li>
+	  {{/each}}
+	</ul>
   </div>
 </template>
 
