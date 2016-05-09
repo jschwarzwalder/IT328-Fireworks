@@ -24,13 +24,19 @@ Meteor.methods({
 	play_area_collection.remove({});
   },
   playACard: function(playerhand, card){
-	return play(player1HandCollection, card);
+	  if (playerhand == "player1") {
+		return play(player1HandCollection, card);
+	  } else if (playerhand== "player2") {
+		return play(player2HandCollection, card);
+	  }
 	  
   },
   discardACard: function(playerhand, card){
-	  
-	 discard(player1HandCollection, card);
-	  //discard.find().sort({cardColor: 1, cardValue: 1});
+	 if (playerhand == "player1") {
+		return discard(player1HandCollection, card);
+	  } else if (playerhand== "player2") {
+		return discard(player2HandCollection, card);
+	  }
   }
 });
     
@@ -142,7 +148,7 @@ Meteor.methods({
 	//draw new card
 	playerhand.insert(drawCard(fireworkCards));
 	
-	
+	return true;
 
 	 
   }

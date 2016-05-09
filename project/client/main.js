@@ -71,8 +71,8 @@ Template.playerActions.events({
 	Session.set("playState", "play");
 	//listen for a card click
 	//if card is clicked then run play fuction as described below
-	var card = player1HandCollection.findOne({cardValue: 4});
-	Meteor.call('playACard', "player2HandCollection", card , function(error,result){
+	var card = player1HandCollection.findOne({cardValue: 3, cardColor: "Red"});
+	Meteor.call('playACard', "player1", card , function(error,result){
 		var errors = Session.get('errors');
 		if((result == false) ){
 		
@@ -141,16 +141,18 @@ var clues = Session.get('clues');
 	//set state to discards
 	Session.set("playState", "discard");
 
-	var card = player1HandCollection.findOne();
-	Meteor.call('discardACard', "player2HandCollection", card );
-
-	if(clues < 8 ){
-		clues ++;
-		console.log(clues);
-		Session.set("clues", clues);
-	} else {
-		console.log("Do Nothing... Cannot have negative clues!");
-	} 	
+	var card = player2HandCollection.findOne({cardValue: 3, cardColor: "Red"});
+	Meteor.call('discardACard', "player2", card, function(error,result){
+		if(result) {
+			if(clues < 8 ){
+				clues ++;
+				console.log(clues);
+				Session.set("clues", clues);
+			} else {
+				console.log("Do Nothing... You have all your clues!");
+			} 
+		}
+	}
 
 }
   
