@@ -149,6 +149,8 @@ Meteor.methods({
 	playerhand.insert(drawCard(fireworkCards));
 	
 	return true;
+	
+	
 
 	 
   }
