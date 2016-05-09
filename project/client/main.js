@@ -152,7 +152,7 @@ var clues = Session.get('clues');
 				console.log("Do Nothing... You have all your clues!");
 			} 
 		}
-	}
+	})
 
 }
   
