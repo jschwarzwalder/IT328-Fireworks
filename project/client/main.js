@@ -42,9 +42,6 @@ Template.opponentHand.helpers({
 Template.playerHand.helpers({
 	card: function() {
 		return player1HandCollection.find();
-	},
-	colorClue: function(){
-		return this.clueColor 
 	}
 	
 });	
@@ -144,13 +141,14 @@ Template.playerActions.events({
   }
   }, 
   'click #discard': function(event, template) {
+var clues = Session.get('clues');
+
 	//set state to discards
 	Session.set("playState", "discard");
 
 	var card = player1HandCollection.findOne();
 	Meteor.call('discardACard', "player1", card, function(error,result){
 		if(result) {
-			var clues = Session.get('clues');
 			if(clues < 8 ){
 				clues ++;
 				console.log(clues);
@@ -159,8 +157,11 @@ Template.playerActions.events({
 				console.log("Do Nothing... You have all your clues!");
 			} 
 		}
-	});
-  }
+	}
+
+}
+  
+  
 });
 
 Template.newGame.events({
