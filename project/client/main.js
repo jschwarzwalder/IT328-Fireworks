@@ -18,8 +18,10 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 */
 var errors = 0;
 var clues = 8;
+var state = "inactive"
 Session.set("errors", errors);
 Session.set("clues", clues);
+Session.set ("playState", state );
 
 
  /*Array of arrays
@@ -67,6 +69,7 @@ Template.playerActions.events({
   'click #play': function(event, template) {
 		//play_areaCollection.find({cardColor: this.cardColor})
 	//set state to play card
+	Session.set("playState", "play");
 	//listen for a card click
 	//if card is clicked then run play fuction as described below
 
@@ -100,6 +103,7 @@ Template.playerActions.events({
 	  var clues = Session.get('clues');
 	  if(clues <= 8 && clues >0 ){
 		//set state to clue number 
+		Session.set("playState", "clueNum");
 		//listen for a card click
 		//if card is clicked then run cluenum fuction as described below
 		
@@ -122,6 +126,7 @@ Template.playerActions.events({
 	  var clues = Session.get('clues');
 	  if(clues <= 8 && clues >0 ){
 		//set state to clue color
+		Session.set("playState", "clueColor");
 		//listen for a card click
 		//if card is clicked then run cluecolor fuction as described below
 		
@@ -141,26 +146,15 @@ Template.playerActions.events({
   }
   }, 
   'click #discard': function(event, template) {
-	  var clues = Session.get('clues');
-	  if(clues < 8 && clues >= 0 ){
+	  //var clues = Session.get('clues');
+	 
 		//set state to discards
-		//listen for a card click
-		//if card is clicked then run discard fuction as described below
+		//Session.set("playState", "discard");
+		var card = player1HandCollection.findOne();
+	  Meteor.call('discardACard', "player2HandCollection", card );
+	 // discard.find().sort({cardColor: 1, cardValue: 1});
 		
-		//add card from hand to discards 
-		//sort discards
-		//remove card from hand
-		//update clues
 		
-		  clues ++;
-		  console.log(clues);
-		  Session.set("clues", clues);
-	  
-	  //draw a new card	
-	  
-	  }else{
-		  console.log("Do Nothing... Cannot have negative clues!");
-	  }
   }
   
   

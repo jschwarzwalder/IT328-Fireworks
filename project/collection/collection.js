@@ -11,7 +11,6 @@ export const discardCollection = new Mongo.Collection("discard");
 
 //all the cards that are needed in a game of Hanabi
 export const deck = [
-
  {
 	 cardValue : 1, 
 	 cardColor: "Blue",

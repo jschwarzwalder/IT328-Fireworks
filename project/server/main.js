@@ -4,6 +4,7 @@ import { fireworkCards } from '../collection/collection.js';
 import { player1HandCollection } from '../collection/collection.js';
 import { player2HandCollection } from '../collection/collection.js';
 import { player_areaCollection } from '../collection/collection.js'; 
+import { discardCollection }  from '../collection/collection.js'; 
 //server
 
  
@@ -12,26 +13,34 @@ Meteor.startup(function () {
 Meteor.methods({
   /*newGame:function(handSize, fireworkCards, player1HandCollection, player2HandCollection) {
     for(var i = 0 ; i<handSize ; i++) {
-   player1HandCollection.insert(drawCard(deck));
-   console.log("This is running...")
-   player2HandCollection.insert(drawCard(deck));
-  }
+	   player1HandCollection.insert(drawCard(deck));
+	   console.log("This is running...")
+	   player2HandCollection.insert(drawCard(deck));
+	}
   }*/
   startNewGame: function(){
     newGame(5,fireworkCards, player1HandCollection, player2HandCollection )
+  },
+  play: function(){
+	 
+	  
+  },
+  discardACard: function(playerhand, card){
+	  
+	 discard(player1HandCollection, card);
+	  //discard.find().sort({cardColor: 1, cardValue: 1});
   }
 });
-    //create the deck
-    //remove any database values that are present
-  fireworkCards.remove({});
-  player1HandCollection.remove({});
-  player2HandCollection.remove({});//delete all records ( this will only work on server side)
-  //add my dummy values
+    
   
-  function initialize() {
-    for( var i = 0 ; i < deck.length ; i ++){
+  function initialize() { 
+	
+    //remove any database values that were present
+	fireworkCards.remove({});//delete all records ( this will only work on server side)
+    //create the deck
+	for( var i = 0 ; i < deck.length ; i ++){
      fireworkCards.insert(deck[i]);
-  }
+	}
   }
   function drawCard(cardSetName) {
     //get a random card from the firworksCards 
@@ -46,17 +55,41 @@ Meteor.methods({
     return element;
   }
   //
-function newGame(handSize, deckCards, player1, player2) {
-    initialize();
-   player1.remove({});
-   player2.remove({});
-   for(var i = 0 ; i<handSize ; i++) {
-   
-   player1.insert(drawCard(deckCards));
-   player2.insert(drawCard(deckCards));
-   }
-}
+  function newGame(handSize, deckCards, player1, player2) {
+	initialize();
+	player1.remove({});
+	player2.remove({});
+	for(var i = 0 ; i<handSize ; i++) {
+		player1.insert(drawCard(deckCards));
+		player2.insert(drawCard(deckCards));
+	}
+  }
 
+  function discard(playerhand, card) {
+	  // var clues = Session.get('clues');
+	  console.log("you've entered the discard fucntion  \n \n \n \n")
+		console.log(card._id);
+		console.log(discardCollection.insert(card));
+		console.log(card._id);
+		playerhand.remove(card._id);
+		//add card from hand to discards 
+		//sort discards
+		//remove card from hand
+		//update clues
+		/* if(clues < 8 ){
+		  clues ++;
+		  console.log(clues);
+		  Session.set("clues", clues);
+	   */
+	  //draw a new card	
+	  playerhand.insert(drawCard(fireworkCards));
+	  
+	 /*  } else{
+		  console.log("Do Nothing... Cannot have negative clues!");
+	  } */
+  }
+  
+  
 //newGame(5, fireworkCards, player1HandCollection, player2HandCollection);
 
   //get number of cards
