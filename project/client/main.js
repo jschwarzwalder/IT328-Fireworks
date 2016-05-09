@@ -175,7 +175,7 @@ Template.newGame.events({
 });
 
 Template.playerHand.events({
-	'click a.mylink': function(event, template) {
+	'click a.selectedCard': function(event, template) {
 	//remove any database values that are present
 	//event.preventDefault();
 		console.log(this);
