@@ -42,6 +42,9 @@ Template.opponentHand.helpers({
 Template.playerHand.helpers({
 	card: function() {
 		return player1HandCollection.find();
+	},
+	colorClue: function(){
+		return this.clueColor 
 	}
 	
 });	
@@ -123,11 +126,6 @@ Template.playerActions.events({
 		//get card color
 		//find all card objects with that color
 		//highlight
-		var card = player1HandCollection.findOne({});
-		player1HandCollection.update(
-			card._id,
-			{$set:{clueColor: true}}
-		);
 		//alert (ask player if they want to clue these cards)
 		//if yes then change on server and
 		  clues --;
@@ -141,14 +139,13 @@ Template.playerActions.events({
   }
   }, 
   'click #discard': function(event, template) {
-var clues = Session.get('clues');
-
 	//set state to discards
 	Session.set("playState", "discard");
 
-	var card = player1HandCollection.findOne();
-	Meteor.call('discardACard', "player1", card, function(error,result){
+	var card = player2HandCollection.findOne({cardValue: 3, cardColor: "Red"});
+	Meteor.call('discardACard', "player2", card, function(error,result){
 		if(result) {
+			var clues = Session.get('clues');
 			if(clues < 8 ){
 				clues ++;
 				console.log(clues);
@@ -157,11 +154,8 @@ var clues = Session.get('clues');
 				console.log("Do Nothing... You have all your clues!");
 			} 
 		}
-	}
-
-}
-  
-  
+	});
+  }
 });
 
 Template.newGame.events({
@@ -174,4 +168,3 @@ Template.newGame.events({
 		Meteor.call('startNewGame');
 	} 
 });
-
