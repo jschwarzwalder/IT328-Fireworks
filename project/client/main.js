@@ -126,6 +126,11 @@ Template.playerActions.events({
 		//get card color
 		//find all card objects with that color
 		//highlight
+		var card = player1HandCollection.findOne({});
+		player1HandCollection.update(
+			card._id,
+			{$set:{clueColor: true}}
+		);
 		//alert (ask player if they want to clue these cards)
 		//if yes then change on server and
 		  clues --;
@@ -142,8 +147,8 @@ Template.playerActions.events({
 	//set state to discards
 	Session.set("playState", "discard");
 
-	var card = player2HandCollection.findOne({cardValue: 3, cardColor: "Red"});
-	Meteor.call('discardACard', "player2", card, function(error,result){
+	var card = player1HandCollection.findOne();
+	Meteor.call('discardACard', "player1", card, function(error,result){
 		if(result) {
 			var clues = Session.get('clues');
 			if(clues < 8 ){
