@@ -66,28 +66,16 @@ Template.Counters.helpers({
 
 Template.playerActions.events({
   'click #play': function(event, template) {
-		//play_areaCollection.find({cardColor: this.cardColor})
+		
 	//set state to play card
 	Session.set("playState", "play");
 	//listen for a card click
 	//if card is clicked then run play fuction as described below
-
+	var card = player1HandCollection.findOne({cardValue: 1});
+	Meteor.call('playACard', "player2HandCollection", card );
 	var errors = Session.get('errors');
 	if(errors < 3){
-		//find that card color in play area
-		//if color does not exist
-			//check to see if this card has value of 1
-				//if it does add that card to the play area
-				//remove from players hand
-		//if color exists, compare card values
-			//if this card value is play_area card value +1 
-			//remove play_area card 
-			//add this card to the play area
-			//remove this card from players hand
 		
-		//else add to discard 
-			//remove from players hand
-			//increase fireworks (errors)
 			errors ++;
 			console.log(errors)
 			Session.set("errors", errors);

@@ -21,8 +21,8 @@ Meteor.methods({
   startNewGame: function(){
     newGame(5,fireworkCards, player1HandCollection, player2HandCollection )
   },
-  play: function(){
-	 
+  playACard: function(playerhand, card){
+	 play(player1HandCollection, card);
 	  
   },
   discardACard: function(playerhand, card){
@@ -65,22 +65,60 @@ Meteor.methods({
 	}
   }
 
-  
-  
-  function discard(playerhand, card) {
-	 
-	console.log("you've entered the discard fucntion  \n \n \n \n")
-	console.log(card._id);
+  function play(playerhand, card){
+	console.log("you've entered the play a card fucntion  \n \n \n \n")
+	var play_areaCard = player_areaCollection.findOne({cardColor: card.cardColor})
 	
-	//add card from hand to discards 
+	//find that card color in play area
+		if (play_areaCard == null){
+			//if color does not exist
+			//check to see if this card has value of 1
+			if (card.cardValue == 1){
+				//if it does add that card to the play area
+				player_areaCollection.insert(card);
+				
+			}
+				
+		}
+		
+		//if color exists, compare card values
+			//if this card value is play_area card value +1 
+			//remove play_area card 
+			//add this card to the play area
+			//remove this card from players hand
+		
+		//else add to discard 
+			//remove from players hand
+			//increase fireworks (errors)
+	
+	//add card from hand to play area
+	
 	console.log(discardCollection.insert(card));
-	console.log(card._id);
+	
 		
 	//remove card from hand
 	playerhand.remove(card._id);
 
 	//draw new card
 	playerhand.insert(drawCard(fireworkCards));
+  }
+  
+  function discard(playerhand, card) {
+	 
+	console.log("you've entered the discard fucntion  \n \n \n \n")
+	
+	
+	//add card from hand to discards 
+	console.log(discardCollection.insert(card));
+	
+		
+	//remove card from hand
+	playerhand.remove(card._id);
+
+	//draw new card
+	playerhand.insert(drawCard(fireworkCards));
+	
+	
 
 	 
   }
