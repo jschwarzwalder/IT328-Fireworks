@@ -49,7 +49,7 @@ Template.playerHand.helpers({
 //Get Play Area
 Template.play_area.helpers({
 	card: function() {
-		return play_area_collection.find();
+		return play_area_collection.find({}, {sort :[["cardColor", "asc"]]});
 	}
 	
 });
@@ -71,7 +71,7 @@ Template.playerActions.events({
 	Session.set("playState", "play");
 	//listen for a card click
 	//if card is clicked then run play fuction as described below
-	var card = player1HandCollection.findOne({cardValue: 2});
+	var card = player1HandCollection.findOne({cardValue: 4});
 	Meteor.call('playACard', "player2HandCollection", card , function(error,result){
 		var errors = Session.get('errors');
 		if((result == false) ){
