@@ -5,7 +5,7 @@ import { Mongo} from "meteor/mongo";
 export const fireworkCards = new Mongo.Collection("cards");
 export const player1HandCollection = new Mongo.Collection("player1Hand");
 export const player2HandCollection = new Mongo.Collection("player2Hand");
-export const player_areaCollection = new Mongo.Collection("player_area");
+export const play_area_collection = new Mongo.Collection("player_area");
 export const discardCollection = new Mongo.Collection("discard");
 //export access to any data to start our application
 

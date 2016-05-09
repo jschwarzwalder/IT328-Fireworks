@@ -3,7 +3,7 @@ import { deck } from '../collection/collection.js';
 import { fireworkCards } from '../collection/collection.js';
 import { player1HandCollection } from '../collection/collection.js';
 import { player2HandCollection } from '../collection/collection.js';
-import { player_areaCollection } from '../collection/collection.js'; 
+import { play_area_collection } from '../collection/collection.js'; 
 import { discardCollection }  from '../collection/collection.js'; 
 //server
 
@@ -20,9 +20,11 @@ Meteor.methods({
   }*/
   startNewGame: function(){
     newGame(5,fireworkCards, player1HandCollection, player2HandCollection )
+	discardCollection.remove({});
+	play_area_collection.remove({});
   },
   playACard: function(playerhand, card){
-	 play(player1HandCollection, card);
+	return play(player1HandCollection, card);
 	  
   },
   discardACard: function(playerhand, card){
@@ -67,40 +69,62 @@ Meteor.methods({
 
   function play(playerhand, card){
 	console.log("you've entered the play a card fucntion  \n \n \n \n")
-	var play_areaCard = player_areaCollection.findOne({cardColor: card.cardColor})
+	var play_area_card = play_area_collection.findOne({cardColor: card.cardColor})
 	
 	//find that card color in play area
-		if (play_areaCard == null){
+		if (play_area_card == null){
 			//if color does not exist
 			//check to see if this card has value of 1
 			if (card.cardValue == 1){
 				//if it does add that card to the play area
-				player_areaCollection.insert(card);
+				play_area_collection.insert(card);
 				
-			}
-				
-		}
-		
-		//if color exists, compare card values
-			//if this card value is play_area card value +1 
-			//remove play_area card 
-			//add this card to the play area
-			//remove this card from players hand
-		
-		//else add to discard 
-			//remove from players hand
-			//increase fireworks (errors)
-	
-	//add card from hand to play area
-	
-	console.log(discardCollection.insert(card));
-	
-		
-	//remove card from hand
-	playerhand.remove(card._id);
+				//remove card from hand
+				playerhand.remove(card._id);
 
-	//draw new card
-	playerhand.insert(drawCard(fireworkCards));
+				//draw new card
+				playerhand.insert(drawCard(fireworkCards));
+				return true;
+			} else {
+				//if it does not, add that card to the discard area
+				discardCollection.insert(card);
+				
+				//remove card from hand
+				playerhand.remove(card._id);
+
+				//draw new card
+				playerhand.insert(drawCard(fireworkCards));
+				return false;
+			}
+		 //if color exists, compare card values
+		} else if (play_area_card.cardValue + 1 == card.cardValue ) {
+			//if this card value is play_area card value +1 
+			
+			//remove play_area card
+			play_area_collection.remove(play_area_card._id);
+			
+			//add this card to the play area
+			play_area_collection.insert(card);
+			
+			//remove this card from players hand
+			playerhand.remove(card._id);
+			
+			//draw new card
+			playerhand.insert(drawCard(fireworkCards));
+			
+			return true;
+		} else {
+			//else add to discard 
+			discardCollection.insert(card)
+			
+			//remove card from hand
+			playerhand.remove(card._id);
+
+			//draw new card
+			playerhand.insert(drawCard(fireworkCards));
+			return false;
+		}
+
   }
   
   function discard(playerhand, card) {

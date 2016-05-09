@@ -10,7 +10,7 @@ import { deck } from '../collection/collection.js';
 import { fireworkCards } from '../collection/collection.js';
 import { player1HandCollection } from '../collection/collection.js';
 import { player2HandCollection } from '../collection/collection.js';
-import { player_areaCollection } from '../collection/collection.js'; 
+import { play_area_collection } from '../collection/collection.js'; 
 import { discardCollection }  from '../collection/collection.js'; 
 //sort discards - 	discardCollection.find({}, {sort :[["cardColor", "asc"], ["cardValue", "asc"]]});
 
@@ -49,7 +49,7 @@ Template.playerHand.helpers({
 //Get Play Area
 Template.play_area.helpers({
 	card: function() {
-		return player_areaCollection.find();
+		return play_area_collection.find();
 	}
 	
 });
@@ -71,20 +71,23 @@ Template.playerActions.events({
 	Session.set("playState", "play");
 	//listen for a card click
 	//if card is clicked then run play fuction as described below
-	var card = player1HandCollection.findOne({cardValue: 1});
-	Meteor.call('playACard', "player2HandCollection", card );
-	var errors = Session.get('errors');
-	if(errors < 3){
+	var card = player1HandCollection.findOne({cardValue: 2});
+	Meteor.call('playACard', "player2HandCollection", card , function(error,result){
+		var errors = Session.get('errors');
+		if((result == false) ){
 		
 			errors ++;
 			console.log(errors)
 			Session.set("errors", errors);
 			
-		//draw a new card	
 		
-	}else{
-	  console.log("Game Over!");
+		if ( errors >= 3){
+			console.log("Game Over!");
+		}
 	}
+	
+	});
+	
   }, 
   'click #cluenum': function(event, template) {
 	  var clues = Session.get('clues');
@@ -157,44 +160,11 @@ var clues = Session.get('clues');
 Template.newGame.events({
 	'click #newGame': function(event, template) {
 	//remove any database values that are present
-
-	/* fireworkCards.find().forEach(function(card){
-		fireworkCards.remove( {"_id": card._id});
-	});
-	player1HandCollection.find().forEach(function(card){
-		player1HandCollection.remove( {"_id": card._id});
-	});
-	player2HandCollection.find().forEach(function(card){
-		player2HandCollection.remove( {"_id": card._id});
-	});
-	player_areaCollection.find().forEach(function(card){
-		player_areaCollection.remove( {"_id": card._id});
-	});
-	discardCollection.find().forEach(function(card){
-		discardCollection.remove( {"_id": card._id});
-	}); 
-
-	//add a card from deck to the hand
-		player1HandCollection.insert(fireworkCards.findOneAndDelete({}));
-		player2HandCollection.insert(fireworkCards.findOneAndDelete({}));
-
-	 */
-	
-	
-	//build deck
-	for (var i = 0 ; i < deck.length ; i ++) {
-
-		fireworkCards.insert(deck[i]);
-	}
-	 //shuffle deck
-	 
-	 //deal out hand
-	//for (i = 0; i< 5; i++){
+		Session.set("errors", 0);
+		Session.set("clues", 8);
+		Session.set ("playState", state );
 		
-
-	//console.log(Meteor.call('newGame' , 5, fireworkCards, player1HandCollection, player2HandCollection));
-	Meteor.call('startNewGame');
-
+		Meteor.call('startNewGame');
 	} 
 });
 
