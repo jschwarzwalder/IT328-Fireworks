@@ -65,28 +65,24 @@ Meteor.methods({
 	}
   }
 
+  
+  
   function discard(playerhand, card) {
-	  // var clues = Session.get('clues');
-	  console.log("you've entered the discard fucntion  \n \n \n \n")
-		console.log(card._id);
-		console.log(discardCollection.insert(card));
-		console.log(card._id);
-		playerhand.remove(card._id);
-		//add card from hand to discards 
-		//sort discards
-		//remove card from hand
-		//update clues
-		/* if(clues < 8 ){
-		  clues ++;
-		  console.log(clues);
-		  Session.set("clues", clues);
-	   */
-	  //draw a new card	
-	  playerhand.insert(drawCard(fireworkCards));
-	  
-	 /*  } else{
-		  console.log("Do Nothing... Cannot have negative clues!");
-	  } */
+	 
+	console.log("you've entered the discard fucntion  \n \n \n \n")
+	console.log(card._id);
+	
+	//add card from hand to discards 
+	console.log(discardCollection.insert(card));
+	console.log(card._id);
+		
+	//remove card from hand
+	playerhand.remove(card._id);
+
+	//draw new card
+	playerhand.insert(drawCard(fireworkCards));
+
+	 
   }
   
   
@@ -96,6 +92,8 @@ Meteor.methods({
   var index = fireworkCards.find().count();
   console.log(index);
 //player2HandCollection.insert(fireworkCards.find({}));
+
+
    
    
 });

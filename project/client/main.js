@@ -1,21 +1,20 @@
+/*
+Authors: Sahba Bahizad, Jami Schwarzwalder
+*/
+
 import './main.html';
 import { Meteor } from 'meteor/meteor';
+
+//server
 import { deck } from '../collection/collection.js';
 import { fireworkCards } from '../collection/collection.js';
 import { player1HandCollection } from '../collection/collection.js';
 import { player2HandCollection } from '../collection/collection.js';
 import { player_areaCollection } from '../collection/collection.js'; 
-//server
+import { discardCollection }  from '../collection/collection.js'; 
+//sort discards - 	discardCollection.find({}, {sort :[["cardColor", "asc"], ["cardValue", "asc"]]});
 
-//dummy data
-import { player_1 } from '../collection/collection.js';
-import { player_2 } from '../collection/collection.js';
-import { play_area } from '../collection/collection.js'; 
- 
 
-/*
-Authors: Sahba Bahizad, Jami Schwarzwalder
-*/
 var errors = 0;
 var clues = 8;
 var state = "inactive"
@@ -146,16 +145,23 @@ Template.playerActions.events({
   }
   }, 
   'click #discard': function(event, template) {
-	  //var clues = Session.get('clues');
-	 
-		//set state to discards
-		//Session.set("playState", "discard");
-		var card = player1HandCollection.findOne();
-	  Meteor.call('discardACard', "player2HandCollection", card );
-	 // discard.find().sort({cardColor: 1, cardValue: 1});
-		
-		
-  }
+var clues = Session.get('clues');
+
+	//set state to discards
+	Session.set("playState", "discard");
+
+	var card = player1HandCollection.findOne();
+	Meteor.call('discardACard', "player2HandCollection", card );
+
+	if(clues < 8 ){
+		clues ++;
+		console.log(clues);
+		Session.set("clues", clues);
+	} else {
+		console.log("Do Nothing... Cannot have negative clues!");
+	} 	
+
+}
   
   
 });
