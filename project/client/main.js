@@ -173,3 +173,12 @@ Template.newGame.events({
 		Meteor.call('startNewGame');
 	} 
 });
+
+Template.playerHand.events({
+	'click a.mylink': function(event, template) {
+	//remove any database values that are present
+	//event.preventDefault();
+		console.log(this);
+		
+	} 
+});

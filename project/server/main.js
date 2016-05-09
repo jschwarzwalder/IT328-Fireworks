@@ -74,8 +74,8 @@ Meteor.methods({
   }
 
   function play(playerhand, card){
-	console.log("you've entered the play a card fucntion  \n \n \n \n")
-	var play_area_card = play_area_collection.findOne({cardColor: card.cardColor})
+	console.log("you've entered the play a card fucntion  \n \n \n \n");
+	var play_area_card = play_area_collection.findOne({cardColor: card.cardColor});
 	
 	//find that card color in play area
 		if (play_area_card == null){
@@ -121,7 +121,7 @@ Meteor.methods({
 			return true;
 		} else {
 			//else add to discard 
-			discardCollection.insert(card)
+			discardCollection.insert(card);
 			
 			//remove card from hand
 			playerhand.remove(card._id);

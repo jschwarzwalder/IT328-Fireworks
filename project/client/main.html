@@ -27,10 +27,11 @@
 <template name="playerHand">
 <div class="text-center">
 	<h3>Your Hand</h3>
-	<ul class="list-inline">
+	
+	  <ul class="list-inline" >
 	  {{#each card}}
-		<li>	
-			
+		<li >	
+			<a id="{{this._id}}" class="mylink" href="#">
 			<!-- removing for single player game
 				<img src="card back.png" class="img-responsive">
 			-->
@@ -39,11 +40,13 @@
 			{{else}}
 				<img src="{{this.image}}" class="img-responsive" >
 			{{/if}}
-    
+			</a>
 		</li>
 	  {{/each}}
 	</ul>
+	  <a id="myid" class="mylink" href="#">My link</a>
 </div>
+
 </template>
 
 <template name="opponentHand">
