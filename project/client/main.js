@@ -21,7 +21,7 @@ var state = "inactive"
 Session.set("errors", errors);
 Session.set("clues", clues);
 Session.set ("playState", state );
-
+Session.set("playerTurn", "player1");
 
  /*Array of arrays
  This is a sample play area which is stack of 5 columns of cards. The first column is red cards with 1 and 2 .... 
@@ -34,6 +34,10 @@ Session.set ("playState", state );
 Template.opponentHand.helpers({
 	card: function() {
 		return player2HandCollection.find();
+	},
+	turn: function(){
+		var turn = Session.get("playerTurn");
+		return turn == "player2"
 	}
 	
 });
@@ -45,6 +49,10 @@ Template.playerHand.helpers({
 	},
 	colorClue: function(){
 		return this.clueColor 
+	}, 
+	turn: function() {
+		var turn = Session.get("playerTurn");
+		return turn == "player1"
 	}
 	
 });	
@@ -72,26 +80,8 @@ Template.playerActions.events({
 		
 	//set state to play card
 	Session.set("playState", "play");
-	//listen for a card click
-	//if card is clicked then run play fuction as described below
-	var card = player1HandCollection.findOne({cardValue: 3, cardColor: "Red"});
-	Meteor.call('playACard', "player1", card , function(error,result){
-		var errors = Session.get('errors');
-		if((result == false) ){
-		
-			errors ++;
-			console.log(errors)
-			Session.set("errors", errors);
-			
-		
-		if ( errors >= 3){
-			console.log("Game Over!");
-		}
-	}
-	
-	});
-	
-  }, 
+
+ }, 
   'click #cluenum': function(event, template) {
 	  var clues = Session.get('clues');
 	  if(clues <= 8 && clues >0 ){
@@ -147,19 +137,8 @@ Template.playerActions.events({
 	//set state to discards
 	Session.set("playState", "discard");
 
-	var card = player1HandCollection.findOne();
-	Meteor.call('discardACard', "player1", card, function(error,result){
-		if(result) {
-			var clues = Session.get('clues');
-			if(clues < 8 ){
-				clues ++;
-				console.log(clues);
-				Session.set("clues", clues);
-			} else {
-				console.log("Do Nothing... You have all your clues!");
-			} 
-		}
-	});
+	
+	
   }
 });
 
@@ -168,9 +147,17 @@ Template.newGame.events({
 	//remove any database values that are present
 		Session.set("errors", 0);
 		Session.set("clues", 8);
-		Session.set ("playState", state );
-		
+		Session.set ("playState", "inactive" );
+		Session.set("playerTurn", "player1");
 		Meteor.call('startNewGame');
+	} ,
+	'click #player1': function(event, template) {
+	//remove any database values that are present
+		Session.set("playerTurn", "player1");
+
+	},
+	'click #player2': function(event, template) {
+		Session.set("playerTurn", "player2");
 	} 
 });
 
@@ -178,7 +165,99 @@ Template.playerHand.events({
 	'click a.selectedCard': function(event, template) {
 	//remove any database values that are present
 	//event.preventDefault();
+		var turn = Session.get("playerTurn");
+		if (turn = player1) {
+			player = "player1";			
+		} else if (turn = player2) {
+			player = "player2";	
+		}
+			
 		console.log(this);
-		
+		var card = this;
+		var state = Session.get("playState");
+		if (state == "inactive"){
+			window.alert("Please press Play or Discard before selecting a card");
+		} else if (state == "play") {
+			Meteor.call('playACard', player, card , function(error,result){
+				var errors = Session.get('errors');
+				if((result == false) ){
+				
+					errors ++;
+					console.log(errors)
+					Session.set("errors", errors);
+					
+				
+					if ( errors >= 3){
+						console.log("Game Over!");
+					}
+				}
+				Session.set ("playState", "inactive");
+			});
+		} else if (state == "discard") {
+			Meteor.call('discardACard', player, card, function(error,result){
+				if(result) {
+					var clues = Session.get('clues');
+					if(clues < 8 ){
+						clues ++;
+						console.log(clues);
+						Session.set("clues", clues);
+					} else {
+						console.log("Do Nothing... You have all your clues!");
+					} 
+				}
+				Session.set ("playState", "inactive");
+			});	
+		}
 	} 
 });
+
+Template.opponentHand.events({
+	'click a.selectedCard': function(event, template) {
+	//remove any database values that are present
+	//event.preventDefault();
+		var turn = Session.get("playerTurn");
+		if (turn = player1) {
+			player = "player1";			
+		} else if (turn = player2) {
+			player = "player2";	
+		}
+			
+		console.log(this);
+		var card = this;
+		var state = Session.get("playState");
+		if (state == "inactive"){
+			window.alert("Please press Play or Discard before selecting a card");
+		} else if (state == "play") {
+			Meteor.call('playACard', player, card , function(error,result){
+				var errors = Session.get('errors');
+				if((result == false) ){
+				
+					errors ++;
+					console.log(errors)
+					Session.set("errors", errors);
+					
+				
+					if ( errors >= 3){
+						console.log("Game Over!");
+					}
+				}
+				Session.set ("playState", "inactive");
+			});
+		} else if (state == "discard") {
+			Meteor.call('discardACard', player, card, function(error,result){
+				if(result) {
+					var clues = Session.get('clues');
+					if(clues < 8 ){
+						clues ++;
+						console.log(clues);
+						Session.set("clues", clues);
+					} else {
+						console.log("Do Nothing... You have all your clues!");
+					} 
+				}
+				Session.set ("playState", "inactive");
+			});	
+		}
+	} 
+});
+
