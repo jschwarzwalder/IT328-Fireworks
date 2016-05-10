@@ -26,7 +26,7 @@
 
 <template name="playerHand">
 <div class="text-center">
-	<h3>Your Hand</h3>
+	<h3>Player 1 - Hand</h3>
 	
 	  <ul class="list-inline" >
 	  {{#each card}}
@@ -34,15 +34,15 @@
 			<a id="{{this._id}}" class="selectedCard" href="#">
 			{{#if turn}}
 				{{#if colorClue}}
-					<img src="{{this.image}}" class="img-responsive" style="border-style: solid;  border-width: 5px;border-color:{{this.cardColor}}" >
-				{{else}}
-					<img src="{{this.image}}" class="img-responsive" >
-				{{/if}}
-			{{else}}
-				{{#if colorClue}}
 					<img src="card back.png" class="img-responsive" style="border-style: solid;  border-width: 5px;border-color:{{this.cardColor}}" >
 				{{else}}
 					<img src="card back.png" class="img-responsive" >
+				{{/if}}
+			{{else}}
+				{{#if colorClue}}
+					<img src="{{this.image}}" class="img-responsive" style="border-style: solid;  border-width: 5px;border-color:{{this.cardColor}}" >
+				{{else}}
+					<img src="{{this.image}}" class="img-responsive" >
 				{{/if}}
 			{{/if}}
 			</a>
@@ -56,22 +56,22 @@
 
 <template name="opponentHand">
 	<div class="text-center">
-		<h3>Other Player - Hand</h3>
+		<h3>Player 2 - Hand</h3>
 		<ul class="list-inline">
 		  {{#each card}}
 		  <li>
 		  <a id="{{this._id}}" class="selectedCard" href="#">
 		  	{{#if turn}}
 				{{#if colorClue}}
-					<img src="{{this.image}}" class="img-responsive" style="border-style: solid;  border-width: 5px;border-color:{{this.cardColor}}" >
-				{{else}}
-					<img src="{{this.image}}" class="img-responsive" >
-				{{/if}}
-			{{else}}
-				{{#if colorClue}}
 					<img src="card back.png" class="img-responsive" style="border-style: solid;  border-width: 5px;border-color:{{this.cardColor}}" >
 				{{else}}
 					<img src="card back.png" class="img-responsive" >
+				{{/if}}
+			{{else}}				
+				{{#if colorClue}}
+					<img src="{{this.image}}" class="img-responsive" style="border-style: solid;  border-width: 5px;border-color:{{this.cardColor}}" >
+				{{else}}
+					<img src="{{this.image}}" class="img-responsive" >
 				{{/if}}
 			{{/if}}
 		  </a>
@@ -103,8 +103,8 @@
  </template>
  <template name="newGame">
 	<p><button id="newGame" name="newGame"> </button></p>
-	<p><button id="player1" name="player1"> Player 2 </button></p>
-	<p><button id="player2" name="player2"> Player 1 </button></p>
+	<p><button id="player2" name="player2"> Player 2 </button></p>
+	<p><button id="player1" name="player1"> Player 1 </button></p>
  </template>
 
 <!-- Player actions --> 

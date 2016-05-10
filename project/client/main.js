@@ -35,6 +35,9 @@ Template.opponentHand.helpers({
 	card: function() {
 		return player2HandCollection.find();
 	},
+	colorClue: function(){
+		return this.clueColor 
+	},
 	turn: function(){
 		var turn = Session.get("playerTurn");
 		return turn == "player2"
@@ -136,10 +139,7 @@ Template.playerActions.events({
   'click #discard': function(event, template) {
 	//set state to discards
 	Session.set("playState", "discard");
-
-	
-	
-  }
+	}
 });
 
 Template.newGame.events({
@@ -166,18 +166,21 @@ Template.playerHand.events({
 	//remove any database values that are present
 	//event.preventDefault();
 		var turn = Session.get("playerTurn");
-		if (turn = "player1") {
+		var player;
+		if (turn == "player1") {
 			player = "player1";			
-		} else if (turn = "player2") {
+		} else if (turn == "player2") {
 			player = "player2";	
 		}
 			
 		console.log(this);
 		var card = this;
 		var state = Session.get("playState");
+		console.log(turn);
+		console.log("playerHand")
 		if (state == "inactive"){
 			window.alert("Please press Play or Discard before selecting a card");
-		} else if (state == "play") {
+		} else if (state == "play" && turn =="player1") {
 			Meteor.call('playACard', player, card , function(error,result){
 				var errors = Session.get('errors');
 				if((result == false) ){
@@ -193,7 +196,7 @@ Template.playerHand.events({
 				}
 				Session.set ("playState", "inactive");
 			});
-		} else if (state == "discard") {
+		} else if (state == "discard" && turn =="player1") {
 			Meteor.call('discardACard', player, card, function(error,result){
 				if(result) {
 					var clues = Session.get('clues');
@@ -216,6 +219,7 @@ Template.opponentHand.events({
 	//remove any database values that are present
 	//event.preventDefault();
 		var turn = Session.get("playerTurn");
+		var player;
 		if (turn == "player1") {
 			player = "player1";			
 		} else if (turn == "player2") {
@@ -223,11 +227,13 @@ Template.opponentHand.events({
 		}
 			
 		console.log(this);
+		console.log(turn);
+		console.log("opponentHand")
 		var card = this;
 		var state = Session.get("playState");
 		if (state == "inactive"){
 			window.alert("Please press Play or Discard before selecting a card");
-		} else if (state == "play") {
+		} else if (state == "play" && turn =="player2") {
 			Meteor.call('playACard', player, card , function(error,result){
 				var errors = Session.get('errors');
 				if((result == false) ){
@@ -243,7 +249,7 @@ Template.opponentHand.events({
 				}
 				Session.set ("playState", "inactive");
 			});
-		} else if (state == "discard") {
+		} else if (state == "discard" && turn =="player2") {
 			Meteor.call('discardACard', player, card, function(error,result){
 				if(result) {
 					var clues = Session.get('clues');
