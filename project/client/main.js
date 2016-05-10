@@ -166,9 +166,9 @@ Template.playerHand.events({
 	//remove any database values that are present
 	//event.preventDefault();
 		var turn = Session.get("playerTurn");
-		if (turn = player1) {
+		if (turn = "player1") {
 			player = "player1";			
-		} else if (turn = player2) {
+		} else if (turn = "player2") {
 			player = "player2";	
 		}
 			
@@ -216,9 +216,9 @@ Template.opponentHand.events({
 	//remove any database values that are present
 	//event.preventDefault();
 		var turn = Session.get("playerTurn");
-		if (turn = player1) {
+		if (turn == "player1") {
 			player = "player1";			
-		} else if (turn = player2) {
+		} else if (turn == "player2") {
 			player = "player2";	
 		}
 			

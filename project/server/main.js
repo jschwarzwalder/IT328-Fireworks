@@ -26,7 +26,7 @@ Meteor.methods({
   playACard: function(playerhand, card){
 	  if (playerhand == "player1") {
 		return play(player1HandCollection, card);
-	  } else if (playerhand== "player2") {
+	  } else if (playerhand == "player2") {
 		return play(player2HandCollection, card);
 	  }
 	  
