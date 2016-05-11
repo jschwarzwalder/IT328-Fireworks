@@ -199,22 +199,7 @@ Template.playerHand.events({
 				Session.set ("playState", "inactive");
 			});	
 		} else if (state == "clueColor" && turn == "player2") {
-			//listen for a card click
-		//if card is clicked then run cluecolor fuction as described below
-		var card = this;
-		//get card color
-		var cardClueColor = this.cardColor;
-		//find all card objects with that color
-		var CardstoClue = player1HandCollection.find({cardColor: cardClueColor})
- 			
-		//highlight
-		player1HandCollection.update(
- 			card._id,
- 			{$set:{clueColor: true}}
- 		);
- 		
-		//alert (ask player if they want to clue these cards)
-		//if yes then change on server and
+			Meteor.call('clueColorP1', this.cardColor);
 		  var clues = Session.get("clues");
 		  clues --;
 		  console.log(clues);
@@ -279,7 +264,7 @@ Template.opponentHand.events({
 				});	
 		} else if (state == "clueColor" && turn =="player1") {
 			//call the function clueColor in server 
-			Meteor.call('clueColor', this.cardColor);
+			Meteor.call('clueColorP2', this.cardColor);
 		
 		  var clues = Session.get("clues");
 		  clues --;

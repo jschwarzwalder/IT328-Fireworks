@@ -39,7 +39,7 @@ Meteor.methods({
 	  }
   },
   
-  clueColor: function(colors){
+  clueColorP2: function(colors){
     //find the same colors
    var array =  player2HandCollection.find({"cardColor": colors}).fetch();
    //console.log(array);
@@ -48,6 +48,22 @@ Meteor.methods({
     
     console.log(array[i]);
   player2HandCollection.update(          
+ 		array[i]._id,
+ 		{$set:{clueColor: true}}
+ 	);
+    
+  }
+  },
+  
+  clueColorP1: function(colors){
+    //find the same colors
+   var array =  player1HandCollection.find({"cardColor": colors}).fetch();
+   //console.log(array);
+   //set them as already clued
+   for( var i = 0 ; i < array.length ; i++){
+    
+    console.log(array[i]);
+  player1HandCollection.update(          
  		array[i]._id,
  		{$set:{clueColor: true}}
  	);
