@@ -215,7 +215,7 @@ Template.playerHand.events({
  		
 		//alert (ask player if they want to clue these cards)
 		//if yes then change on server and
-		  var clues = Session.get("clues")
+		  var clues = Session.get("clues");
 		  clues --;
 		  console.log(clues);
 		  Session.set("clues", clues);
@@ -290,7 +290,11 @@ Template.opponentHand.events({
  			card._id,
  			{$set:{clueColor: true}}
  		);
-		
+		//if yes then change on server and
+		  var clues = Session.get("clues");
+		  clues --;
+		  console.log(clues);
+		  Session.set("clues", clues);
 		Session.set ("playState", "inactive");
 		}
 	} 
