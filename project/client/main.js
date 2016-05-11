@@ -63,7 +63,7 @@ Template.playerHand.helpers({
 //Get Play Area
 Template.play_area.helpers({
 	card: function() {
-		return play_area_collection.find({}, {sort :[["cardColor", "asc"]]});
+		return play_area_collection.find({}, {$sort :[["cardColor", "asc"]]});
 	},
 	empty: function(){
 		return play_area_collection.find({}) == null;
@@ -275,27 +275,19 @@ Template.opponentHand.events({
 					} 
 				}
 				Session.set ("playState", "inactive");
-			});	
+				
+				});	
 		} else if (state == "clueColor" && turn =="player1") {
-			//listen for a card click
-		//if card is clicked then run cluecolor fuction as described below
-		var card = this;
-		//get card color
-		var cardClueColor = this.cardColor;
-		//find all card objects with that color
-		var CardstoClue = player2HandCollection.find({cardColor: cardClueColor})
- 			
-		//highlight
-		player2HandCollection.update(
- 			card._id,
- 			{$set:{clueColor: true}}
- 		);
-		//if yes then change on server and
+			//call the function clueColor in server 
+			Meteor.call('clueColor', this.cardColor);
+		
 		  var clues = Session.get("clues");
 		  clues --;
 		  console.log(clues);
-		  Session.set("clues", clues);
+ 		
+		Session.set("clues", clues);
 		Session.set ("playState", "inactive");
+			
 		}
 	} 
 });

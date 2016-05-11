@@ -37,6 +37,22 @@ Meteor.methods({
 	  } else if (playerhand== "player2") {
 		return discard(player2HandCollection, card);
 	  }
+  },
+  
+  clueColor: function(colors){
+    //find the same colors
+   var array =  player2HandCollection.find({"cardColor": colors}).fetch();
+   //console.log(array);
+   //set them as already clued
+   for( var i = 0 ; i < array.length ; i++){
+    
+    console.log(array[i]);
+  player2HandCollection.update(          
+ 		array[i]._id,
+ 		{$set:{clueColor: true}}
+ 	);
+    
+  }
   }
 });
     
