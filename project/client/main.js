@@ -64,6 +64,9 @@ Template.playerHand.helpers({
 Template.play_area.helpers({
 	card: function() {
 		return play_area_collection.find({}, {sort :[["cardColor", "asc"]]});
+	},
+	empty: function(){
+		return play_area_collection.find({}) == 0;
 	}
 	
 });
