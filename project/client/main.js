@@ -66,7 +66,7 @@ Template.play_area.helpers({
 		return play_area_collection.find({}, {sort :[["cardColor", "asc"]]});
 	},
 	empty: function(){
-		return play_area_collection.find({}) == 0;
+		return play_area_collection.find({}) == null;
 	}
 	
 });
@@ -116,25 +116,7 @@ Template.playerActions.events({
 	  if(clues <= 8 && clues >0 ){
 		//set state to clue color
 		Session.set("playState", "clueColor");
-		//listen for a card click
-		//if card is clicked then run cluecolor fuction as described below
-		
-		//get card color
-		//find all card objects with that color
-		//highlight
-		var card = player1HandCollection.findOne({});
- 		player1HandCollection.update(
- 			card._id,
- 			{$set:{clueColor: true}}
- 		);
-		//alert (ask player if they want to clue these cards)
-		//if yes then change on server and
-		  clues --;
-		  console.log(clues);
-		  Session.set("clues", clues);
-		  
-		//draw a new card	
-		
+				
   }else{
 	  console.log("Do Nothing... Cannot have negative clues!");
   }
@@ -213,6 +195,29 @@ Template.playerHand.events({
 				}
 				Session.set ("playState", "inactive");
 			});	
+		} else if (state == "clueColor") {
+			//listen for a card click
+		//if card is clicked then run cluecolor fuction as described below
+		var card = this;
+		//get card color
+		var cardClueColor = this.cardColor;
+		//find all card objects with that color
+		var CardstoClue = player1HandCollection.find({cardColor: cardClueColor})
+ 			
+		//highlight
+		player1HandCollection.update(
+ 			card._id,
+ 			{$set:{clueColor: true}}
+ 		);
+ 		
+		//alert (ask player if they want to clue these cards)
+		//if yes then change on server and
+		  var clues = Session.get("clues")
+		  clues --;
+		  console.log(clues);
+		  Session.set("clues", clues);
+		  
+		//draw a new card	
 		}
 	} 
 });
