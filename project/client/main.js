@@ -198,8 +198,18 @@ Template.playerHand.events({
 				}
 				Session.set ("playState", "inactive");
 			});	
-		} else if (state == "clueColor" && turn == "player2") {
+		}
+		//color clue 
+		else if (state == "clueColor" && turn == "player2") {
 			Meteor.call('clueColorP1', this.cardColor);
+		  var clues = Session.get("clues");
+		  clues --;
+		  console.log(clues);
+		  Session.set("clues", clues);
+		}
+		//number clue
+		 else if (state == "clueNum" && turn == "player2") {
+			Meteor.call('cluenumberP1', this.cardValue);
 		  var clues = Session.get("clues");
 		  clues --;
 		  console.log(clues);
@@ -226,11 +236,16 @@ Template.opponentHand.events({
 		console.log("opponentHand")
 		var card = this;
 		var state = Session.get("playState");
+		
 		if (state == "inactive"){
 			window.alert("Please press Play or Discard before selecting a card");
-		} else if ((state == "play"|| state =="discard") && turn == "player1"){
+		}
+		
+		else if ((state == "play"|| state =="discard") && turn == "player1"){
 			window.alert("That is not your hand");
-		} else if (state == "play" && turn =="player2") {
+		}
+		
+		else if (state == "play" && turn =="player2") {
 			Meteor.call('playACard', player, card , function(error,result){
 				var errors = Session.get('errors');
 				if((result == false) ){
@@ -247,7 +262,9 @@ Template.opponentHand.events({
 				}
 				Session.set ("playState", "inactive");
 			});
-		} else if (state == "discard" && turn =="player2") {
+		}
+		
+		else if (state == "discard" && turn =="player2") {
 			Meteor.call('discardACard', player, card, function(error,result){
 				if(result) {
 					var clues = Session.get('clues');
@@ -262,7 +279,9 @@ Template.opponentHand.events({
 				Session.set ("playState", "inactive");
 				
 				});	
-		} else if (state == "clueColor" && turn =="player1") {
+		}
+		
+		else if (state == "clueColor" && turn =="player1") {
 			//call the function clueColor in server 
 			Meteor.call('clueColorP2', this.cardColor);
 		
@@ -273,6 +292,15 @@ Template.opponentHand.events({
 		Session.set("clues", clues);
 		Session.set ("playState", "inactive");
 			
+		}
+		
+		//number clue
+		 else if (state == "clueNum" && turn == "player1") {
+			Meteor.call('cluenumberP2', this.cardValue);
+		  var clues = Session.get("clues");
+		  clues --;
+		  console.log(clues);
+		  Session.set("clues", clues);
 		}
 	} 
 });
