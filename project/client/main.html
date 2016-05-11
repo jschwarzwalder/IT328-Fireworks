@@ -26,9 +26,10 @@
 
 <template name="playerHand">
 <div class="text-center">
-	<h3>Player 1 - Hand</h3>
+	
 	
 	  <ul class="list-inline" >
+	  <li class="vertical">Player 1 - Hand</li>
 	  {{#each card}}
 		<li >	
 			<a id="{{this._id}}" class="selectedCard" href="#">
@@ -56,8 +57,9 @@
 
 <template name="opponentHand">
 	<div class="text-center">
-		<h3>Player 2 - Hand</h3>
+		
 		<ul class="list-inline">
+		<li class="vertical">Player 2 - Hand</li>
 		  {{#each card}}
 		  <li>
 		  <a id="{{this._id}}" class="selectedCard" href="#">
@@ -84,8 +86,9 @@
 
 <template name="play_area">
 <div class="text-center">
-	<h3>Play Area</h3>
+	
 	<ul class="list-inline">
+	<li class="vertical">Played Cards</li>
 	  {{#each card}}
 		<li><img src="{{this.image}}" class="img-responsive"> </li>
 	  {{/each}}
