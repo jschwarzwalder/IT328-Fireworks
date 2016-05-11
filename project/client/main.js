@@ -166,7 +166,7 @@ Template.playerHand.events({
 		if (state == "inactive"){
 			window.alert("Please press Play or Discard before selecting a card");
 		} else if ((state == "play" || state =="discard") && turn == "player2"){
-			window.alert("You can only play cards in your hand");
+			window.alert("That is not your hand");
 		} else if (state == "play" && turn =="player1") {
 			Meteor.call('playACard', player, card , function(error,result){
 				var errors = Session.get('errors');
@@ -243,7 +243,7 @@ Template.opponentHand.events({
 		if (state == "inactive"){
 			window.alert("Please press Play or Discard before selecting a card");
 		} else if ((state == "play"|| state =="discard") && turn == "player1"){
-			window.alert("You can only play cards in your hand");
+			window.alert("That is not your hand");
 		} else if (state == "play" && turn =="player2") {
 			Meteor.call('playACard', player, card , function(error,result){
 				var errors = Session.get('errors');
