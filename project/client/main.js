@@ -216,9 +216,8 @@ Template.playerHand.events({
 		  clues --;
 		  console.log(clues);
 		  Session.set("clues", clues);
-		  
-		//draw a new card	
 		}
+		Session.set ("playState", "inactive");
 	} 
 });
 
@@ -271,6 +270,22 @@ Template.opponentHand.events({
 				}
 				Session.set ("playState", "inactive");
 			});	
+		} else if (state == "clueColor") {
+			//listen for a card click
+		//if card is clicked then run cluecolor fuction as described below
+		var card = this;
+		//get card color
+		var cardClueColor = this.cardColor;
+		//find all card objects with that color
+		var CardstoClue = player1HandCollection.find({cardColor: cardClueColor})
+ 			
+		//highlight
+		player1HandCollection.update(
+ 			card._id,
+ 			{$set:{clueColor: true}}
+ 		);
+		
+		Session.set ("playState", "inactive");
 		}
 	} 
 });
