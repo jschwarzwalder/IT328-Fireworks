@@ -173,7 +173,8 @@ Template.playerHand.events({
 				if((result == false) ){
 				
 					errors ++;
-					console.log(errors)
+					window.alert("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
+					console.log(errors);
 					Session.set("errors", errors);
 					
 				
@@ -197,7 +198,7 @@ Template.playerHand.events({
 				}
 				Session.set ("playState", "inactive");
 			});	
-		} else if (state == "clueColor") {
+		} else if (state == "clueColor" && turn == "player2") {
 			//listen for a card click
 		//if card is clicked then run cluecolor fuction as described below
 		var card = this;
@@ -250,7 +251,8 @@ Template.opponentHand.events({
 				if((result == false) ){
 				
 					errors ++;
-					console.log(errors)
+					window.alert("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
+					console.log(errors);
 					Session.set("errors", errors);
 					
 				
@@ -274,17 +276,17 @@ Template.opponentHand.events({
 				}
 				Session.set ("playState", "inactive");
 			});	
-		} else if (state == "clueColor") {
+		} else if (state == "clueColor" && turn =="player1") {
 			//listen for a card click
 		//if card is clicked then run cluecolor fuction as described below
 		var card = this;
 		//get card color
 		var cardClueColor = this.cardColor;
 		//find all card objects with that color
-		var CardstoClue = player1HandCollection.find({cardColor: cardClueColor})
+		var CardstoClue = player2HandCollection.find({cardColor: cardClueColor})
  			
 		//highlight
-		player1HandCollection.update(
+		player2HandCollection.update(
  			card._id,
  			{$set:{clueColor: true}}
  		);
