@@ -16,280 +16,281 @@ export const deck = [
 	 cardColor: "Blue",
 	 image: "Blue 1.png",
 	clueColor: false,  
-	clueNum: false
+	clueNum: false,
+	clueImage: "clue 1.png"
  },
  {
 	 cardValue : 1, 
 	 cardColor: "Blue",
 	 image: "Blue 1.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 1.png"
  },
  {
 	 cardValue : 1, 
 	 cardColor: "Blue",
 	 image: "Blue 1.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 1.png"
  },
  {
 	 cardValue : 2, 
 	 cardColor: "Blue",
 	 image: "Blue 2.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 2.png"
  },
  {
 	 cardValue : 2, 
 	 cardColor: "Blue",
 	 image: "Blue 2.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 2.png"
  },
  {
 	 cardValue : 3, 
 	 cardColor: "Blue",
 	 image: "Blue 3.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 3.png"
  },
  {
 	 cardValue : 3, 
 	 cardColor: "Blue",
 	 image: "Blue 3.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 3.png"
  },
  {
 	 cardValue : 4, 
 	 cardColor: "Blue",
 	 image: "Blue 4.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 4.png"
  },
  {
 	 cardValue : 4, 
 	 cardColor: "Blue",
 	 image: "Blue 4.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 4.png"
  },
  {
 	 cardValue : 5, 
 	 cardColor: "Blue",
 	 image: "Blue 5.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 5.png"
  },
  {
 	 cardValue : 1, 
 	 cardColor: "Black",
 	 image: "Black 1.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 1.png"
  },
  {
 	 cardValue : 1, 
 	 cardColor: "Black",
 	 image: "Black 1.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 1.png"
  },
  {
 	 cardValue : 1, 
 	 cardColor: "Black",
 	 image: "Black 1.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 1.png"
  },
  {
 	 cardValue : 2, 
 	 cardColor: "Black",
 	 image: "Black 2.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 2.png"
  },
  {
 	 cardValue : 2, 
 	 cardColor: "Black",
 	 image: "Black 2.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 2.png"
  },
  {
 	 cardValue : 3, 
 	 cardColor: "Black",
 	 image: "Black 3.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 3.png"
  },
  {
 	 cardValue : 3, 
 	 cardColor: "Black",
 	 image: "Black 3.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 3.png"
  },
  {
 	 cardValue : 4, 
 	 cardColor: "Black",
 	 image: "Black 4.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 4.png"
  },
  {
 	 cardValue : 4, 
 	 cardColor: "Black",
 	 image: "Black 4.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 4.png"
  },
  {
 	 cardValue : 5, 
 	 cardColor: "Black",
 	 image: "Black 5.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 5.png"
  },
  {
 	 cardValue : 1, 
 	 cardColor: "Yellow",
 	 image: "Yellow 1.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 1.png"
  },
  {
 	 cardValue : 1, 
 	 cardColor: "Yellow",
 	 image: "Yellow 1.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 1.png"
  },
  {
 	 cardValue : 1, 
 	 cardColor: "Yellow",
 	 image: "Yellow 1.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 1.png"
  },
  {
 	 cardValue : 2, 
 	 cardColor: "Yellow",
 	 image: "Yellow 2.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 2.png"
  },
  {
 	 cardValue : 2, 
 	 cardColor: "Yellow",
 	 image: "Yellow 2.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 2.png"
  },
  {
 	 cardValue : 3, 
 	 cardColor: "Yellow",
 	 image: "Yellow 3.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 3.png"
  },
  {
 	 cardValue : 3, 
 	 cardColor: "Yellow",
 	 image: "Yellow 3.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 3.png"
  },
  {
 	 cardValue : 4, 
 	 cardColor: "Yellow",
 	 image: "Yellow 4.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 4.png"
  },
  {
 	 cardValue : 4, 
 	 cardColor: "Yellow",
 	 image: "Yellow 4.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 4.png"
  },
  {
 	 cardValue : 5, 
 	 cardColor: "Yellow",
 	 image: "Yellow 5.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 5.png"
  },
  {
 	 cardValue : 1, 
 	 cardColor: "Red",
 	 image: "Red 1.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 1.png"
  },
  {
 	 cardValue : 1, 
 	 cardColor: "Red",
 	 image: "Red 1.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 1.png"
  },
  {
 	 cardValue : 1, 
 	 cardColor: "Red",
 	 image: "Red 1.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 1.png"
  },
  {
 	 cardValue : 2, 
 	 cardColor: "Red",
 	 image: "Red 2.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 2.png"
  },
  {
 	 cardValue : 2, 
 	 cardColor: "Red",
 	 image: "Red 2.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 2.png"
  },
  {
 	 cardValue : 3, 
 	 cardColor: "Red",
 	 image: "Red 3.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 3.png"
  },
  {
 	 cardValue : 3, 
 	 cardColor: "Red",
 	 image: "Red 3.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 3.png"
  },
  {
 	 cardValue : 4, 
 	 cardColor: "Red",
 	 image: "Red 4.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 4.png"
  },
  {
 	 cardValue : 4, 
 	 cardColor: "Red",
 	 image: "Red 4.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 4.png"
  },
  {
 	 cardValue : 5, 
 	 cardColor: "Red",
 	 image: "Red 5.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 5.png"
  },
 
  {
@@ -297,70 +298,70 @@ export const deck = [
 	 cardColor: "Green",
 	 image: "Green 1.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 1.png"
  },
  {
 	 cardValue : 1, 
 	 cardColor: "Green",
 	 image: "Green 1.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 1.png"
  },
  {
 	 cardValue : 1, 
 	 cardColor: "Green",
 	 image: "Green 1.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 1.png"
  },
  {
 	 cardValue : 2, 
 	 cardColor: "Green",
 	 image: "Green 2.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 2.png"
  },
  {
 	 cardValue : 2, 
 	 cardColor: "Green",
 	 image: "Green 2.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 2.png"
  },
  {
 	 cardValue : 3, 
 	 cardColor: "Green",
 	 image: "Green 3.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 3.png"
  },
  {
 	 cardValue : 3, 
 	 cardColor: "Green",
 	 image: "Green 3.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 3.png"
  },
  {
 	 cardValue : 4, 
 	 cardColor: "Green",
 	 image: "Green 4.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 4.png"
  },
  {
 	 cardValue : 4, 
 	 cardColor: "Green",
 	 image: "Green 4.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 4.png"
  },
  {
 	 cardValue : 5, 
 	 cardColor: "Green",
 	 image: "Green 5.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 5.png"
  }
 
  ];
@@ -372,104 +373,104 @@ export const discards = [
 	 cardColor: "Yellow",
 	 image: "Yellow 1.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 1.png"
  },
  {
 	 cardValue : 1, 
 	 cardColor: "Yellow",
 	 image: "Yellow 1.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 1.png"
  },
  {
 	 cardValue : 2, 
 	 cardColor: "Yellow",
 	 image: "Yellow 2.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 2.png"
  },
  {
 	 cardValue : 3, 
 	 cardColor: "Yellow",
 	 image: "Yellow 3.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 3.png"
  },
  {
 	 cardValue : 4, 
 	 cardColor: "Yellow",
 	 image: "Yellow 4.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 4.png"
  },
  {
 	 cardValue : 4, 
 	 cardColor: "Yellow",
 	 image: "Yellow 4.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 4.png"
  },
  {
 	 cardValue : 5, 
 	 cardColor: "Yellow",
 	 image: "Yellow 5.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 5.png"
  },
   {
 	 cardValue : 1, 
 	 cardColor: "Red",
 	 image: "Red 1.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 1.png"
  },
  {
 	 cardValue : 1, 
 	 cardColor: "Red",
 	 image: "Red 1.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 1.png"
  },
  {
 	 cardValue : 2, 
 	 cardColor: "Red",
 	 image: "Red 2.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 2.png"
  },
  {
 	 cardValue : 3, 
 	 cardColor: "Red",
 	 image: "Red 3.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 3.png"
  },{
 	 cardValue : 3, 
 	 cardColor: "Red",
 	 image: "Red 3.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 3.png"
  },
  {
 	 cardValue : 4, 
 	 cardColor: "Red",
 	 image: "Red 4.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 4.png"
  },
  {
 	 cardValue : 4, 
 	 cardColor: "Red",
 	 image: "Red 4.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 4.png"
  },
  {
 	 cardValue : 5, 
 	 cardColor: "Red",
 	 image: "Red 5.png", 
  clueColor: false,  
- clueNum: false
+ clueNum: false, clueImage: "clue 5.png"
  }
  ];
  
