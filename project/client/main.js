@@ -83,6 +83,11 @@ Template.Counters.helpers({
 	}
 });	
 
+Template.discardBoard.helpers({
+	card: function() {
+		return discardCollection.find({}, {$sort :[["cardColor", "asc"]]});
+	}
+});
 Template.playerActions.events({
   'click #play': function(event, template) {
 		

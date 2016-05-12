@@ -4,6 +4,9 @@ img{
 	width: 100px;
 }
 
+img.discard-thumb{
+	width : 40px;
+}
 #play {
 	width: 80px;
     height: 50px;

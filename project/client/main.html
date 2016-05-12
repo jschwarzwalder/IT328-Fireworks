@@ -20,7 +20,7 @@
       </div>
       <div class="row">
         <div class="col-lg-12">
-          Text 2
+          {{> discardBoard}}
         </div>
       </div>
 		  
@@ -29,11 +29,23 @@
   </div>
 </body>
 
+
 <!-- this template is for the splash screen --> 
 <template name="start">
   <button url="New Game.png">Start Button</button>
   <img src="fireworks.png" class="img-responsive">
 </template>
+<template name="discardBoard">
+<div class="text-center">
+	  
+	  {{#each card}}
+		  <img class="discard-thumb" src="{{this.image}}">			
+	  {{/each}}
+	
+	
+</div>
+</template>
+
 
 <template name="playerHand">
 <div class="text-center">
