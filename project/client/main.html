@@ -6,25 +6,26 @@
 <body>
   <h1 class="text-center">Firework Game!</h1>
 	<div class="row-fluid">
-		<div class="col-lg-8">
+	  
+	  <div class="col-lg-2">
+		
+          {{> Counters}}
+  
+	  </div>
+	  
+		<div class="col-lg-7">
 		  {{> opponentHand}}
 		  {{> play_area }}
 		  {{> playerHand}}
 		  {{> playerActions}}
 		</div>
-		<div class="col-lg-4">
-		  <div class="row">
-        <div class="col-lg-12">
-          {{> Counters}}
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
+		
+        <div class="col-lg-3" style="border: dashed">
           {{> discardBoard}}
         </div>
-      </div>
-		  
-		</div>
+    
+		
+		
 		
   </div>
 </body>
@@ -37,7 +38,7 @@
 </template>
 <template name="discardBoard">
 <div class="text-center">
-	  
+	  <h3> Discard Board </h3>
 	  {{#each card}}
 		  <img class="discard-thumb" src="{{this.image}}">			
 	  {{/each}}
@@ -159,18 +160,23 @@
 </template>
 
 <template name="Counters">
-  <h3> {{playerTurn}} is Playing </h3>
+  
+  {{> newGame}}
+   <h3> {{playerTurn}} is Playing </h3>
+  
   <h3> Fireworks: {{error}}</h3>
   
   <h3> Clues Left: {{clues}} </h3>
-  
-	{{> newGame}}
+ 
+	
   
  </template>
  <template name="newGame">
 	<p><button id="newGame" name="newGame"> </button></p>
-	<p><button id="player2" name="player2"> Player 2 </button></p>
-	<p><button id="player1" name="player1"> Player 1 </button></p>
+	<div class="row-fluid">
+	<button id="player1" class="btn btn-warning" name="player1"> Player 1 </button>
+	<button id="player2" class="btn btn-primary" name="player2"> Player 2 </button>
+	</div>
  </template>
 
 <!-- Player actions --> 
