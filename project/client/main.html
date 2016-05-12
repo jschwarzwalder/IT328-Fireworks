@@ -13,8 +13,19 @@
 		  {{> playerActions}}
 		</div>
 		<div class="col-lg-4">
-		  {{> Counters}}
+		  <div class="row">
+        <div class="col-lg-12">
+          {{> Counters}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          Text 2
+        </div>
+      </div>
+		  
 		</div>
+		
   </div>
 </body>
 
@@ -34,15 +45,24 @@
 		<li >	
 			<a id="{{this._id}}" class="selectedCard" href="#">
 			{{#if turn}}
-				{{#if clueNum}}
-				<div> there is a number </div>
-				{{/if}}
+			
+	  <!-- If color clue is true 			-->
 				{{#if colorClue}}
+					{{#if clueNum}}
+					<img src="{{this.clueImage}}" class="img-responsive" style="border-style: solid;  border-width: 5px;border-color:{{this.cardColor}}" >
+					{{else}}
 					<img src="card back.png" class="img-responsive" style="border-style: solid;  border-width: 5px;border-color:{{this.cardColor}}" >
+					{{/if}}
+					  
 				{{else}}
+					{{#if clueNum}}
+					<img src="{{this.clueImage}}" class="img-responsive">
+					{{else}}
 					<img src="card back.png" class="img-responsive" >
+					{{/if}}
+					
 				{{/if}}
-			{{else}}
+			{{else}}				
 				{{#if colorClue}}
 					<img src="{{this.image}}" class="img-responsive" style="border-style: solid;  border-width: 5px;border-color:{{this.cardColor}}" >
 				{{else}}
@@ -66,11 +86,23 @@
 		  {{#each card}}
 		  <li>
 		  <a id="{{this._id}}" class="selectedCard" href="#">
-		  	{{#if turn}}
+			{{#if turn}}
+			
+	  <!-- If color clue is true 			-->
 				{{#if colorClue}}
+					{{#if clueNum}}
+					<img src="{{this.clueImage}}" class="img-responsive" style="border-style: solid;  border-width: 5px;border-color:{{this.cardColor}}" >
+					{{else}}
 					<img src="card back.png" class="img-responsive" style="border-style: solid;  border-width: 5px;border-color:{{this.cardColor}}" >
+					{{/if}}
+					  
 				{{else}}
+					{{#if clueNum}}
+					<img src="{{this.clueImage}}" class="img-responsive">
+					{{else}}
 					<img src="card back.png" class="img-responsive" >
+					{{/if}}
+					
 				{{/if}}
 			{{else}}				
 				{{#if colorClue}}
@@ -79,6 +111,19 @@
 					<img src="{{this.image}}" class="img-responsive" >
 				{{/if}}
 			{{/if}}
+		<!--  	{{#if turn}}-->
+		<!--		{{#if colorClue}}-->
+		<!--			<img src="card back.png" class="img-responsive" style="border-style: solid;  border-width: 5px;border-color:{{this.cardColor}}" >-->
+		<!--		{{else}}-->
+		<!--			<img src="card back.png" class="img-responsive" >-->
+		<!--		{{/if}}-->
+		<!--	{{else}}				-->
+		<!--		{{#if colorClue}}-->
+		<!--			<img src="{{this.image}}" class="img-responsive" style="border-style: solid;  border-width: 5px;border-color:{{this.cardColor}}" >-->
+		<!--		{{else}}-->
+		<!--			<img src="{{this.image}}" class="img-responsive" >-->
+		<!--		{{/if}}-->
+		<!--	{{/if}}-->
 		  </a>
 		  </li>
 		  {{/each}}
@@ -102,6 +147,7 @@
 </template>
 
 <template name="Counters">
+  <h3> {{playerTurn}} is Playing </h3>
   <h3> Fireworks: {{error}}</h3>
   
   <h3> Clues Left: {{clues}} </h3>

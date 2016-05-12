@@ -77,8 +77,10 @@ Template.Counters.helpers({
 	},
 	clues: function() {
 		return Session.get('clues');
+	},
+	playerTurn: function(){
+		return Session.get("playerTurn");
 	}
-	
 });	
 
 Template.playerActions.events({
