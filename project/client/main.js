@@ -85,7 +85,7 @@ Template.Counters.helpers({
 
 Template.discardBoard.helpers({
 	card: function() {
-		return discardCollection.find({}, {$sort :[["cardColor", "asc"]]});
+		return discardCollection.find({}, {$sort :["cardValue", "asc"]});
 	}
 });
 Template.playerActions.events({
