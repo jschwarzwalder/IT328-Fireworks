@@ -7,7 +7,9 @@ import { play_area_collection } from '../collection/collection.js';
 import { discardCollection }  from '../collection/collection.js'; 
 //server
 
- 
+ /*
+Authors: Sahba Bahizad, Jami Schwarzwalder
+*/
 
 Meteor.startup(function () {
 Meteor.methods({

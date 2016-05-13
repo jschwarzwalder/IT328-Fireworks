@@ -1,3 +1,7 @@
+/*
+Authors: Sahba Bahizad, Jami Schwarzwalder
+*/
+
 //import the mongo object
 import { Mongo} from "meteor/mongo";
 
@@ -7,6 +11,8 @@ export const player1HandCollection = new Mongo.Collection("player1Hand");
 export const player2HandCollection = new Mongo.Collection("player2Hand");
 export const play_area_collection = new Mongo.Collection("player_area");
 export const discardCollection = new Mongo.Collection("discard");
+
+
 //export access to any data to start our application
 
 //all the cards that are needed in a game of Hanabi
