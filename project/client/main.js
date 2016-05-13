@@ -97,7 +97,11 @@ Template.playerActions.events({
  }, 
   'click #cluenum': function(event, template) {
 	  var clues = Session.get('clues');
+<<<<<<< HEAD
 	  if(clues <= 8 && clues >0 ){
+=======
+	  if(clues <= 8 && clues > 0 ){
+>>>>>>> origin/master
 		//set state to clue number 
 		Session.set("playState", "clueNum");
 
@@ -299,11 +303,15 @@ Template.opponentHand.events({
 		}
 		
 		//number clue
-		 else if (state == "clueNum" && turn == "player1") {
-			Meteor.call('cluenumberP2', this.cardValue);
-		  var clues = Session.get("clues");
-		  if (clues > 0) {
-           
+
+			 var clues = Session.get("clues");
+			 if (clues > 0){
+				Meteor.call('cluenumberP2', this.cardValue);
+			} else {
+				window.alert("Error. You have no clues");
+			}
+		  
+
 		  clues --;
 		  console.log(clues);
 		  Session.set("clues", clues);
