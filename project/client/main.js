@@ -201,6 +201,9 @@ Template.playerHand.events({
 		  clues --;
 		  console.log(clues);
 		  Session.set("clues", clues);
+		  
+		  //reset state of game
+		  Session.set ("playState", "inactive");
 		}
 		//number clue
 		 else if (state == "clueNum" && turn == "player2") {
@@ -296,6 +299,9 @@ Template.opponentHand.events({
 		  clues --;
 		  console.log(clues);
 		  Session.set("clues", clues);
+		  		  
+		  //reset state of game
+		  Session.set ("playState", "inactive");
 		}
 	} 
 });
