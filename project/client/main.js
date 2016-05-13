@@ -99,7 +99,7 @@ Template.playerActions.events({
  }, 
   'click #cluenum': function(event, template) {
 	  var clues = Session.get('clues');
-	  if(clues < 8 && clues > 0 ){
+	  if(clues <= 8 && clues > 0 ){
 		//set state to clue number 
 		Session.set("playState", "clueNum");
 
@@ -110,7 +110,7 @@ Template.playerActions.events({
   },
   'click #cluecolor': function(event, template) {
 	  var clues = Session.get('clues');
-	  if(clues < 8 && clues >0 ){
+	  if(clues <= 8 && clues >0 ){
 		//set state to clue color
 		Session.set("playState", "clueColor");
 				
