@@ -207,12 +207,13 @@ Template.playerHand.events({
 		}
 		//color clue 
 		else if (state == "clueColor" && turn == "player2") {
-			if (clues > 0)
-			Meteor.call('clueColorP1', this.cardColor);
-		} else {
-			window.alert("Error. You have no clues");
-		}
-		  var clues = Session.get("clues");
+			 var clues = Session.get("clues");
+			if (clues > 0) {
+				Meteor.call('clueColorP1', this.cardColor);
+			} else {
+				window.alert("Error. You have no clues");
+			}
+		  
 		  clues --;
 		  console.log(clues);
 		  Session.set("clues", clues);
@@ -222,8 +223,13 @@ Template.playerHand.events({
 		}
 		//number clue
 		 else if (state == "clueNum" && turn == "player2") {
+			  var clues = Session.get("clues");
+			 if (clues > 0) {
 			Meteor.call('cluenumberP1', this.cardValue);
-		  var clues = Session.get("clues");
+			} else {
+				window.alert("Error. You have no clues");
+			}
+		 
 		  if (clues > 0)
 			  clues --;
 			  console.log(clues);
@@ -297,8 +303,14 @@ Template.opponentHand.events({
 		}
 		
 		else if (state == "clueColor" && turn =="player1") {
+			 var clues = Session.get("clues");
+			if (clues > 0 ){
 			//call the function clueColor in server 
-			Meteor.call('clueColorP2', this.cardColor);
+				Meteor.call('clueColorP2', this.cardColor);
+				} else {
+			window.alert("Error. You have no clues");
+		}
+			 
 		
 		  var clues = Session.get("clues");
 		  clues --;
