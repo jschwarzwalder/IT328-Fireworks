@@ -198,10 +198,12 @@ Template.playerHand.events({
 		else if (state == "clueColor" && turn == "player2") {
 			Meteor.call('clueColorP1', this.cardColor);
 		  var clues = Session.get("clues");
+		  if (clues > 0 ) {
+           
 		  clues --;
 		  console.log(clues);
 		  Session.set("clues", clues);
-		  
+          }
 		  //reset state of game
 		  Session.set ("playState", "inactive");
 		}
@@ -209,9 +211,12 @@ Template.playerHand.events({
 		 else if (state == "clueNum" && turn == "player2") {
 			Meteor.call('cluenumberP1', this.cardValue);
 		  var clues = Session.get("clues");
+		  if (clues > 0) {
+           
 		  clues --;
 		  console.log(clues);
 		  Session.set("clues", clues);
+          }
 		}
 		Session.set ("playState", "inactive");
 	} 
@@ -247,14 +252,13 @@ Template.opponentHand.events({
 			Meteor.call('playACard', player, card , function(error,result){
 				var errors = Session.get('errors');
 				if((result == false) ){
-				
+				if ( errors <= 3){
 					errors ++;
 					window.alert("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
 					console.log(errors);
 					Session.set("errors", errors);
-					
+				}else{
 				
-					if ( errors >= 3){
 						console.log("Game Over!");
 					}
 				}
@@ -296,10 +300,13 @@ Template.opponentHand.events({
 		 else if (state == "clueNum" && turn == "player1") {
 			Meteor.call('cluenumberP2', this.cardValue);
 		  var clues = Session.get("clues");
+		  if (clues > 0) {
+           
 		  clues --;
 		  console.log(clues);
 		  Session.set("clues", clues);
-		  		  
+		  	
+          }	  
 		  //reset state of game
 		  Session.set ("playState", "inactive");
 		}
