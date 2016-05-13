@@ -221,7 +221,7 @@ Template.playerHand.events({
 		Session.set ("playState", "inactive");
 	} 
 });
-
+  
 Template.opponentHand.events({
 	'click a.selectedCard': function(event, template) {
 	//remove any database values that are present
