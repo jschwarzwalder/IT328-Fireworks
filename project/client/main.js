@@ -296,10 +296,11 @@ Template.opponentHand.events({
 		Session.set("clues", clues);
 		  }
 		Session.set ("playState", "inactive");
-			
-		}
+		} else if (state == "clueNum" && turn == "player1") {
+			//number clue	
 		
-		//number clue
+			Meteor.call('cluenumberP2', this.cardValue);
+	
 
 			 var clues = Session.get("clues");
 			 if (clues > 0){
@@ -313,7 +314,7 @@ Template.opponentHand.events({
 		  console.log(clues);
 		  Session.set("clues", clues);
 		  	
-          }	  
+  
 		  //reset state of game
 		  Session.set ("playState", "inactive");
 		}
