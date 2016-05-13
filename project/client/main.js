@@ -63,7 +63,7 @@ Template.playerHand.helpers({
 //Get Play Area
 Template.play_area.helpers({
 	card: function() {
-		return play_area_collection.find({}, {$sort :[["cardColor", "asc"]]});
+		return play_area_collection.find({}, {$sort :["cardColor", "asc"]});
 	},
 	empty: function(){
 		return play_area_collection.find({}) == null;
