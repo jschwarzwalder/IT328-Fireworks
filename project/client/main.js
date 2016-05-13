@@ -90,14 +90,16 @@ Template.discardBoard.helpers({
 });
 Template.playerActions.events({
   'click #play': function(event, template) {
-		
-	//set state to play card
-	Session.set("playState", "play");
+	
+	if ( errors <= 3){	
+		//set state to play card
+		Session.set("playState", "play");
+	}
 
  }, 
   'click #cluenum': function(event, template) {
 	  var clues = Session.get('clues');
-	  if(clues <= 8 && clues >0 ){
+	  if(clues < 8 && clues > 0 ){
 		//set state to clue number 
 		Session.set("playState", "clueNum");
 
@@ -108,7 +110,7 @@ Template.playerActions.events({
   },
   'click #cluecolor': function(event, template) {
 	  var clues = Session.get('clues');
-	  if(clues <= 8 && clues >0 ){
+	  if(clues < 8 && clues >0 ){
 		//set state to clue color
 		Session.set("playState", "clueColor");
 				
@@ -174,8 +176,17 @@ Template.playerHand.events({
 					
 				
 					if ( errors >= 3){
-						console.log("Game Over!");
+						window.alert("Game Over!");
 					}
+				} else if (result == true && card.cardValue == 5){
+					var clues = Session.get('clues');
+					if(clues < 8 ){
+						clues ++;
+						console.log(clues);
+						Session.set("clues", clues);
+					} else {
+						console.log("Do Nothing... You have all your clues!");
+					} 
 				}
 				Session.set ("playState", "inactive");
 			});
@@ -196,7 +207,11 @@ Template.playerHand.events({
 		}
 		//color clue 
 		else if (state == "clueColor" && turn == "player2") {
+			if (clues > 0)
 			Meteor.call('clueColorP1', this.cardColor);
+		} else {
+			window.alert("Error. You have no clues");
+		}
 		  var clues = Session.get("clues");
 		  clues --;
 		  console.log(clues);
@@ -209,9 +224,11 @@ Template.playerHand.events({
 		 else if (state == "clueNum" && turn == "player2") {
 			Meteor.call('cluenumberP1', this.cardValue);
 		  var clues = Session.get("clues");
-		  clues --;
-		  console.log(clues);
-		  Session.set("clues", clues);
+		  if (clues > 0)
+			  clues --;
+			  console.log(clues);
+			  Session.set("clues", clues);
+		 }
 		}
 		Session.set ("playState", "inactive");
 	} 
@@ -294,8 +311,13 @@ Template.opponentHand.events({
 		
 		//number clue
 		 else if (state == "clueNum" && turn == "player1") {
+			 var clues = Session.get("clues");
+			 if (clues > 0;)
 			Meteor.call('cluenumberP2', this.cardValue);
-		  var clues = Session.get("clues");
+			} else {
+			window.alert("Error. You have no clues");
+		}
+		  
 		  clues --;
 		  console.log(clues);
 		  Session.set("clues", clues);
