@@ -324,7 +324,7 @@ Template.opponentHand.events({
 		//number clue
 		 else if (state == "clueNum" && turn == "player1") {
 			 var clues = Session.get("clues");
-			 if (clues > 0;){
+			 if (clues > 0){
 				Meteor.call('cluenumberP2', this.cardValue);
 			} else {
 				window.alert("Error. You have no clues");
