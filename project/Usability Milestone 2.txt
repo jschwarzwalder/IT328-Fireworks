@@ -1,0 +1,30 @@
+You are responsible for submitting a usability report that details the following:
+
+What tasks did you give your user to perform? 
+We asked our teste to Play a card
+
+What tasks were difficult for the user to complete, and why?
+The player clicked on the card that was visible to try and play the card.
+They expected it to go to the middle of the screen
+They then noticed the buttons and said "oh maybe it doesn't know if I want to discard or play it."
+they then clicked on the play button.
+They were surprised when it didn't work
+"I thought that would play the card"
+They then tried to click the button and then click on the card. That didn't do anything either
+"Maybe you can only clue a card"
+Clicked on clueNum, and then card (feature hadn't been added yet so didn't work)
+
+They then told me that the game doesn't seem to be playable
+
+
+Alternatively, what tasks were completed with ease?
+They could begin a new game with no difficulty
+
+Did you encounter any surprising observations with your user behavior?
+Even though they were familiar with how Hanabi is played, they thought they could play the cards that were visible.
+They also had problems identifying who's turn it was, and which hand belonged to each player
+
+How do you intend to respond to your user's feedback? 
+We will implement a feedback that directs the user to click Play or Discard before clicking on a card, and to play cards from "thier" hand 
+We can also change the labels on the hands to indicate which hand belongs to each player.
+Lastly we can add to the UI an indication of whose turn it is. 
