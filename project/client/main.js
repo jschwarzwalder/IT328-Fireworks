@@ -100,19 +100,7 @@ Template.playerActions.events({
 	  if(clues <= 8 && clues >0 ){
 		//set state to clue number 
 		Session.set("playState", "clueNum");
-		//listen for a card click
-		//if card is clicked then run cluenum fuction as described below
-		
-		//get card value
-		//find all card objects with that value
-		//highlight
-		//alert (ask player if they want to clue these cards)
-		//if yes then change on server and
-		  clues --;
-		  console.log(clues);
-		  Session.set("clues", clues);
-		  
-		//draw a new card	
+
 		
   }else{
 	  console.log("Do Nothing... Cannot have negative clues!");
