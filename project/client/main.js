@@ -97,11 +97,8 @@ Template.playerActions.events({
  }, 
   'click #cluenum': function(event, template) {
 	  var clues = Session.get('clues');
-<<<<<<< HEAD
-	  if(clues <= 8 && clues >0 ){
-=======
 	  if(clues <= 8 && clues > 0 ){
->>>>>>> origin/master
+
 		//set state to clue number 
 		Session.set("playState", "clueNum");
 
