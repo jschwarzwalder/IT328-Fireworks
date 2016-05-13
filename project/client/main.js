@@ -166,14 +166,14 @@ Template.playerHand.events({
 			Meteor.call('playACard', player, card , function(error,result){
 				var errors = Session.get('errors');
 				if((result == false) ){
-				
+				if ( errors < 3){
 					errors ++;
 					window.alert("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
 					console.log(errors);
 					Session.set("errors", errors);
 					
 				
-					if ( errors >= 3){
+				}else{
 						console.log("Game Over!");
 					}
 				}
@@ -252,7 +252,7 @@ Template.opponentHand.events({
 			Meteor.call('playACard', player, card , function(error,result){
 				var errors = Session.get('errors');
 				if((result == false) ){
-				if ( errors <= 3){
+				if ( errors < 3){
 					errors ++;
 					window.alert("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
 					console.log(errors);
