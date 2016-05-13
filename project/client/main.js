@@ -235,7 +235,7 @@ Template.playerHand.events({
 			  console.log(clues);
 			  Session.set("clues", clues);
 		 }
-		}
+		
 		Session.set ("playState", "inactive");
 	} 
 });
@@ -324,11 +324,11 @@ Template.opponentHand.events({
 		//number clue
 		 else if (state == "clueNum" && turn == "player1") {
 			 var clues = Session.get("clues");
-			 if (clues > 0;)
-			Meteor.call('cluenumberP2', this.cardValue);
+			 if (clues > 0;){
+				Meteor.call('cluenumberP2', this.cardValue);
 			} else {
-			window.alert("Error. You have no clues");
-		}
+				window.alert("Error. You have no clues");
+			}
 		  
 		  clues --;
 		  console.log(clues);
