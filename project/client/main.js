@@ -288,10 +288,12 @@ Template.opponentHand.events({
 			Meteor.call('clueColorP2', this.cardColor);
 		
 		  var clues = Session.get("clues");
+		  if (clues > 0) {
 		  clues --;
 		  console.log(clues);
  		
 		Session.set("clues", clues);
+		  }
 		Session.set ("playState", "inactive");
 			
 		}
