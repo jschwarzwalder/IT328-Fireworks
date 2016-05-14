@@ -12,7 +12,9 @@ import { player1HandCollection } from '../collection/collection.js';
 import { player2HandCollection } from '../collection/collection.js';
 import { play_area_collection } from '../collection/collection.js'; 
 import { discardCollection }  from '../collection/collection.js'; 
-
+import { clues }  from '../collection/collection.js'; 
+import { errors }  from '../collection/collection.js'; 
+import { playerTurn }  from '../collection/collection.js'; 
 
 //sort discards - 	discardCollection.find({}, {sort :[["cardColor", "asc"], ["cardValue", "asc"]]});
 

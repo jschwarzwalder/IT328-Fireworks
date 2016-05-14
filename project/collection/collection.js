@@ -11,7 +11,9 @@ export const player1HandCollection = new Mongo.Collection("player1Hand");
 export const player2HandCollection = new Mongo.Collection("player2Hand");
 export const play_area_collection = new Mongo.Collection("player_area");
 export const discardCollection = new Mongo.Collection("discard");
-
+export const clues = new Mongo.Collection("clues");
+export const errors = new Mongo.Collection("errors");
+export const playerTurn = new Mongo.Collection("playerTurn");
 
 //export access to any data to start our application
 
