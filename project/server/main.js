@@ -227,58 +227,8 @@ Meteor.methods({
   var index = fireworkCards.find().count();
   console.log(index);
 //player2HandCollection.insert(fireworkCards.find({}));
- 
+
+
    
-});
-
-//publish data that a client may or maynot want
-Meteor.publish('userData', function(){
-	//is there a logged in user?	
-	if (this.userId){
-		//verify that user is logged in //Meteor.user() will work too
-		
-		return Meteor.users.find({'_id': this.userId})
-	} else {
-		this.ready();
-		//wait for someone to ask a question //ie done and return nothing.
-	}
-});
-
-
-Meteor.publish('player1Hand', function(){
-	return player1HandCollection.find({});
-});
-Meteor.publish('player2Hand', function(){
-	return player2HandCollection.find({});
-});
-Meteor.publish('play_area', function(){
-	return play_area_collection.find({});
-});
-Meteor.publish('discard', function(){
-	return discardCollection.find({});
-});
-
-
-//hook to respond to user account creation
-Accounts.onCreateUser(function(option, user){
-	//option -- sent from your login provider...
-	//user -- userObject passed in
-	
-	//assign you profile
-	user.profile = option.profile;
-	
-	//we can add our own data here...
-	user.profile.userType = 'basic_user'; //admin, guest, basic_user, ...
-	user.profile.address = {
-		'street': "",
-		'city': "",
-		'state': "",
-		'zip': ""
-	};
-	
-	user.profile.siteVisit = 1;
-	
-	return user;
-	
-	
+   
 });
