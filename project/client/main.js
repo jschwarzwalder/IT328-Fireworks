@@ -6,18 +6,22 @@ import './main.html';
 import { Meteor } from 'meteor/meteor';
 
 //server
-import { deck } from '../collection/collection.js';
-import { fireworkCards } from '../collection/collection.js';
-import { player1HandCollection } from '../collection/collection.js';
-import { player2HandCollection } from '../collection/collection.js';
-import { play_area_collection } from '../collection/collection.js'; 
-import { discardCollection }  from '../collection/collection.js'; 
+//import { deck } from '../collection/collection.js';
+//import { fireworkCards } from '../collection/collection.js';
+//import { player1HandCollection } from '../collection/collection.js';
+//import { player2HandCollection } from '../collection/collection.js';
+//import { play_area_collection } from '../collection/collection.js'; 
+//import { discardCollection }  from '../collection/collection.js'; 
 //import { clues }  from '../collection/collection.js'; 
 //import { errors }  from '../collection/collection.js'; 
 //import { playerTurn }  from '../collection/collection.js'; 
 
 //sort discards - 	discardCollection.find({}, {sort :[["cardColor", "asc"], ["cardValue", "asc"]]});
-
+Meteor.subscribe('player1Hand');
+player1Hand = new Mongo.Collection('player1Hand');
+Meteor.subscribe('player2Hand');
+Meteor.subscribe('play_area');
+Meteor.subscribe('discard');
 
 var errors = 0;
 var clues = 8;
@@ -37,7 +41,7 @@ Session.set("playerTurn", "player1");
 //Get opponent hand
 Template.opponentHand.helpers({
 	card: function() {
-		return player2HandCollection.find();
+		return player2Hand;
 	},
 	colorClue: function(){
 		return this.clueColor 
@@ -52,7 +56,7 @@ Template.opponentHand.helpers({
 //Get Player Hand 
 Template.playerHand.helpers({
 	card: function() {
-		return player1HandCollection.find();
+		return player1Hand.find({});
 	},
 	colorClue: function(){
 		return this.clueColor 
@@ -67,10 +71,10 @@ Template.playerHand.helpers({
 //Get Play Area
 Template.play_area.helpers({
 	card: function() {
-		return play_area_collection.find({}, {$sort :["cardColor", "asc"]});
+		return play_area.find({}, {$sort :["cardColor", "asc"]});
 	},
 	empty: function(){
-		return play_area_collection.find({}) == null;
+		return play_area.find({}) == null;
 	}
 	
 });
@@ -89,7 +93,7 @@ Template.Counters.helpers({
 
 Template.discardBoard.helpers({
 	card: function() {
-		return discardCollection.find({}, {sort :[["cardColor", "asc"], ["cardValue", "asc"]]});
+		return discard.find({}, {sort :[["cardColor", "asc"], ["cardValue", "asc"]]});
 	}
 });
 Template.playerActions.events({

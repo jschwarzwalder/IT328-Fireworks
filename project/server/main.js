@@ -244,6 +244,21 @@ Meteor.publish('userData', function(){
 	}
 });
 
+
+Meteor.publish('player1Hand', function(){
+	return player1HandCollection.find({});
+});
+Meteor.publish('player2Hand', function(){
+	return player2HandCollection.find({});
+});
+Meteor.publish('play_area', function(){
+	return play_area_collection.find({});
+});
+Meteor.publish('discard', function(){
+	return discardCollection.find({});
+});
+
+
 //hook to respond to user account creation
 Accounts.onCreateUser(function(option, user){
 	//option -- sent from your login provider...
