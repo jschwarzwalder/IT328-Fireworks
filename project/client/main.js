@@ -15,7 +15,11 @@ import { discardCollection }  from '../collection/collection.js';
 
 
 //sort discards - 	discardCollection.find({}, {sort :[["cardColor", "asc"], ["cardValue", "asc"]]});
-
+Meteor.subscribe('player1Hand');
+Meteor.subscribe('player2Hand');
+Meteor.subscribe('player_area');
+Meteor.subscribe('discard');
+Meteor.subscribe('playerTurn');
 
 var errors = 0;
 var clues = 8;

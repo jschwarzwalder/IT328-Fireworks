@@ -232,3 +232,25 @@ Meteor.methods({
    
    
 });
+
+
+Meteor.publish('player1Hand', function() {
+	//sort by most recent changes
+	return player1HandCollection.find();
+});
+
+Meteor.publish('player2Hand', function() {
+	//sort by most recent changes
+	return player2HandCollection.find();
+});
+
+Meteor.publish('player_area', function() {
+	//sort by most recent changes
+	return play_area_collection.find();
+});
+
+Meteor.publish('discard', function() {
+	//sort by most recent changes
+	return discardCollection.find();
+});
+
