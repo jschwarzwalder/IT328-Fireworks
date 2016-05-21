@@ -97,24 +97,25 @@ Template.discardBoard.helpers({
 });
 Template.playerActions.events({
   'click #play': function(event, template) {
-	
+	var state = Session.get("playState");
+	if (state != "gameOver") {
 		var turn = Session.get("playerTurn");
 		//swal("turn: " + turn);
 		if (turn != "null")	{
 		//set state to play card
-			var state = Session.get("playState");
-			if (state != "gameOver") {
+
 				Session.set("playState", "play");
-			} else {
-				swal("Game Over \nClick New Game to play again")
-			}
+			
 		} else {
 			swal("Click player button to start your turn");
 		}
-	
+	} else {
+		swal("Game Over \nClick New Game to play again")
+	}
  }, 
   'click #cluenum': function(event, template) {
-	
+	var state = Session.get("playState");
+	if (state != "gameOver") {
 		var turn = Session.get("playerTurn");
 		if (turn != "null")	{
 		  var clues = Session.get('clues');
@@ -135,10 +136,13 @@ Template.playerActions.events({
 			swal("Click player button to start your turn");
 		}
 	
-
+	} else {
+		swal("Game Over \nClick New Game to play again")
+	}
   },
   'click #cluecolor': function(event, template) {
-	
+	var state = Session.get("playState");
+	if (state != "gameOver") {
 		var turn = Session.get("playerTurn");
 		if (turn != "null")	{
 		  var clues = Session.get('clues');
@@ -158,10 +162,13 @@ Template.playerActions.events({
 			swal("Click player button to start your turn");
 		}
 	
-
+	} else {
+		swal("Game Over \nClick New Game to play again")
+	}
   }, 
   'click #discard': function(event, template) {
-	
+	var state = Session.get("playState");
+	if (state != "gameOver") {
 		//set state to discards
 		var turn = Session.get("playerTurn");
 		if (turn != "null")	{
@@ -175,7 +182,9 @@ Template.playerActions.events({
 		 } else {
 			swal("Click player button to start your turn");
 		 }
-	
+	} else {
+		swal("Game Over \nClick New Game to play again")
+	}
 	
   }
 });
@@ -209,6 +218,8 @@ Template.playerHand.events({
 	'click a.selectedCard': function(event, template) {
 	//remove any database values that are present
 	//event.preventDefault();
+	var state = Session.get("playState");
+	if (state != "gameOver") {
 		var turn = Session.get("playerTurn");
 		var player;
 		if (turn == "player1") {
@@ -241,15 +252,19 @@ Template.playerHand.events({
 						
 					
 					} else{
+						
 						swal("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
 						swal("You fired off 3 Fireworks. \nGame Over!");
 						Session.set ("playState", "gameOver");
 						
 					}
 				} else {
+					
 					if (card.cardValue == 5) {
 						var clues = Session.get('clues');
 						clues ++;
+						swal("Congratulations, by playing a 5 \nYou get an extra clue");
+						Session.set("clues", clues);
 					}
 				}
 				Session.set ("playState", "inactive");
@@ -287,6 +302,7 @@ Template.playerHand.events({
           } 
 		  //reset state of game
 		  Session.set ("playState", "inactive");
+		  Session.set("playerTurn", "null");
 		}
 		//number clue
 		 else if (state == "clueNum" && turn == "player2") {
@@ -298,14 +314,21 @@ Template.playerHand.events({
 			  console.log(clues);
 			  Session.set("clues", clues);
           } 
+		  Session.set ("playState", "inactive");
+		  Session.set("playerTurn", "null");
+		
 		}
-		Session.set ("playState", "inactive");
-		Session.set("playerTurn", "null");
-	} 
+		
+	} else {
+		swal("Game Over \nClick New Game to play again")
+	}
+  }	
 });
   
 Template.opponentHand.events({
 	'click a.selectedCard': function(event, template) {
+	var state = Session.get("playState");
+	if (state != "gameOver") {
 	//remove any database values that are present
 	//event.preventDefault();
 		var turn = Session.get("playerTurn");
@@ -330,10 +353,17 @@ Template.opponentHand.events({
 		else if ((state == "play"|| state =="discard") && turn == "player1"){
 			swal("That is not your hand");
 			return;
-		} else if (state == "play" && turn =="player2") {
+		} 
+		else if (state == "play" && turn =="player2") {
 			Meteor.call('playACard', player, card , function(error,result){
 				var errors = Session.get('errors');
-				if((result == false) ){
+				if (card.cardValue == 5) {
+					var clues = Session.get('clues');
+					clues ++;
+					swal("Congratulations, by playing a 5 \nYou get an extra clue");
+					Session.set("clues", clues);
+				}
+				else if((result == false) ){
 					if ( errors < 3){
 						errors ++;
 						swal("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
@@ -344,12 +374,7 @@ Template.opponentHand.events({
 				
 						console.log("Game Over!");
 					}
-				} else {
-					if (card.cardValue == 5) {
-						var clues = Session.get('clues');
-						clues ++;
-					}
-				}
+				} 
 				Session.set ("playState", "inactive");
 				Session.set("playerTurn", "null");
 			});
@@ -404,12 +429,11 @@ Template.opponentHand.events({
 			  //reset state of game
 			  Session.set ("playState", "inactive");
 			  Session.set("playerTurn", "null");
-			 
-				
-			 
-		  
-			
-			
+
 		} 	
-	}
+		
+	} else {
+		swal("Game Over \nClick New Game to play again")
+	}	
+  }
 });
