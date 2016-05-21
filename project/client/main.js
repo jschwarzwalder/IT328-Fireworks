@@ -99,12 +99,12 @@ Template.playerActions.events({
   'click #play': function(event, template) {
 	
 		var turn = Session.get("playerTurn");
-		//window.alert("turn: " + turn);
+		//swal("turn: " + turn);
 		if (turn != "null")	{
 		//set state to play card
 			Session.set("playState", "play");
 		} else {
-			window.alert("Click player button to start your turn");
+			swal("Click player button to start your turn");
 		}
 	
  }, 
@@ -118,11 +118,11 @@ Template.playerActions.events({
 			//set state to clue number 
 			Session.set("playState", "clueNum");
 		  } else {
-			 window.alert("Error. You have no clues");
+			 swal("Error. You have no clues");
 		  }
 	
 		} else {
-			window.alert("Click player button to start your turn");
+			swal("Click player button to start your turn");
 		}
 	
 
@@ -137,10 +137,10 @@ Template.playerActions.events({
 			Session.set("playState", "clueColor");
 					
 		  } else {
-			  window.alert("Error. You have no clues");
+			  swal("Error. You have no clues");
 		  }
 		} else {
-			window.alert("Click player button to start your turn");
+			swal("Click player button to start your turn");
 		}
 	
 
@@ -152,7 +152,7 @@ Template.playerActions.events({
 		if (turn != "null")	{
 			Session.set("playState", "discard");
 		 } else {
-			window.alert("Click player button to start your turn");
+			swal("Click player button to start your turn");
 		 }
 	
 	
@@ -201,12 +201,12 @@ Template.playerHand.events({
 		var state = Session.get("playState");
 		//console.log(turn);
 		console.log("playerHand")
-		//window.alert(player);
+		//swal(player);
 		if (state == "inactive"){
-			window.alert("Please press Play or Discard before selecting a card");
+			swal("Please press Play or Discard before selecting a card");
 			return;
 		} else if ((state == "play" || state =="discard") && turn == "player2"){
-			window.alert("That is not your hand");
+			swal("That is not your hand");
 			return;
 		} else if (state == "play" && turn =="player1") {
 			Meteor.call('playACard', player, card , function(error,result){
@@ -214,7 +214,7 @@ Template.playerHand.events({
 				if((result == false) ){
 					if ( errors < 3){
 						errors ++;
-						window.alert("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
+						swal("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
 						console.log(errors);
 						Session.set("errors", errors);
 						
@@ -232,12 +232,12 @@ Template.playerHand.events({
 					var clues = Session.get('clues');
 					if(clues < 8 ){
 						clues ++;
-						window.alert("You discarded a "+ card.cardColor + " " + card.cardValue);
 						console.log(clues);
 						Session.set("clues", clues);
 					} else {
 						console.log("Do Nothing... You have all your clues!");
 					} 
+					swal("You discarded a "+ card.cardColor + " " + card.cardValue);
 				}
 				Session.set ("playState", "inactive");
 				Session.set("playerTurn", "null");
@@ -294,12 +294,12 @@ Template.opponentHand.events({
 		var state = Session.get("playState");
 		
 		if (state == "inactive" && turn =="player2"){
-			window.alert("Please press Play or Discard before selecting a card");
+			swal("Please press Play or Discard before selecting a card");
 			return;
 		} 
 		
 		else if ((state == "play"|| state =="discard") && turn == "player1"){
-			window.alert("That is not your hand");
+			swal("That is not your hand");
 			return;
 		} else if (state == "play" && turn =="player2") {
 			Meteor.call('playACard', player, card , function(error,result){
@@ -307,7 +307,7 @@ Template.opponentHand.events({
 				if((result == false) ){
 					if ( errors < 3){
 						errors ++;
-						window.alert("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
+						swal("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
 						console.log(errors);
 						Session.set("errors", errors);
 						
@@ -327,12 +327,13 @@ Template.opponentHand.events({
 					var clues = Session.get('clues');
 					if(clues < 8 ){
 						clues ++;
-						window.alert("You discarded a "+ card.cardColor + " " + card.cardValue);
+						
 						console.log(clues);
 						Session.set("clues", clues);
 					} else {
 						console.log("Do Nothing... You have all your clues!");
 					} 
+					swal("You discarded a "+ card.cardColor + " " + card.cardValue);
 				}
 				Session.set ("playState", "inactive");
 				Session.set("playerTurn", "null");
@@ -348,7 +349,7 @@ Template.opponentHand.events({
 		  if (clues > 0) {
 			clues --;
 			console.log(clues);
-			//window.alert("You clued "+ card.cardColor );
+			//swal("You clued "+ card.cardColor );
 			Session.set("clues", clues);
 		  } 
 		  Session.set ("playState", "inactive");
