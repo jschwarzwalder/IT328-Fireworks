@@ -111,67 +111,88 @@ Template.playerActions.events({
 	}
  }, 
   'click #cluenum': function(event, template) {
-	var turn = Session.get("playerTurn");
-	if (turn != null)	{
-	  var clues = Session.get('clues');
-	  if(clues <= 8 && clues > 0 ){
+	user = Meteor.users.findOne({_id:this.userId}) 
+	if(user) {
+		var turn = Session.get("playerTurn");
+		if (turn != null)	{
+		  var clues = Session.get('clues');
+		  if(clues <= 8 && clues > 0 ){
 
-		//set state to clue number 
-		Session.set("playState", "clueNum");
-	  } else {
-		 window.alert("Error. You have no clues");
-	  }
+			//set state to clue number 
+			Session.set("playState", "clueNum");
+		  } else {
+			 window.alert("Error. You have no clues");
+		  }
+		} else {
+			window.alert("Click player button to start your turn");
+		}
 	} else {
-		window.alert("Click player button to start your turn");
+		window.alert("Please Log In");
 	}
 
   },
   'click #cluecolor': function(event, template) {
-	var turn = Session.get("playerTurn");
-	if (turn != null)	{
-	  var clues = Session.get('clues');
-	  if(clues <= 8 && clues >0 ){
-		//set state to clue color
-		Session.set("playState", "clueColor");
-				
-	  } else {
-		  window.alert("Error. You have no clues");
-	  }
+	user = Meteor.users.findOne({_id:this.userId}) 
+	if(user) {
+		var turn = Session.get("playerTurn");
+		if (turn != null)	{
+		  var clues = Session.get('clues');
+		  if(clues <= 8 && clues >0 ){
+			//set state to clue color
+			Session.set("playState", "clueColor");
+					
+		  } else {
+			  window.alert("Error. You have no clues");
+		  }
+		} else {
+			window.alert("Click player button to start your turn");
+		}
 	} else {
-		window.alert("Click player button to start your turn");
+		window.alert("Please Log In");
 	}
 
   }, 
   'click #discard': function(event, template) {
-	//set state to discards
-	var turn = Session.get("playerTurn");
-	if (turn != null)	{
-		Session.set("playState", "discard");
-     } else {
-     	window.alert("Click player button to start your turn");
-     }
+	user = Meteor.users.findOne({_id:this.userId}) 
+	if(user) {
+		//set state to discards
+		var turn = Session.get("playerTurn");
+		if (turn != null)	{
+			Session.set("playState", "discard");
+		 } else {
+			window.alert("Click player button to start your turn");
+		 }
+	} else {
+		window.alert("Please Log In");
 	}
+	
+  }
 });
 
 Template.newGame.events({
-	'click #newGame': function(event, template) {
-	//remove any database values that are present
-		Session.set("errors", 0);
-		Session.set("clues", 8);
-		Session.set ("playState", "inactive" );
-		Session.set("playerTurn", "player1");
-		Meteor.call('startNewGame');
-	} ,
-	'click #player1': function(event, template) {
-	//remove any database values that are present
-		Session.set("playerTurn", "player1");
-		Session.set ("playState", "inactive");
+	user = Meteor.users.findOne({_id:this.userId}) 
+	if(user) {
+		'click #newGame': function(event, template) {
+		//remove any database values that are present
+			Session.set("errors", 0);
+			Session.set("clues", 8);
+			Session.set ("playState", "inactive" );
+			Session.set("playerTurn", "player1");
+			Meteor.call('startNewGame');
+		} ,
+		'click #player1': function(event, template) {
+		//remove any database values that are present
+			Session.set("playerTurn", "player1");
+			Session.set ("playState", "inactive");
 
-	},
-	'click #player2': function(event, template) {
-		Session.set("playerTurn", "player2");
-		Session.set ("playState", "inactive");
-	} 
+		},
+		'click #player2': function(event, template) {
+			Session.set("playerTurn", "player2");
+			Session.set ("playState", "inactive");
+		} 
+	} else {
+		window.alert("Please Log In");
+	}
 });
 
 Template.playerHand.events({
