@@ -140,10 +140,12 @@ Template.newGame.events({
 	'click #player1': function(event, template) {
 	//remove any database values that are present
 		Session.set("playerTurn", "player1");
+		Session.set ("playState", "inactive");
 
 	},
 	'click #player2': function(event, template) {
 		Session.set("playerTurn", "player2");
+		Session.set ("playState", "inactive");
 	} 
 });
 
@@ -305,19 +307,19 @@ Template.opponentHand.events({
 			window.alert("You clued "+ card.cardColor );
 			Session.set("clues", clues);
 		  } 
-		Session.set ("playState", "inactive");
+		  Session.set ("playState", "inactive");
 		} else if (state == "clueNum" && turn == "player1") {
 			//number clue	
 		
 			Meteor.call('cluenumberP2', this.cardValue);
 	
 
-			 var clues = Session.get("clues");
-			 if (clues > 0){
+			 
 				Meteor.call('cluenumberP2', this.cardValue);
 			} 
 		  
-
+			var clues = Session.get("clues");
+			 if (clues > 0){
 		  clues --;
 		  console.log(clues);
 		  Session.set("clues", clues);
