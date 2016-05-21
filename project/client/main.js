@@ -70,7 +70,7 @@ Template.playerHand.helpers({
 //Get Play Area
 Template.play_area.helpers({
 	card: function() {
-		return play_area_collection.find({}, {$sort :["cardColor", "asc"]});
+		return play_area_collection.find({}, {sort :[["cardColor", "asc"]]});
 	},
 	empty: function(){
 		return play_area_collection.find({}) == null;
@@ -102,7 +102,12 @@ Template.playerActions.events({
 		//swal("turn: " + turn);
 		if (turn != "null")	{
 		//set state to play card
-			Session.set("playState", "play");
+			var state = Session.get("playState");
+			if (state != "gameOver") {
+				Session.set("playState", "play");
+			} else {
+				swal("Game Over \nClick New Game to play again")
+			}
 		} else {
 			swal("Click player button to start your turn");
 		}
@@ -115,8 +120,13 @@ Template.playerActions.events({
 		  var clues = Session.get('clues');
 		  if(clues <= 8 && clues > 0 ){
 
-			//set state to clue number 
-			Session.set("playState", "clueNum");
+			var state = Session.get("playState");
+			if (state != "gameOver") {
+				//set state to clue number 
+				Session.set("playState", "clueNum");
+			} else {
+				swal("Game Over \nClick New Game to play again")
+			}
 		  } else {
 			 swal("Error. You have no clues");
 		  }
@@ -133,9 +143,14 @@ Template.playerActions.events({
 		if (turn != "null")	{
 		  var clues = Session.get('clues');
 		  if(clues <= 8 && clues >0 ){
-			//set state to clue color
-			Session.set("playState", "clueColor");
-					
+			
+			var state = Session.get("playState");
+			if (state != "gameOver") {
+				//set state to clue color
+				Session.set("playState", "clueColor");
+			} else {
+				swal("Game Over \nClick New Game to play again")
+			}		
 		  } else {
 			  swal("Error. You have no clues");
 		  }
@@ -150,7 +165,13 @@ Template.playerActions.events({
 		//set state to discards
 		var turn = Session.get("playerTurn");
 		if (turn != "null")	{
-			Session.set("playState", "discard");
+		
+			var state = Session.get("playState");
+			if (state != "gameOver") {
+				Session.set("playState", "discard");
+			} else {
+				swal("Game Over \nClick New Game to play again")
+			}
 		 } else {
 			swal("Click player button to start your turn");
 		 }
@@ -220,7 +241,15 @@ Template.playerHand.events({
 						
 					
 					} else{
-						console.log("Game Over!");
+						swal("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
+						swal("You fired off 3 Fireworks. \nGame Over!");
+						Session.set ("playState", "gameOver");
+						
+					}
+				} else {
+					if (card.cardValue == 5) {
+						var clues = Session.get('clues');
+						clues ++;
 					}
 				}
 				Session.set ("playState", "inactive");
@@ -314,6 +343,11 @@ Template.opponentHand.events({
 					}else{
 				
 						console.log("Game Over!");
+					}
+				} else {
+					if (card.cardValue == 5) {
+						var clues = Session.get('clues');
+						clues ++;
 					}
 				}
 				Session.set ("playState", "inactive");
