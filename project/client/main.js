@@ -97,7 +97,7 @@ Template.discardBoard.helpers({
 });
 Template.playerActions.events({
   'click #play': function(event, template) {
-	user = Meteor.users.findOne({_id:this.userId}) 
+	user = Meteor.users.findOne({_id:this.userId}); 
 	if(user) {
 		var turn = Session.get("playerTurn");
 		if (turn != null)	{
@@ -111,7 +111,7 @@ Template.playerActions.events({
 	}
  }, 
   'click #cluenum': function(event, template) {
-	user = Meteor.users.findOne({_id:this.userId}) 
+	user = Meteor.users.findOne({_id:this.userId}); 
 	if(user) {
 		var turn = Session.get("playerTurn");
 		if (turn != null)	{
@@ -132,7 +132,7 @@ Template.playerActions.events({
 
   },
   'click #cluecolor': function(event, template) {
-	user = Meteor.users.findOne({_id:this.userId}) 
+	user = Meteor.users.findOne({_id:this.userId});
 	if(user) {
 		var turn = Session.get("playerTurn");
 		if (turn != null)	{
@@ -153,7 +153,7 @@ Template.playerActions.events({
 
   }, 
   'click #discard': function(event, template) {
-	user = Meteor.users.findOne({_id:this.userId}) 
+	user = Meteor.users.findOne({_id:this.userId}); 
 	if(user) {
 		//set state to discards
 		var turn = Session.get("playerTurn");
@@ -170,29 +170,31 @@ Template.playerActions.events({
 });
 
 Template.newGame.events({
-	user = Meteor.users.findOne({_id:this.userId}) 
-	if(user) {
-		'click #newGame': function(event, template) {
-		//remove any database values that are present
+
+	'click #newGame': function(event, template) {
+	//remove any database values that are present
+		user = Meteor.users.findOne({_id:this.userId}); 
+		if(user) {
 			Session.set("errors", 0);
 			Session.set("clues", 8);
 			Session.set ("playState", "inactive" );
 			Session.set("playerTurn", "player1");
 			Meteor.call('startNewGame');
-		} ,
-		'click #player1': function(event, template) {
-		//remove any database values that are present
-			Session.set("playerTurn", "player1");
-			Session.set ("playState", "inactive");
+		} else {
+			window.alert("Please Log In");
+		}
+	} ,
+	'click #player1': function(event, template) {
+	//remove any database values that are present
+		Session.set("playerTurn", "player1");
+		Session.set ("playState", "inactive");
 
-		},
-		'click #player2': function(event, template) {
-			Session.set("playerTurn", "player2");
-			Session.set ("playState", "inactive");
-		} 
-	} else {
-		window.alert("Please Log In");
-	}
+	},
+	'click #player2': function(event, template) {
+		Session.set("playerTurn", "player2");
+		Session.set ("playState", "inactive");
+	} 
+	
 });
 
 Template.playerHand.events({

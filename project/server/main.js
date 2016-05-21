@@ -173,6 +173,7 @@ Meteor.startup(function () {
 					playerhand.insert(drawCard(fireworkCards));
 					return false;
 				}
+		
 			 //if color exists, compare card values
 			} else if (play_area_card.cardValue + 1 == card.cardValue ) {
 				//if this card value is play_area card value +1 
