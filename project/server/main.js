@@ -143,56 +143,25 @@ Meteor.startup(function () {
 	  }
 
 	  function play(playerhand, card){ 
-		user = Meteor.users.findOne({_id:this.userId}) 
-		if(user) {
 		console.log("you've entered the play a card fucntion  \n \n \n \n");
 		var play_area_card = play_area_collection.findOne({cardColor: card.cardColor});
 		
 		//find that card color in play area
-			if (play_area_card == null){
-				//if color does not exist
-				//check to see if this card has value of 1
-				if (card.cardValue == 1){
-					//if it does add that card to the play area
-					play_area_collection.insert(card);
-					
-					//remove card from hand
-					playerhand.remove(card._id);
-
-					//draw new card
-					playerhand.insert(drawCard(fireworkCards));
-					return true;
-				} else {
-					//if it does not, add that card to the discard area
-					discardCollection.insert(card);
-					
-					//remove card from hand
-					playerhand.remove(card._id);
-
-					//draw new card
-					playerhand.insert(drawCard(fireworkCards));
-					return false;
-				}
-		
-			 //if color exists, compare card values
-			} else if (play_area_card.cardValue + 1 == card.cardValue ) {
-				//if this card value is play_area card value +1 
-				
-				//remove play_area card
-				play_area_collection.remove(play_area_card._id);
-				
-				//add this card to the play area
+		if (play_area_card == null){
+			//if color does not exist
+			//check to see if this card has value of 1
+			if (card.cardValue == 1){
+				//if it does add that card to the play area
 				play_area_collection.insert(card);
 				
-				//remove this card from players hand
+				//remove card from hand
 				playerhand.remove(card._id);
-				
+
 				//draw new card
 				playerhand.insert(drawCard(fireworkCards));
-				
 				return true;
 			} else {
-				//else add to discard 
+				//if it does not, add that card to the discard area
 				discardCollection.insert(card);
 				
 				//remove card from hand
@@ -202,12 +171,41 @@ Meteor.startup(function () {
 				playerhand.insert(drawCard(fireworkCards));
 				return false;
 			}
-
-	  }
+	
+		 //if color exists, compare card values
+		} else if (play_area_card.cardValue + 1 == card.cardValue ) {
+			//if this card value is play_area card value +1 
 			
-	 }
+			//remove play_area card
+			play_area_collection.remove(play_area_card._id);
+			
+			//add this card to the play area
+			play_area_collection.insert(card);
+			
+			//remove this card from players hand
+			playerhand.remove(card._id);
+			
+			//draw new card
+			playerhand.insert(drawCard(fireworkCards));
+			
+			return true;
+		} else {
+			//else add to discard 
+			discardCollection.insert(card);
+			
+			//remove card from hand
+			playerhand.remove(card._id);
+
+			//draw new card
+			playerhand.insert(drawCard(fireworkCards));
+			return false;
+		}
+
+	}
+			
+
 	  
-	  function discard(playerhand, card) {
+	function discard(playerhand, card) {
 		 
 		console.log("you've entered the discard fucntion  \n \n \n \n")
 		
@@ -244,7 +242,9 @@ Meteor.publish('player1Hand', function() {
    if(user) { 
 		//sort by most recent changes
 		return player1HandCollection.find();
-			 
+		console.log(user);	 
+	} else {
+		return "Please Log In";
 	} 
 });
 
@@ -253,7 +253,11 @@ Meteor.publish('player2Hand', function() {
    if(user) { 
 	//sort by most recent changes
 	return player2HandCollection.find();
-	} 
+	console.log(user.name);
+	} else {
+		return "Please Log In";
+	}
+
 });
 
 Meteor.publish('player_area', function() {

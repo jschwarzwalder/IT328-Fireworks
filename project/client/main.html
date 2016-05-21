@@ -65,7 +65,7 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 	  {{#each card}}
 		<li >	
 			<a id="{{this._id}}" class="selectedCard" href="#">
-			{{#if turn}}
+			{{#unless turn}}
 			
 	  <!-- If color clue is true  -->
 				{{#if colorClue}}
@@ -89,7 +89,7 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 				{{else}}
 					<img src="{{this.image}}" class="img-responsive" >
 				{{/if}}
-			{{/if}}
+			{{/unless}}
 			</a>
 		</li>
 	  {{/each}}
@@ -107,7 +107,7 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 		  {{#each card}}
 		  <li>
 		  <a id="{{this._id}}" class="selectedCard" href="#">
-			{{#if turn}}
+			{{#unless turn}}
 			
 	  <!-- If color clue is true 			-->
 				{{#if colorClue}}
@@ -131,7 +131,7 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 				{{else}}
 					<img src="{{this.image}}" class="img-responsive" >
 				{{/if}}
-			{{/if}}
+			{{/unless}}
 		<!--  	{{#if turn}}-->
 		<!--		{{#if colorClue}}-->
 		<!--			<img src="card back.png" class="img-responsive" style="border-style: solid;  border-width: 5px;border-color:{{this.cardColor}}" >-->

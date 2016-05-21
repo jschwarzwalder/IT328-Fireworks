@@ -6,8 +6,8 @@ import './main.html';
 import { Meteor } from 'meteor/meteor';
 
 //server
-import { deck } from '../collection/collection.js';
-import { fireworkCards } from '../collection/collection.js';
+//import { deck } from '../collection/collection.js';
+//import { fireworkCards } from '../collection/collection.js';
 import { player1HandCollection } from '../collection/collection.js';
 import { player2HandCollection } from '../collection/collection.js';
 import { play_area_collection } from '../collection/collection.js'; 
@@ -23,7 +23,7 @@ Meteor.subscribe('playerTurn');
 
 
 var errors = 0;
-var clues = 0;//normally start at 8, adjusted for testing
+var clues = 8;//normally start at 8, adjusted for testing
 var state = "inactive"
 Session.set("errors", errors);
 Session.set("clues", clues);
@@ -47,7 +47,7 @@ Template.opponentHand.helpers({
 	},
 	turn: function(){
 		var turn = Session.get("playerTurn");
-		return turn == "player2"
+		return turn == "player1"
 	}
 	
 });
@@ -62,7 +62,7 @@ Template.playerHand.helpers({
 	}, 
 	turn: function() {
 		var turn = Session.get("playerTurn");
-		return turn == "player1"
+		return turn == "player2"
 	}
 	
 });	
@@ -97,24 +97,21 @@ Template.discardBoard.helpers({
 });
 Template.playerActions.events({
   'click #play': function(event, template) {
-	user = Meteor.users.findOne({_id:this.userId}); 
-	if(user) {
+	
 		var turn = Session.get("playerTurn");
-		if (turn != null)	{
+		//window.alert("turn: " + turn);
+		if (turn != "null")	{
 		//set state to play card
 			Session.set("playState", "play");
 		} else {
 			window.alert("Click player button to start your turn");
 		}
-	} else {
-		window.alert("Please Log In");
-	}
+	
  }, 
   'click #cluenum': function(event, template) {
-	user = Meteor.users.findOne({_id:this.userId}); 
-	if(user) {
+	
 		var turn = Session.get("playerTurn");
-		if (turn != null)	{
+		if (turn != "null")	{
 		  var clues = Session.get('clues');
 		  if(clues <= 8 && clues > 0 ){
 
@@ -123,19 +120,17 @@ Template.playerActions.events({
 		  } else {
 			 window.alert("Error. You have no clues");
 		  }
+	
 		} else {
 			window.alert("Click player button to start your turn");
 		}
-	} else {
-		window.alert("Please Log In");
-	}
+	
 
   },
   'click #cluecolor': function(event, template) {
-	user = Meteor.users.findOne({_id:this.userId});
-	if(user) {
+	
 		var turn = Session.get("playerTurn");
-		if (turn != null)	{
+		if (turn != "null")	{
 		  var clues = Session.get('clues');
 		  if(clues <= 8 && clues >0 ){
 			//set state to clue color
@@ -147,24 +142,19 @@ Template.playerActions.events({
 		} else {
 			window.alert("Click player button to start your turn");
 		}
-	} else {
-		window.alert("Please Log In");
-	}
+	
 
   }, 
   'click #discard': function(event, template) {
-	user = Meteor.users.findOne({_id:this.userId}); 
-	if(user) {
+	
 		//set state to discards
 		var turn = Session.get("playerTurn");
-		if (turn != null)	{
+		if (turn != "null")	{
 			Session.set("playState", "discard");
 		 } else {
 			window.alert("Click player button to start your turn");
 		 }
-	} else {
-		window.alert("Please Log In");
-	}
+	
 	
   }
 });
@@ -173,16 +163,13 @@ Template.newGame.events({
 
 	'click #newGame': function(event, template) {
 	//remove any database values that are present
-		user = Meteor.users.findOne({_id:this.userId}); 
-		if(user) {
+		
 			Session.set("errors", 0);
 			Session.set("clues", 8);
 			Session.set ("playState", "inactive" );
 			Session.set("playerTurn", "player1");
 			Meteor.call('startNewGame');
-		} else {
-			window.alert("Please Log In");
-		}
+		
 	} ,
 	'click #player1': function(event, template) {
 	//remove any database values that are present
@@ -214,10 +201,13 @@ Template.playerHand.events({
 		var state = Session.get("playState");
 		console.log(turn);
 		console.log("playerHand")
+		//window.alert(player);
 		if (state == "inactive"){
 			window.alert("Please press Play or Discard before selecting a card");
+			return;
 		} else if ((state == "play" || state =="discard") && turn == "player2"){
 			window.alert("That is not your hand");
+			return;
 		} else if (state == "play" && turn =="player1") {
 			Meteor.call('playACard', player, card , function(error,result){
 				var errors = Session.get('errors');
@@ -227,14 +217,14 @@ Template.playerHand.events({
 					window.alert("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
 					console.log(errors);
 					Session.set("errors", errors);
-					
+					Session.set("playerTurn", "null");
 				
 				}else{
 						console.log("Game Over!");
 					}
 				}
 				Session.set ("playState", "inactive");
-				Session.set("playerTurn", null);
+				
 			});
 		} else if (state == "discard" && turn =="player1") {
 			Meteor.call('discardACard', player, card, function(error,result){
@@ -250,16 +240,16 @@ Template.playerHand.events({
 					} 
 				}
 				Session.set ("playState", "inactive");
-				Session.set("playerTurn", null);
+				Session.set("playerTurn", "null");
 			});	
 		}
 		//color clue 
 		else if (state == "clueColor" && turn == "player2") {
-			window.alert("Test ClueColor before Meteor.call ");
+			
 			Meteor.call('clueColorP1', this.cardColor);
-			window.alert("Test ClueColor after Meteor.call ");
+			
 		  var clues = Session.get("clues");
-		  window.alert("Test ClueColor before if clues >0 ");
+		 
 		  if (clues > 0 ) {
 			   
 			  clues --;
@@ -281,7 +271,7 @@ Template.playerHand.events({
           } 
 		}
 		Session.set ("playState", "inactive");
-		Session.set("playerTurn", null);
+		Session.set("playerTurn", "null");
 	} 
 });
   
@@ -305,10 +295,12 @@ Template.opponentHand.events({
 		
 		if (state == "inactive" && turn =="player2"){
 			window.alert("Please press Play or Discard before selecting a card");
+			return;
 		} 
 		
 		else if ((state == "play"|| state =="discard") && turn == "player1"){
 			window.alert("That is not your hand");
+			return;
 		}
 		
 		else if (state == "play" && turn =="player2") {
@@ -320,12 +312,14 @@ Template.opponentHand.events({
 					window.alert("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
 					console.log(errors);
 					Session.set("errors", errors);
+					Session.set("playerTurn", "null");
 				}else{
 				
 						console.log("Game Over!");
 					}
 				}
 				Session.set ("playState", "inactive");
+				
 			});
 		}
 		
@@ -343,6 +337,7 @@ Template.opponentHand.events({
 					} 
 				}
 				Session.set ("playState", "inactive");
+				Session.set("playerTurn", "null");
 				
 				});	
 		}
@@ -355,7 +350,7 @@ Template.opponentHand.events({
 		  if (clues > 0) {
 			clues --;
 			console.log(clues);
-			window.alert("You clued "+ card.cardColor );
+			//window.alert("You clued "+ card.cardColor );
 			Session.set("clues", clues);
 		  } 
 		  Session.set ("playState", "inactive");
@@ -378,6 +373,7 @@ Template.opponentHand.events({
   
 		  //reset state of game
 		  Session.set ("playState", "inactive");
+		  Session.set("playerTurn", "null");
 		}
 	} 
 });
