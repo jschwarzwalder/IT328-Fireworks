@@ -245,9 +245,7 @@ Meteor.publish('player1Hand', function() {
 		//sort by most recent changes
 		return player1HandCollection.find();
 			 
-	} else {
-		window.alert ("Please Login to get your hand");
-	}
+	} 
 });
 
 Meteor.publish('player2Hand', function() {
@@ -255,9 +253,7 @@ Meteor.publish('player2Hand', function() {
    if(user) { 
 	//sort by most recent changes
 	return player2HandCollection.find();
-	} else {
-		window.alert ("Please Login to get your hand");
-	}
+	} 
 });
 
 Meteor.publish('player_area', function() {
