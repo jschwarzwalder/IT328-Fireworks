@@ -97,12 +97,18 @@ Template.discardBoard.helpers({
 });
 Template.playerActions.events({
   'click #play': function(event, template) {
-		
+	var turn = Session.get("playerTurn");
+	if (turn != null)	{
 	//set state to play card
-	Session.set("playState", "play");
+		Session.set("playState", "play");
+	} else {
+		window.alert("Click player button to start your turn");
+	}
 
  }, 
   'click #cluenum': function(event, template) {
+	var turn = Session.get("playerTurn");
+	if (turn != null)	{
 	  var clues = Session.get('clues');
 	  if(clues <= 8 && clues > 0 ){
 
@@ -111,8 +117,14 @@ Template.playerActions.events({
 	  } else {
 		 window.alert("Error. You have no clues");
 	  }
+	} else {
+		window.alert("Click player button to start your turn");
+	}
+
   },
   'click #cluecolor': function(event, template) {
+	var turn = Session.get("playerTurn");
+	if (turn != null)	{
 	  var clues = Session.get('clues');
 	  if(clues <= 8 && clues >0 ){
 		//set state to clue color
@@ -121,10 +133,19 @@ Template.playerActions.events({
 	  } else {
 		  window.alert("Error. You have no clues");
 	  }
+	} else {
+		window.alert("Click player button to start your turn");
+	}
+
   }, 
   'click #discard': function(event, template) {
 	//set state to discards
-	Session.set("playState", "discard");
+	var turn = Session.get("playerTurn");
+	if (turn != null)	{
+		Session.set("playState", "discard");
+     } else {
+     	window.alert("Click player button to start your turn");
+     }
 	}
 });
 
