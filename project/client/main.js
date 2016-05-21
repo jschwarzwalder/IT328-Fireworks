@@ -97,14 +97,18 @@ Template.discardBoard.helpers({
 });
 Template.playerActions.events({
   'click #play': function(event, template) {
-	var turn = Session.get("playerTurn");
-	if (turn != null)	{
-	//set state to play card
-		Session.set("playState", "play");
+	user = Meteor.users.findOne({_id:this.userId}) 
+	if(user) {
+		var turn = Session.get("playerTurn");
+		if (turn != null)	{
+		//set state to play card
+			Session.set("playState", "play");
+		} else {
+			window.alert("Click player button to start your turn");
+		}
 	} else {
-		window.alert("Click player button to start your turn");
+		window.alert("Please Log In");
 	}
-
  }, 
   'click #cluenum': function(event, template) {
 	var turn = Session.get("playerTurn");
@@ -207,6 +211,7 @@ Template.playerHand.events({
 					}
 				}
 				Session.set ("playState", "inactive");
+				Session.set("playerTurn", null);
 			});
 		} else if (state == "discard" && turn =="player1") {
 			Meteor.call('discardACard', player, card, function(error,result){
@@ -222,6 +227,7 @@ Template.playerHand.events({
 					} 
 				}
 				Session.set ("playState", "inactive");
+				Session.set("playerTurn", null);
 			});	
 		}
 		//color clue 
@@ -252,6 +258,7 @@ Template.playerHand.events({
           } 
 		}
 		Session.set ("playState", "inactive");
+		Session.set("playerTurn", null);
 	} 
 });
   
