@@ -23,7 +23,7 @@ Meteor.subscribe('playerTurn');
 
 
 var errors = 0;
-var clues = 8;
+var clues = 0;//normally start at 8, adjusted for testing
 var state = "inactive"
 Session.set("errors", errors);
 Session.set("clues", clues);
@@ -108,11 +108,9 @@ Template.playerActions.events({
 
 		//set state to clue number 
 		Session.set("playState", "clueNum");
-
-		
-  }else{
-	  console.log("Do Nothing... Cannot have negative clues!");
-  }
+	  } else {
+		 window.alert("Error. You have no clues");
+	  }
   },
   'click #cluecolor': function(event, template) {
 	  var clues = Session.get('clues');
@@ -120,9 +118,9 @@ Template.playerActions.events({
 		//set state to clue color
 		Session.set("playState", "clueColor");
 				
-  }else{
-	  console.log("Do Nothing... Cannot have negative clues!");
-  }
+	  } else {
+		  window.alert("Error. You have no clues");
+	  }
   }, 
   'click #discard': function(event, template) {
 	//set state to discards
@@ -193,6 +191,7 @@ Template.playerHand.events({
 					var clues = Session.get('clues');
 					if(clues < 8 ){
 						clues ++;
+						window.alert("You discarded a "+ card.cardColor + " " + card.cardValue);
 						console.log(clues);
 						Session.set("clues", clues);
 					} else {
@@ -204,16 +203,17 @@ Template.playerHand.events({
 		}
 		//color clue 
 		else if (state == "clueColor" && turn == "player2") {
+			window.alert("Test ClueColor before Meteor.call ");
 			Meteor.call('clueColorP1', this.cardColor);
+			window.alert("Test ClueColor after Meteor.call ");
 		  var clues = Session.get("clues");
+		  window.alert("Test ClueColor before if clues >0 ");
 		  if (clues > 0 ) {
 			   
 			  clues --;
 			  console.log(clues);
 			  Session.set("clues", clues);
-          } else {
-			  window.alert("Error. You have no clues");
-		  }
+          } 
 		  //reset state of game
 		  Session.set ("playState", "inactive");
 		}
@@ -226,9 +226,7 @@ Template.playerHand.events({
 			  clues --;
 			  console.log(clues);
 			  Session.set("clues", clues);
-          } else {
-			  window.alert("Error. You have no clues");
-		  }
+          } 
 		}
 		Session.set ("playState", "inactive");
 	} 
@@ -284,6 +282,7 @@ Template.opponentHand.events({
 					var clues = Session.get('clues');
 					if(clues < 8 ){
 						clues ++;
+						window.alert("You discarded a "+ card.cardColor + " " + card.cardValue);
 						console.log(clues);
 						Session.set("clues", clues);
 					} else {
@@ -303,11 +302,9 @@ Template.opponentHand.events({
 		  if (clues > 0) {
 			clues --;
 			console.log(clues);
-			
+			window.alert("You clued "+ card.cardColor );
 			Session.set("clues", clues);
-		  } else {
-			  window.alert("Error. You have no clues");
-		  }
+		  } 
 		Session.set ("playState", "inactive");
 		} else if (state == "clueNum" && turn == "player1") {
 			//number clue	
@@ -318,9 +315,7 @@ Template.opponentHand.events({
 			 var clues = Session.get("clues");
 			 if (clues > 0){
 				Meteor.call('cluenumberP2', this.cardValue);
-			} else {
-				window.alert("Error. You have no clues");
-			}
+			} 
 		  
 
 		  clues --;
