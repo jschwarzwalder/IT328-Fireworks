@@ -21,6 +21,7 @@ Meteor.subscribe('player_area');
 Meteor.subscribe('discard');
 Meteor.subscribe('playerTurn');
 
+
 var errors = 0;
 var clues = 8;
 var state = "inactive"
@@ -206,11 +207,13 @@ Template.playerHand.events({
 			Meteor.call('clueColorP1', this.cardColor);
 		  var clues = Session.get("clues");
 		  if (clues > 0 ) {
-           
-		  clues --;
-		  console.log(clues);
-		  Session.set("clues", clues);
-          }
+			   
+			  clues --;
+			  console.log(clues);
+			  Session.set("clues", clues);
+          } else {
+			  window.alert("Error. You have no clues");
+		  }
 		  //reset state of game
 		  Session.set ("playState", "inactive");
 		}
@@ -219,11 +222,13 @@ Template.playerHand.events({
 			Meteor.call('cluenumberP1', this.cardValue);
 		  var clues = Session.get("clues");
 		  if (clues > 0) {
-           
-		  clues --;
-		  console.log(clues);
-		  Session.set("clues", clues);
-          }
+			   
+			  clues --;
+			  console.log(clues);
+			  Session.set("clues", clues);
+          } else {
+			  window.alert("Error. You have no clues");
+		  }
 		}
 		Session.set ("playState", "inactive");
 	} 
@@ -247,9 +252,9 @@ Template.opponentHand.events({
 		var card = this;
 		var state = Session.get("playState");
 		
-		if (state == "inactive"){
+		if (state == "inactive" && turn =="player2"){
 			window.alert("Please press Play or Discard before selecting a card");
-		}
+		} 
 		
 		else if ((state == "play"|| state =="discard") && turn == "player1"){
 			window.alert("That is not your hand");
@@ -296,10 +301,12 @@ Template.opponentHand.events({
 		
 		  var clues = Session.get("clues");
 		  if (clues > 0) {
-		  clues --;
-		  console.log(clues);
- 		
-		Session.set("clues", clues);
+			clues --;
+			console.log(clues);
+			
+			Session.set("clues", clues);
+		  } else {
+			  window.alert("Error. You have no clues");
 		  }
 		Session.set ("playState", "inactive");
 		} else if (state == "clueNum" && turn == "player1") {
