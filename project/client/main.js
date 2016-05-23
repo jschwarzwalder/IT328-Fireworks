@@ -297,8 +297,8 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 		}
 		//color clue 
 		else if (state == "clueColor" && turn == otherPlayer) {
-			
-			Meteor.call('clueColor', this.cardColor , handOwner);
+			console.log(handOwner);
+			Meteor.call('clueColor', card.cardColor , handOwner);
 			
 		  var clues = Session.get("clues");
 		 
@@ -314,7 +314,7 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 		}
 		//number clue
 		 else if (state == "clueNum" && turn == otherPlayer) {
-			Meteor.call('clueNumber', this.cardValue, handOwner);
+			Meteor.call('clueNumber', card.cardValue, handOwner);
 		  var clues = Session.get("clues");
 		  if (clues > 0) {
 			   

@@ -27,8 +27,8 @@ Meteor.startup(function () {
 		play_area_collection.remove({});
 	  },
 	  playACard: function(playerhand, card){
-		  console.log("Playing Card: " + card)
-		  console.log("Player Hand: " + playerhand)
+		  //console.log("Playing Card: " + card)
+		  //console.log("Player Hand: " + playerhand)
 		  if (playerhand == "player1") {
 			return play(player1HandCollection, card);
 		  } else if (playerhand == "player2") {
@@ -45,7 +45,7 @@ Meteor.startup(function () {
 	  },
 	  
 	  clueColor: function(colors, player){
-		if (player = "player1") {
+		if (player == "player1") {
 		//find the same colors
 		   var array =  player1HandCollection.find({"cardColor": colors}).fetch();
 		   //console.log(array);
@@ -58,7 +58,7 @@ Meteor.startup(function () {
 				);
 
 			}
-		} else if (player = "player2"){
+		} else if (player == "player2"){
 			//find the same colors
 		   var array =  player2HandCollection.find({"cardColor": colors}).fetch();
 		   //console.log(array);
@@ -77,7 +77,7 @@ Meteor.startup(function () {
 	 
 	  
 	  clueNumber: function(ValueofCard , player){
-		  if (player = "player1") {
+		  if (player == "player1") {
 			//find the same colors
 			var array =  player1HandCollection.find({"cardValue": ValueofCard}).fetch();
 			//console.log(array);
@@ -91,7 +91,7 @@ Meteor.startup(function () {
 				);
 
 			}
-		  } else if (player = "player2") {
+		  } else if (player == "player2") {
 			//find the same colors
 			var array =  player2HandCollection.find({"cardValue": ValueofCard}).fetch();
 			//console.log(array);
