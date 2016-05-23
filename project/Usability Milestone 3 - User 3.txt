@@ -1,0 +1,18 @@
+What tasks did you give your user to perform?
+Play a Game of Hanabi with 2nd player who knew Hanabi
+
+What tasks were difficult for the user to complete, and why?
+Took a few turns to learn how Hanabi worked, but once understood successfully played most of a game.
+They accidently clued a color when they meant to clue a number. (Not sure if button confusion, or player logic)
+
+Played the game over a longer period of time (doing things in between) and found success.
+
+Clues and Numbers helped player remember what action to take when they sat back down.
+Asked if we might send a message to player when it is there turn and indicate what action had been taken while away.
+
+Did you encounter any surprising observations with your user behavior?
+Player needed to have explaination of how Hanabi is played before successfully playing. 
+Once understood game then seemed to have alot of fun.
+
+How do you intend to respond to your user's feedback?
+Visually distinguish the Clue Color and Clue Number Button so player doesn't accidently click on the wrong one 

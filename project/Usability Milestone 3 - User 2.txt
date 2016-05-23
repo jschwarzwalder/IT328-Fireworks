@@ -1,0 +1,21 @@
+What tasks did you give your user to perform?
+Play a Game of Hanabi with 2nd player who knew Hanabi
+
+What tasks were difficult for the user to complete, and why?
+User  didn't know how Hanabi worked. 
+Clued opponent a 4
+Then when clued a 1 clued opponent the color of one of the 4s
+
+Did look away when not their turn.
+
+When I promted and asked him how do you think you would play a card he said he didn't know
+
+Discarded a card from hand 
+
+Decided to stop playing at that point. 
+
+Did you encounter any surprising observations with your user behavior?
+He couldn't figure out how to play a card. Which I found odd since he was able to give clues and figured out how to discard
+
+How do you intend to respond to your user's feedback?
+Considering building a tutorial that explains how to play, but also what play, clue num, clue card, and discard do. 
