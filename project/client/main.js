@@ -22,7 +22,7 @@ Meteor.subscribe('discard');
 Meteor.subscribe('playerTurn');
 
 
-var errors = 0;
+var errors = 3;
 var clues = 8;//normally start at 8, adjusted for testing
 var state = "inactive"
 Session.set("errors", errors);
@@ -203,13 +203,23 @@ Template.newGame.events({
 	} ,
 	'click #player1': function(event, template) {
 	//remove any database values that are present
-		Session.set("playerTurn", "player1");
-		Session.set ("playState", "inactive");
+		var state = Session.get("playState");
+		if (state != "gameOver" && errors <= 3) {
+			Session.set("playerTurn", "player1");
+			Session.set ("playState", "inactive");
+		} else {
+		swal("Game Over \nClick New Game to play again")
+	}
 
 	},
 	'click #player2': function(event, template) {
-		Session.set("playerTurn", "player2");
-		Session.set ("playState", "inactive");
+		var state = Session.get("playState");
+		if (state != "gameOver" && errors <= 3) {
+			Session.set("playerTurn", "player2");
+			Session.set ("playState", "inactive");
+		} else {
+		swal("Game Over \nClick New Game to play again")
+	}
 	} 
 	
 });
@@ -219,7 +229,7 @@ Template.playerHand.events({
 	//remove any database values that are present
 	//event.preventDefault();
 	var state = Session.get("playState");
-	if (state != "gameOver" || errors > 3) {
+	if (state != "gameOver" && errors <= 3) {
 		var turn = Session.get("playerTurn");
 		var player;
 		if (turn == "player1") {
@@ -333,7 +343,7 @@ Template.playerHand.events({
 Template.opponentHand.events({
 	'click a.selectedCard': function(event, template) {
 	var state = Session.get("playState");
-	if (state != "gameOver" || errors > 3) {
+	if (state != "gameOver" && errors <= 3) {
 	//remove any database values that are present
 	//event.preventDefault();
 		var turn = Session.get("playerTurn");
