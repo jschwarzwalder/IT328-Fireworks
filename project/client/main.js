@@ -246,21 +246,26 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 		} else if (state == "play" && turn == handOwner) {
 			Meteor.call('playACard', handOwner, card , function(error,result){
 				var errors = Session.get('errors');
-				window.alert(card.cardValue);
+				//window.alert(typeof card.cardValue);
 				if((result == false) ){
 					if ( errors < 3){
 						errors ++;
 						swal("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
 						console.log("Errors: " + errors);
 						Session.set("errors", errors);
+						return;
 						
 					} else{
 						Session.set ("playState", "gameOver");
 						swal("Game Over! \nClick New Game to play again");
 						return;
 					} 
-				} else if (card.cardValue == 5 ) {
-					containsallfives = play_area_collection.find({cardValue: 5}).count() ;
+				}
+
+				if (card.cardValue == 5 ) {
+					var clues = Session.get("clues");
+					var containsallfives = play_area_collection.find({cardValue: 5}).count();
+					console.log(containsallfives);
 					if (containsallfives == 5){
 						swal("Congratulations!\nYou won the game\nClick New Game to play again");
 						Session.set ("playState", "gameOver");
@@ -270,6 +275,8 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 						console.log("Clues: " + clues);
 						Session.set("clues", clues);
 						swal("Congratulations, by playing a 5 \nYou can get an extra clue");
+					} else {
+						swal("Congratulation by playing a 5 \nYou finished " + card.cardColor);
 					}
 					
 				
@@ -297,7 +304,7 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 		}
 		//color clue 
 		else if (state == "clueColor" && turn == otherPlayer) {
-			console.log(handOwner);
+			//console.log(handOwner);
 			Meteor.call('clueColor', card.cardColor , handOwner);
 			
 		  var clues = Session.get("clues");
