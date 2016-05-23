@@ -22,7 +22,7 @@ Meteor.subscribe('discard');
 Meteor.subscribe('playerTurn');
 
 
-var errors = 3;
+var errors = 0;
 var clues = 8;//normally start at 8, adjusted for testing
 var state = "inactive"
 Session.set("errors", errors);
@@ -224,19 +224,12 @@ Template.newGame.events({
 	
 });
 
-Template.playerHand.events({
-	'click a.selectedCard': function(event, template) {
-	//remove any database values that are present
-	//event.preventDefault();
+function cardClick (handOwner, otherPlayer){
 	var state = Session.get("playState");
 	if (state != "gameOver" && errors <= 3) {
 		var turn = Session.get("playerTurn");
-		var player;
-		if (turn == "player1") {
-			player = "player1";			
-		} else if (turn == "player2") {
-			player = "player2";	
-		}
+		var player = turn;
+		
 			
 		console.log(this);
 		var card = this;
@@ -247,13 +240,13 @@ Template.playerHand.events({
 		if (state == "inactive"){
 			swal("Please press Play or Discard before selecting a card");
 			return;
-		} else if ((state == "play" || state =="discard") && turn == "player2"){
+		} else if ((state == "play" || state =="discard") && turn == otherPlayer){
 			swal("That is not your hand");
 			return;
-		} else if (state == "play" && turn =="player1") {
-			Meteor.call('playACard', player, card , function(error,result){
+		} else if (state == "play" && turn == handOwner) {
+			Meteor.call('playACard', handOwner, card , function(error,result){
 				var errors = Session.get('errors');
-				swal(card.cardValue);
+				window.alert(card.cardValue);
 				if((result == false) ){
 					if ( errors < 3){
 						errors ++;
@@ -285,8 +278,8 @@ Template.playerHand.events({
 				Session.set("playerTurn", "null");
 			});
 
-		} else if (state == "discard" && turn =="player1") {
-			Meteor.call('discardACard', player, card, function(error,result){
+		} else if (state == "discard" && turn == handOwner) {
+			Meteor.call('discardACard', handOwner, card, function(error,result){
 				if(result) {
 					var clues = Session.get('clues');
 					if(clues < 8 ){
@@ -303,7 +296,7 @@ Template.playerHand.events({
 			});	
 		}
 		//color clue 
-		else if (state == "clueColor" && turn == "player2") {
+		else if (state == "clueColor" && turn == otherPlayer) {
 			
 			Meteor.call('clueColorP1', this.cardColor);
 			
@@ -320,7 +313,7 @@ Template.playerHand.events({
 		  Session.set("playerTurn", "null");
 		}
 		//number clue
-		 else if (state == "clueNum" && turn == "player2") {
+		 else if (state == "clueNum" && turn == otherPlayer) {
 			Meteor.call('cluenumberP1', this.cardValue);
 		  var clues = Session.get("clues");
 		  if (clues > 0) {
@@ -340,130 +333,19 @@ Template.playerHand.events({
 		return;
 	}
   }	
+
+
+
+Template.playerHand.events({
+	'click a.selectedCard': function(event, template) {
+	//remove any database values that are present
+	//event.preventDefault();
+	cardClick ("player1", "player2");
+	}
 });
   
 Template.opponentHand.events({
 	'click a.selectedCard': function(event, template) {
-	var state = Session.get("playState");
-	if (state != "gameOver" && errors <= 3) {
-	//remove any database values that are present
-	//event.preventDefault();
-		var turn = Session.get("playerTurn");
-		var player;
-		if (turn == "player1") {
-			player = "player1";			
-		} else if (turn == "player2") {
-			player = "player2";	
-		}
-			
-		console.log(this);
-		console.log(turn);
-		console.log("opponentHand")
-		var card = this;
-		var state = Session.get("playState");
-		
-		if (state == "inactive" && turn =="player2"){
-			swal("Please press Play or Discard before selecting a card");
-			return;
-		} 
-		
-		else if ((state == "play"|| state =="discard") && turn == "player1"){
-			swal("That is not your hand");
-			return;
-		} 
-		else if (state == "play" && turn =="player2") {
-			Meteor.call('playACard', player, card , function(error,result){
-				var errors = Session.get('errors');
-				swal(card.cardValue);
-				if((result == false) ){
-					if ( errors < 3){
-						errors ++;
-						swal("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
-						console.log("Errors: " + errors);
-						Session.set("errors", errors);
-						
-					} else{
-						Session.set ("playState", "gameOver");
-						swal("Game Over! \nClick New Game to play again");
-						return;
-					} 
-				} else if (card.cardValue == 5 ) {
-					containsallfives = play_area_collection.find({cardValue: 5}).count() ;
-					if (containsallfives == 5){
-						swal("Congratulations!\nYou won the game\nClick New Game to play again");
-						Session.set ("playState", "gameOver");
-						return;
-					} else if (clues < 8 ) {
-						clues ++;
-						console.log("Clues: " + clues);
-						Session.set("clues", clues);
-						swal("Congratulations, by playing a 5 \nYou can get an extra clue");
-					}
-					
-				
-				} 
-				Session.set ("playState", "inactive");
-				Session.set("playerTurn", "null");
-			});
-		}
-		
-		else if (state == "discard" && turn =="player2") {
-			Meteor.call('discardACard', player, card, function(error,result){
-				if(result) {
-					var clues = Session.get('clues');
-					if(clues < 8 ){
-						clues ++;
-						
-						console.log("Clues: " + clues);
-						Session.set("clues", clues);
-					} else {
-						console.log("Do Nothing... You have all your clues!");
-					} 
-					swal("You discarded a "+ card.cardColor + " " + card.cardValue);
-				}
-				Session.set ("playState", "inactive");
-				Session.set("playerTurn", "null");
-				
-				});	
-		}
-		
-		else if (state == "clueColor" && turn =="player1") {
-			//call the function clueColor in server 
-			Meteor.call('clueColorP2', this.cardColor);
-		
-		  var clues = Session.get("clues");
-		  if (clues > 0) {
-			clues --;
-			console.log("Clues: " + clues);
-			//swal("You clued "+ card.cardColor );
-			Session.set("clues", clues);
-		  } 
-		  Session.set ("playState", "inactive");
-		  Session.set("playerTurn", "null");
-		  
-		} else if (state == "clueNum" && turn == "player1") {
-			//number clue	
-		
-			Meteor.call('cluenumberP2', this.cardValue);
-	
-			var clues = Session.get("clues");
-			if (clues > 0){
-			  clues --;
-			  console.log("Clues: " + clues);
-			  Session.set("clues", clues);
-				
-			}
-			  //reset state of game
-			  Session.set ("playState", "inactive");
-			  Session.set("playerTurn", "null");
-
-		} 	
-		
-	} else {
-		Session.set ("playState", "gameOver");
-		swal("Game Over! \nClick New Game to play again");
-		return;
-	}	
-	
+	cardClick ("player2", "player1");
   }
 });
