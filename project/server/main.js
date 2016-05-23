@@ -27,6 +27,8 @@ Meteor.startup(function () {
 		play_area_collection.remove({});
 	  },
 	  playACard: function(playerhand, card){
+		  console.log("Playing Card: " + card)
+		  console.log("Player Hand: " + playerhand)
 		  if (playerhand == "player1") {
 			return play(player1HandCollection, card);
 		  } else if (playerhand == "player2") {
@@ -42,69 +44,70 @@ Meteor.startup(function () {
 		  }
 	  },
 	  
-	  clueColorP2: function(colors){
+	  clueColor: function(colors, player){
+		if (player = "player1") {
 		//find the same colors
-	   var array =  player2HandCollection.find({"cardColor": colors}).fetch();
-	   //console.log(array);
-	   //set them as already clued
-	   for( var i = 0 ; i < array.length ; i++){
-		
-		console.log(array[i]);
-	  player2HandCollection.update(          
-			array[i]._id,
-			{$set:{clueColor: true}}
-		);
-		
-	  }
+		   var array =  player1HandCollection.find({"cardColor": colors}).fetch();
+		   //console.log(array);
+		   //set them as already clued
+		   for( var i = 0 ; i < array.length ; i++){
+				//console.log(array[i]);
+				player1HandCollection.update(          
+					array[i]._id,
+					{$set:{clueColor: true}}
+				);
+
+			}
+		} else if (player = "player2"){
+			//find the same colors
+		   var array =  player2HandCollection.find({"cardColor": colors}).fetch();
+		   //console.log(array);
+		   //set them as already clued
+		   for( var i = 0 ; i < array.length ; i++){
+				//console.log(array[i]);
+				player2HandCollection.update(          
+					array[i]._id,
+					{$set:{clueColor: true}}
+				);
+
+			}
+		}
 	  },
 	  
-	  clueColorP1: function(colors){
-		//find the same colors
-	   var array =  player1HandCollection.find({"cardColor": colors}).fetch();
-	   //console.log(array);
-	   //set them as already clued
-	   for( var i = 0 ; i < array.length ; i++){
-		
-		console.log(array[i]);
-	  player1HandCollection.update(          
-			array[i]._id,
-			{$set:{clueColor: true}}
-		);
-		
-	  }
-	  },
+	 
 	  
-	  cluenumberP1: function(ValueofCard){
-		//find the same colors
-	   var array =  player1HandCollection.find({"cardValue": ValueofCard}).fetch();
-	   //console.log(array);
-	   //set them as already clued
-	   for( var i = 0 ; i < array.length ; i++){
-		
-		console.log(array[i]);
-	  player1HandCollection.update(          
-			array[i]._id,
-			{$set:{clueNum: true}}
-		);
-		
-	  }
-	  },
-		cluenumberP2: function(ValueofCard){
-		//find the same colors
-	   var array =  player2HandCollection.find({"cardValue": ValueofCard}).fetch();
-	   //console.log(array);
-	   //set them as already clued
-	   for( var i = 0 ; i < array.length ; i++){
-		
-		console.log(array[i]);
-	  player2HandCollection.update(          
-			array[i]._id,
-			{$set:{clueNum: true}}
-		);
-		
-	  }
-	  }
-	  
+	  clueNumber: function(ValueofCard , player){
+		  if (player = "player1") {
+			//find the same colors
+			var array =  player1HandCollection.find({"cardValue": ValueofCard}).fetch();
+			//console.log(array);
+			//set them as already clued
+			for( var i = 0 ; i < array.length ; i++){
+
+				//console.log(array[i]);
+				player1HandCollection.update(          
+					array[i]._id,
+					{$set:{clueNum: true}}
+				);
+
+			}
+		  } else if (player = "player2") {
+			//find the same colors
+			var array =  player2HandCollection.find({"cardValue": ValueofCard}).fetch();
+			//console.log(array);
+			//set them as already clued
+			for( var i = 0 ; i < array.length ; i++){
+
+				//console.log(array[i]);
+				player2HandCollection.update(          
+					array[i]._id,
+					{$set:{clueNum: true}}
+				);
+
+			}  
+		  }
+		},
+
 	  
 	});
     
@@ -128,7 +131,7 @@ Meteor.startup(function () {
 		cardSetName.remove(element);
 	   // array.splice(randomIndex, 1);
 		//show it
-		console.log(element);
+		//console.log(element);
 		return element;
 	  }
 	  //

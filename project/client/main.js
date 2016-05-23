@@ -224,18 +224,18 @@ Template.newGame.events({
 	
 });
 
-function cardClick (handOwner, otherPlayer){
+function cardClick (handOwner, otherPlayer, cardClicked){
 	var state = Session.get("playState");
 	if (state != "gameOver" && errors <= 3) {
 		var turn = Session.get("playerTurn");
 		var player = turn;
 		
 			
-		console.log(this);
-		var card = this;
-		var state = Session.get("playState");
+		//console.log(this);
+		var card = cardClicked;
+		
 		//console.log(turn);
-		console.log("playerHand")
+		//console.log("playerHand")
 		//swal(player);
 		if (state == "inactive"){
 			swal("Please press Play or Discard before selecting a card");
@@ -298,7 +298,7 @@ function cardClick (handOwner, otherPlayer){
 		//color clue 
 		else if (state == "clueColor" && turn == otherPlayer) {
 			
-			Meteor.call('clueColorP1', this.cardColor);
+			Meteor.call('clueColor', this.cardColor , handOwner);
 			
 		  var clues = Session.get("clues");
 		 
@@ -314,7 +314,7 @@ function cardClick (handOwner, otherPlayer){
 		}
 		//number clue
 		 else if (state == "clueNum" && turn == otherPlayer) {
-			Meteor.call('cluenumberP1', this.cardValue);
+			Meteor.call('clueNumber', this.cardValue, handOwner);
 		  var clues = Session.get("clues");
 		  if (clues > 0) {
 			   
@@ -340,12 +340,12 @@ Template.playerHand.events({
 	'click a.selectedCard': function(event, template) {
 	//remove any database values that are present
 	//event.preventDefault();
-	cardClick ("player1", "player2");
+	cardClick ("player1", "player2", this);
 	}
 });
   
 Template.opponentHand.events({
 	'click a.selectedCard': function(event, template) {
-	cardClick ("player2", "player1");
+	cardClick ("player2", "player1", this);
   }
 });
