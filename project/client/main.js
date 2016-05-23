@@ -219,7 +219,7 @@ Template.playerHand.events({
 	//remove any database values that are present
 	//event.preventDefault();
 	var state = Session.get("playState");
-	if (state != "gameOver") {
+	if (state != "gameOver" || errors > 3) {
 		var turn = Session.get("playerTurn");
 		var player;
 		if (turn == "player1") {
@@ -323,7 +323,9 @@ Template.playerHand.events({
 		}
 		
 	} else {
-		swal("Game Over \nClick New Game to play again")
+		Session.set ("playState", "gameOver");
+		swal("Game Over! \nClick New Game to play again");
+		return;
 	}
   }	
 });
@@ -331,7 +333,7 @@ Template.playerHand.events({
 Template.opponentHand.events({
 	'click a.selectedCard': function(event, template) {
 	var state = Session.get("playState");
-	if (state != "gameOver") {
+	if (state != "gameOver" || errors > 3) {
 	//remove any database values that are present
 	//event.preventDefault();
 		var turn = Session.get("playerTurn");
@@ -380,7 +382,7 @@ Template.opponentHand.events({
 						console.log("Errors: " + errors);
 						Session.set("errors", errors);
 						
-					}else{
+					} else{
 				
 						Session.set ("playState", "gameOver");
 						swal("Game Over! \nClick New Game to play again");
@@ -445,7 +447,10 @@ Template.opponentHand.events({
 		} 	
 		
 	} else {
-		swal("Game Over \nClick New Game to play again")
+		Session.set ("playState", "gameOver");
+		swal("Game Over! \nClick New Game to play again");
+		return;
 	}	
+	
   }
 });
