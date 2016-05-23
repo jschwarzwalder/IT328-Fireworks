@@ -243,40 +243,43 @@ Template.playerHand.events({
 		} else if (state == "play" && turn =="player1") {
 			Meteor.call('playACard', player, card , function(error,result){
 				var errors = Session.get('errors');
-				if((result == false) ){
+				if (card.cardValue == 5 ) {
+					containsallfives = play_area_collection.find({cardValue: 5}).count() ;
+					if (containsallfives == 5){
+						swal("Congratulations!\nYou won the game\nClick New Game to play again");
+						Session.set ("playState", "gameOver");
+						return;
+					} else if (clues < 8 ) {
+						clues ++;
+						console.log("Clues: " + clues);
+						Session.set("clues", clues);
+						swal("Congratulations, by playing a 5 \nYou can get an extra clue");
+					}
+					
+				} else if((result == false) ){
 					if ( errors < 3){
 						errors ++;
 						swal("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
-						console.log(errors);
+						console.log("Errors: " + errors);
 						Session.set("errors", errors);
 						
-					
-					} else{
-						
-						swal("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
-						swal("You fired off 3 Fireworks. \nGame Over!");
+					}else{
 						Session.set ("playState", "gameOver");
-						
+						swal("Game Over! \nClick New Game to play again");
+						return;
 					}
-				} else {
-					
-					if (card.cardValue == 5) {
-						var clues = Session.get('clues');
-						clues ++;
-						swal("Congratulations, by playing a 5 \nYou get an extra clue");
-						Session.set("clues", clues);
-					}
-				}
+				} 
 				Session.set ("playState", "inactive");
 				Session.set("playerTurn", "null");
 			});
+
 		} else if (state == "discard" && turn =="player1") {
 			Meteor.call('discardACard', player, card, function(error,result){
 				if(result) {
 					var clues = Session.get('clues');
 					if(clues < 8 ){
 						clues ++;
-						console.log(clues);
+						console.log("Clues: " + clues);
 						Session.set("clues", clues);
 					} else {
 						console.log("Do Nothing... You have all your clues!");
@@ -297,7 +300,7 @@ Template.playerHand.events({
 		  if (clues > 0 ) {
 			   
 			  clues --;
-			  console.log(clues);
+			  console.log("Clues: " + clues);
 			  Session.set("clues", clues);
           } 
 		  //reset state of game
@@ -311,7 +314,7 @@ Template.playerHand.events({
 		  if (clues > 0) {
 			   
 			  clues --;
-			  console.log(clues);
+			 console.log("Clues: " + clues);
 			  Session.set("clues", clues);
           } 
 		  Session.set ("playState", "inactive");
@@ -357,22 +360,31 @@ Template.opponentHand.events({
 		else if (state == "play" && turn =="player2") {
 			Meteor.call('playACard', player, card , function(error,result){
 				var errors = Session.get('errors');
-				if (card.cardValue == 5) {
-					var clues = Session.get('clues');
-					clues ++;
-					swal("Congratulations, by playing a 5 \nYou get an extra clue");
-					Session.set("clues", clues);
-				}
-				else if((result == false) ){
+				if (card.cardValue == 5 ) {
+					containsallfives = play_area_collection.find({cardValue: 5}).count() ;
+					if (containsallfives == 5){
+						swal("Congratulations!\nYou won the game\nClick New Game to play again");
+						Session.set ("playState", "gameOver");
+						return;
+					} else if (clues < 8 ) {
+						clues ++;
+						console.log("Clues: " + clues);
+						Session.set("clues", clues);
+						swal("Congratulations, by playing a 5 \nYou can get an extra clue");
+					}
+					
+				} else if((result == false) ){
 					if ( errors < 3){
 						errors ++;
 						swal("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
-						console.log(errors);
+						console.log("Errors: " + errors);
 						Session.set("errors", errors);
 						
 					}else{
 				
-						console.log("Game Over!");
+						Session.set ("playState", "gameOver");
+						swal("Game Over! \nClick New Game to play again");
+						return;
 					}
 				} 
 				Session.set ("playState", "inactive");
@@ -387,7 +399,7 @@ Template.opponentHand.events({
 					if(clues < 8 ){
 						clues ++;
 						
-						console.log(clues);
+						console.log("Clues: " + clues);
 						Session.set("clues", clues);
 					} else {
 						console.log("Do Nothing... You have all your clues!");
@@ -407,7 +419,7 @@ Template.opponentHand.events({
 		  var clues = Session.get("clues");
 		  if (clues > 0) {
 			clues --;
-			console.log(clues);
+			console.log("Clues: " + clues);
 			//swal("You clued "+ card.cardColor );
 			Session.set("clues", clues);
 		  } 
@@ -422,7 +434,7 @@ Template.opponentHand.events({
 			var clues = Session.get("clues");
 			if (clues > 0){
 			  clues --;
-			  console.log(clues);
+			  console.log("Clues: " + clues);
 			  Session.set("clues", clues);
 				
 			}
