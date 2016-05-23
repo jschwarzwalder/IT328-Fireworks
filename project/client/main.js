@@ -253,6 +253,7 @@ Template.playerHand.events({
 		} else if (state == "play" && turn =="player1") {
 			Meteor.call('playACard', player, card , function(error,result){
 				var errors = Session.get('errors');
+				swal(card.cardValue);
 				if((result == false) ){
 					if ( errors < 3){
 						errors ++;
@@ -373,6 +374,7 @@ Template.opponentHand.events({
 		else if (state == "play" && turn =="player2") {
 			Meteor.call('playACard', player, card , function(error,result){
 				var errors = Session.get('errors');
+				swal(card.cardValue);
 				if((result == false) ){
 					if ( errors < 3){
 						errors ++;
