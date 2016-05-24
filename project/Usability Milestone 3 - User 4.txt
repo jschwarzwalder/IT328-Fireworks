@@ -1,0 +1,23 @@
+What tasks did you give your user to perform?
+Play a game of Hanabi with themselves. Goal is to build series of cards collaboratively. 
+
+What tasks were difficult for the user to complete, and why?
+Player expected to click the card and then be able to say what they wanted to do. 
+They felt it was backwards to click the action first
+ 
+Didn't realize that you could play multiple stacks of colors. When he played a blue 1 he kept looking and discarding. I promted him to play a green 1 and he was suprised it played
+
+Didn't notice that they got a clue back when discarding, so they thought that action was pointless
+
+When they logged in nothing displayed. We had to hit refresh to make it work.
+
+Since the game is called Fireworks, he thought Fireworks were success indicators
+
+
+Did you encounter any surprising observations with your user behavior?
+
+I was surprised that he didn't play multiple ones until promted 
+He would click on the alert menu quickly and wanted a log that he could use to read any messages he missed
+
+How do you intend to respond to your user's feedback?
+Many of the feedback given has been added to our backlog
