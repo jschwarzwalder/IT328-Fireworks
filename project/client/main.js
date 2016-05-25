@@ -198,7 +198,11 @@ Template.newGame.events({
 			Session.set("clues", 8);
 			Session.set ("playState", "inactive" );
 			Session.set("playerTurn", "player1");
-			Meteor.call('startNewGame');
+			
+			
+            Meteor.call('startNewGame');
+          
+			
 		
 	} ,
 	'click #player1': function(event, template) {
@@ -253,6 +257,7 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 						swal("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
 						console.log("Errors: " + errors);
 						Session.set("errors", errors);
+						Session.set("playerTurn", "No one");
 						return;
 						
 					} else{
@@ -282,7 +287,7 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 				
 				} 
 				Session.set ("playState", "inactive");
-				Session.set("playerTurn", "null");
+				Session.set("playerTurn", "No one");
 			});
 
 		} else if (state == "discard" && turn == handOwner) {
@@ -299,7 +304,7 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 					swal("You discarded a "+ card.cardColor + " " + card.cardValue);
 				}
 				Session.set ("playState", "inactive");
-				Session.set("playerTurn", "null");
+				Session.set("playerTurn", "No one");
 			});	
 		}
 		//color clue 
@@ -317,7 +322,7 @@ function cardClick (handOwner, otherPlayer, cardClicked){
           } 
 		  //reset state of game
 		  Session.set ("playState", "inactive");
-		  Session.set("playerTurn", "null");
+		  Session.set("playerTurn", "No one");
 		}
 		//number clue
 		 else if (state == "clueNum" && turn == otherPlayer) {
@@ -330,7 +335,7 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 			  Session.set("clues", clues);
           } 
 		  Session.set ("playState", "inactive");
-		  Session.set("playerTurn", "null");
+		  Session.set("playerTurn", "No one");
 		
 		}
 		

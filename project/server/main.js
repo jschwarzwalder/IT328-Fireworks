@@ -21,6 +21,14 @@ Meteor.startup(function () {
 		   player2HandCollection.insert(drawCard(deck));
 		}
 	  }*/
+	  VerifyUser: function(){
+		console.log(this.userId);
+		if (this.userId != null) {
+           return true;
+        }else{
+            return false;
+        }
+	  },
 	  startNewGame: function(){
 		newGame(5,fireworkCards, player1HandCollection, player2HandCollection )
 		discardCollection.remove({});
@@ -241,25 +249,33 @@ Meteor.startup(function () {
 
 
 Meteor.publish('player1Hand', function() {
-   user = Meteor.users.findOne({_id:this.userId}) 
+	
+ //  user = this.users.findOne({_id:this.userId})
+ user = this.userId;
    if(user) { 
 		//sort by most recent changes
 		return player1HandCollection.find();
 		console.log(user);	 
 	} else {
-		return "Please Log In";
+		console.log("Please Log In");
+		
 	} 
 });
 
 Meteor.publish('player2Hand', function() {
-   user = Meteor.users.findOne({_id:this.userId}) 
-   if(user) { 
+	
+  // user = this.users.findOne({_id:this.userId})
+  user = this.userId;
+   if(user) {
+	console.log(user);
 	//sort by most recent changes
 	return player2HandCollection.find();
-	console.log(user.name);
+	
 	} else {
-		return "Please Log In";
+		console.log("Please log in");
 	}
+   
+   
 
 });
 
@@ -273,12 +289,12 @@ Meteor.publish('discard', function() {
 	return discardCollection.find();
 });
 
- Meteor.publish("productinfo", function () { 
-   user = Meteor.users.findOne({_id:this.userId}) 
-   if(user) { 
-		if(user.emails[0].verified) {
-			//You can put some extra logic in here to check which product the user has, if you're selling or something like that 
-			return Products.find({}); 
-		} 
-	} 
-});
+// Meteor.publish("productinfo", function () { 
+//   user = Meteor.users.findOne({_id:this.userId}) 
+//   if(user) { 
+//		if(user.emails[0].verified) {
+//			//You can put some extra logic in here to check which product the user has, if you're selling or something like that 
+//			return Products.find({}); 
+//		} 
+//	} 
+//});
