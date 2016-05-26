@@ -82,7 +82,10 @@ Meteor.startup(function () {
 				);
 
 			}
+			
 		}
+		
+		gameCollection.update({"gameNo" : 1, "cluesLeft":{ $gt: 0}},  {$inc:{"cluesLeft": -1 }});
 	  },
 	  
 	 
@@ -100,7 +103,7 @@ Meteor.startup(function () {
 					{$set:{clueNum: true}}
 				);
 			}
-		 gameAllowed = gameCollection.update({"gameNo" : 1, "cluesLeft":{ $gt: 0}},  {$inc:{"cluesLeft": -1 }});
+		 //gameAllowed = gameCollection.update({"gameNo" : 1, "cluesLeft":{ $gt: 0}},  {$inc:{"cluesLeft": -1 }});
 		 
 		  } else if (player == "player2") {
 			//find the same colors
@@ -115,13 +118,14 @@ Meteor.startup(function () {
 					{$set:{clueNum: true}}
 				);
 			}
-			gameAllowed = gameCollection.update({"gameNo" : 1, "cluesLeft":{ $gt: 0}},  {$inc:{"cluesLeft": -1 }});
+			//gameAllowed = gameCollection.update({"gameNo" : 1, "cluesLeft":{ $gt: 0}},  {$inc:{"cluesLeft": -1 }});
 		  }
-	  if (gameAllowed) {
-		return true;
-	  }else {
-		return false;
-	  }
+	//  if (gameAllowed) {
+	//	return true;
+	//  }else {
+	//	return false;
+	//  }
+	gameCollection.update({"gameNo" : 1, "cluesLeft":{ $gt: 0}},  {$inc:{"cluesLeft": -1 }});
 	  }
 	  
 	});

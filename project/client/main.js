@@ -198,12 +198,10 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 		}
 		//number clue
 		 else if (state == "clueNum" && turn == otherPlayer) {
-			Meteor.call('clueNumber', card.cardValue, handOwner, function(error, result){
-				swal("GAME OVER!");
-				Session.set ("playState", "gameOver");		
-			});
 			
-		 
+			Meteor.call('clueNumber', card.cardValue, handOwner);
+				//it pratically shouldn't game over they can continue with no clue so we have to restrict them from giving clue
+				//Session.set ("playState", "gameOver");		
 			
 //		 var clues = Session.get("clues");
 //		  if (clues > 0) {
