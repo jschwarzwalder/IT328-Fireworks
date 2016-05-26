@@ -23,13 +23,13 @@ Meteor.subscribe('discard');
 Meteor.subscribe('playerTurn');
 Meteor.subscribe('game');
 
-var errors = 0;
-var clues = 8;//normally start at 8, adjusted for testing
-var state = "inactive"
-Session.set("errors", errors);
-Session.set("clues", clues);
-Session.set ("playState", state );
-Session.set("playerTurn", "player1");
+//var errors = 0;
+//var clues = 8;//normally start at 8, adjusted for testing
+//var state = "inactive"
+//Session.set("errors", errors);
+//Session.set("clues", clues);
+//Session.set ("playState", state );
+//Session.set("playerTurn", "player1");
 
  /*Array of arrays
  This is a sample play area which is stack of 5 columns of cards. The first column is red cards with 1 and 2 .... 
@@ -278,6 +278,7 @@ Template.playerActions.events({
 		var turn = Session.get("playerTurn");
 		if (turn != "null")	{
 		  var clues = Session.get('clues');
+		  //THIS PART NEED To BE FIXED
 		  if(clues <= 8 && clues >0 ){
 			
 			var state = Session.get("playState");
@@ -325,8 +326,8 @@ Template.newGame.events({
 	'click #newGame': function(event, template) {
 	//remove any database values that are present
 		
-			Session.set("errors", 0);
-			Session.set("clues", 8);
+			//Session.set("errors", 0);
+			//Session.set("clues", 8);
 			Session.set ("playState", "inactive" );
 			Session.set("playerTurn", "player1");
 			
@@ -349,6 +350,7 @@ Template.newGame.events({
 	},
 	'click #player2': function(event, template) {
 		var state = Session.get("playState");
+		//THIS PART NEED TO BE FIXED
 		if (state != "gameOver" && errors <= 3) {
 			Session.set("playerTurn", "player2");
 			Session.set ("playState", "inactive");
