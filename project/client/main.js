@@ -199,8 +199,8 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 		//number clue
 		 else if (state == "clueNum" && turn == otherPlayer) {
 			Meteor.call('clueNumber', card.cardValue, handOwner, function(error, result){
-				console.log(result);
-						
+				swal("GAME OVER!");
+				Session.set ("playState", "gameOver");		
 			});
 			
 		 
