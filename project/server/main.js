@@ -4,7 +4,8 @@ import { fireworkCards } from '../collection/collection.js';
 import { player1HandCollection } from '../collection/collection.js';
 import { player2HandCollection } from '../collection/collection.js';
 import { play_area_collection } from '../collection/collection.js'; 
-import { discardCollection }  from '../collection/collection.js'; 
+import { discardCollection }  from '../collection/collection.js';
+import { gameCollection }  from '../collection/collection.js';
 //server
 
  /*
@@ -14,6 +15,7 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 Meteor.startup(function () {
 	
 	Meteor.methods({
+		
 	  /*newGame:function(handSize, fireworkCards, player1HandCollection, player2HandCollection) {
 		for(var i = 0 ; i<handSize ; i++) {
 		   player1HandCollection.insert(drawCard(deck));
@@ -21,6 +23,7 @@ Meteor.startup(function () {
 		   player2HandCollection.insert(drawCard(deck));
 		}
 	  }*/
+	 
 	  VerifyUser: function(){
 		console.log(this.userId);
 		if (this.userId != null) {
@@ -85,20 +88,20 @@ Meteor.startup(function () {
 	 
 	  
 	  clueNumber: function(ValueofCard , player){
+		var gameAllowed = true;
+		
 		  if (player == "player1") {
 			//find the same colors
 			var array =  player1HandCollection.find({"cardValue": ValueofCard}).fetch();
-			//console.log(array);
 			//set them as already clued
 			for( var i = 0 ; i < array.length ; i++){
-
-				//console.log(array[i]);
 				player1HandCollection.update(          
 					array[i]._id,
 					{$set:{clueNum: true}}
 				);
-
 			}
+		 gameAllowed = gameCollection.update({"gameNo" : 1, "cluesLeft":{ $gt: 0}},  {$inc:{"cluesLeft": -1 }});
+		 
 		  } else if (player == "player2") {
 			//find the same colors
 			var array =  player2HandCollection.find({"cardValue": ValueofCard}).fetch();
@@ -111,16 +114,30 @@ Meteor.startup(function () {
 					array[i]._id,
 					{$set:{clueNum: true}}
 				);
-
-			}  
+			}
+			gameAllowed = gameCollection.update({"gameNo" : 1, "cluesLeft":{ $gt: 0}},  {$inc:{"cluesLeft": -1 }});
 		  }
-		},
-
+	  if (gameAllowed) {
+		return true;
+	  }else {
+		return false;
+	  }
+	  }
 	  
 	});
     
   
-	  function initialize() { 
+	  function initialize() {
+		//just keep one game in the database in this version 
+		var game = {
+			"gameNo": 1,
+			"cluesLeft": 8,
+			"errors": 0
+		};
+		//remove old scores
+		gameCollection.remove({});
+		//initialize a new game
+		gameCollection.insert(game);
 		
 		//remove any database values that were present
 		fireworkCards.remove({});//delete all records ( this will only work on server side)
@@ -283,7 +300,10 @@ Meteor.publish('player_area', function() {
 	//sort by most recent changes
 	return play_area_collection.find();
 });
-
+Meteor.publish('game', function() {
+	//sort by most recent changes
+	return gameCollection.find();
+});
 Meteor.publish('discard', function() {
 	//sort by most recent changes
 	return discardCollection.find();

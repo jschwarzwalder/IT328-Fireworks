@@ -15,6 +15,8 @@ export const clues = new Mongo.Collection("clues");
 export const errors = new Mongo.Collection("errors");
 export const playerTurn = new Mongo.Collection("playerTurn");
 
+export const gameCollection = new Mongo.Collection("game");
+
 //export access to any data to start our application
 
 //all the cards that are needed in a game of Hanabi

@@ -170,15 +170,14 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 <template name="Counters">
   
   {{> newGame}}
-   <h3> {{playerTurn}} is Playing </h3>
+  <h3> {{playerTurn}} is Playing </h3>
   
-  <h3> Errors: {{error}}</h3>
-  
-  <h3> Clues Left: {{clues}} </h3>
- 
-	
+  <h3>Errors: {{currentGame.errors}}</h3>
+
+  <h3>Clues Left: {{currentGame.cluesLeft}}</h3>
   
  </template>
+
  <template name="newGame">
 	<p><button id="newGame" name="newGame"> </button></p>
 	<div class="row-fluid">
