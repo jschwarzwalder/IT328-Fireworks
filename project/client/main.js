@@ -147,7 +147,9 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 						swal("Congratulations!\nYou won the game\nClick New Game to play again");
 						Session.set ("playState", "gameOver");
 						return;
-					} else if (clues < 8 ) {
+					}
+					//THIS PARTS NEEDS TO BE FIXED
+					else if (clues < 8 ) {
 						clues ++;
 						console.log("Clues: " + clues);
 						Session.set("clues", clues);
@@ -165,14 +167,14 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 		} else if (state == "discard" && turn == handOwner) {
 			Meteor.call('discardACard', handOwner, card, function(error,result){
 				if(result) {
-					var clues = Session.get('clues');
-					if(clues < 8 ){
-						clues ++;
-						console.log("Clues: " + clues);
-						Session.set("clues", clues);
-					} else {
-						console.log("Do Nothing... You have all your clues!");
-					} 
+					//var clues = Session.get('clues');
+					//if(clues < 8 ){
+					//	clues ++;
+					//	console.log("Clues: " + clues);
+					//	Session.set("clues", clues);
+					//} else {
+					//	console.log("Do Nothing... You have all your clues!");
+					//} 
 					swal("You discarded a "+ card.cardColor + " " + card.cardValue);
 				}
 				Session.set ("playState", "inactive");
@@ -184,14 +186,14 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 			//console.log(handOwner);
 			Meteor.call('clueColor', card.cardColor , handOwner);
 			
-		  var clues = Session.get("clues");
-		 
-		  if (clues > 0 ) {
-			   
-			  clues --;
-			  console.log("Clues: " + clues);
-			  Session.set("clues", clues);
-          } 
+//		  var clues = Session.get("clues");
+//		 
+//		  if (clues > 0 ) {
+//			   
+//			  clues --;
+//			  console.log("Clues: " + clues);
+//			  Session.set("clues", clues);
+//          } 
 		  //reset state of game
 		  Session.set ("playState", "inactive");
 		  Session.set("playerTurn", "No one");

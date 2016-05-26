@@ -48,11 +48,15 @@ Meteor.startup(function () {
 		  
 	  },
 	  discardACard: function(playerhand, card){
+		console.log(gameCollection.update({"gameNo" : 1, "cluesLeft":{ $lt: 8}},  {$inc:{"cluesLeft": 1 }}));
 		 if (playerhand == "player1") {
 			return discard(player1HandCollection, card);
 		  } else if (playerhand== "player2") {
 			return discard(player2HandCollection, card);
 		  }
+		  
+		  
+		  
 	  },
 	  
 	  clueColor: function(colors, player){
@@ -136,7 +140,7 @@ Meteor.startup(function () {
 		var game = {
 			"gameNo": 1,
 			"cluesLeft": 8,
-			"errors": 0
+			"errors": 2
 		};
 		//remove old scores
 		gameCollection.remove({});
@@ -222,6 +226,8 @@ Meteor.startup(function () {
 			
 			return true;
 		} else {
+			
+			gameCollection.update({"gameNo" : 1},  {$inc:{"errors": 1 }});
 			//else add to discard 
 			discardCollection.insert(card);
 			
