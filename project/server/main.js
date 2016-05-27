@@ -154,17 +154,12 @@ Meteor.startup(function () {
 		  if (errorsCurrent < 3){
 			errors.update("errorToken", {$inc: {errors: 1 }});
 			return true;
+		  } else {
+			  return false;
 		  }
-	  },
+	  }
 	  
-	  decreaseError: function (){
-		  var errorsCurrent = errors.findOne("errorToken").errors;
-		  console.log("errorsCurrent: " + errorsCurrent);
-		  if (errorsCurrent < 3){
-			errors.update("errorToken", {$inc: {errors: -1 }});
-			return true;
-		  }
-	  },
+	  
 	  
 	});
     

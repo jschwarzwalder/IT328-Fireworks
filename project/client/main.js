@@ -13,6 +13,8 @@ import { player2HandCollection } from '../collection/collection.js';
 import { play_area_collection } from '../collection/collection.js'; 
 import { discardCollection }  from '../collection/collection.js'; 
 import { gameCollection }  from '../collection/collection.js';
+import { clues } from '../collection/collection.js';
+import { errors } from '../collection/collection.js';
 
 
 //sort discards - 	discardCollection.find({}, {sort :[["cardColor", "asc"], ["cardValue", "asc"]]});
@@ -23,8 +25,8 @@ Meteor.subscribe('discard');
 Meteor.subscribe('playerTurn');
 Meteor.subscribe('game');
 
-var errors = 0;
-var clues = 8;//normally start at 8, adjusted for testing
+//var errors = 0;
+//var clues = 8;//normally start at 8, adjusted for testing
 var state = "inactive"
 Session.set("errors", errors);
 Session.set("clues", clues);
@@ -81,11 +83,11 @@ Template.play_area.helpers({
 
 Template.Counters.helpers({
 	error: function() {
-		return Session.get('errors');
+		return errors.findOne("errorToken").errors;
 	},
-	//clues: function() {
-	//	return Session.get('clues');
-	//},
+	clues: function() {
+		return clues.findOne("clueToken").clue;
+	},
 	playerTurn: function(){
 		return Session.get("playerTurn");
 	},
@@ -124,19 +126,22 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 				var errors = Session.get('errors');
 				//window.alert(typeof card.cardValue);
 				if((result == false) ){
-					if ( errors < 3){
-						errors ++;
-						swal("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
-						console.log("Errors: " + errors);
-						Session.set("errors", errors);
-						Session.set("playerTurn", "No one");
-						return;
+					Meteor.call("increaseError", function(error,result){
+						if(result) {
+							//if increase an error
+							swal("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
+							console.log("Errors: " + errors);
+							Session.set("errors", errors);
+							Session.set("playerTurn", "No one");
+							return;
 						
-					} else{
-						Session.set ("playState", "gameOver");
-						swal("Game Over! \nClick New Game to play again");
-						return;
-					} 
+						} else {
+							//if you exceeded allowed amount of errors
+							Session.set ("playState", "gameOver");
+							swal("Game Over! \nClick New Game to play again");
+							return;
+						} 
+					});
 				}
 
 				if (card.cardValue == 5 ) {
