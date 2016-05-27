@@ -16,6 +16,8 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 
 Meteor.startup(function () {
 	
+	var clueId;
+	var errorId;
 	Meteor.methods({
 		
 	  /*newGame:function(handSize, fireworkCards, player1HandCollection, player2HandCollection) {
@@ -133,26 +135,26 @@ Meteor.startup(function () {
 	  },
 	  
 	  increaseClue: function (){
-		  var cluesCurrent = clues.findOne("clueToken").clue;
+		  var cluesCurrent = clues.findOne(clueId).clue;
 		  console.log("cluesCurrent: " + cluesCurrent);
 		  if (cluesCurrent < 8){
-			clues.update("clueToken", {$inc: {clue: 1 }});
+			clues.update(clueId, {$inc: {clue: 1 }});
 		  }
 	  },
 	  
 	  decreaseClue: function (){
-		  var cluesCurrent = clues.findOne("clueToken").clue;
+		  var cluesCurrent = clues.findOne(clueId).clue;
 		  console.log("cluesCurrent: " + cluesCurrent);
 		  if (cluesCurrent > 0){
-			clues.update("clueToken", {$inc: {clue: -1 }});
+			clues.update(clueId, {$inc: {clue: -1 }});
 		  }
 	  },
 	  
 	  increaseError: function (){
-		  var errorsCurrent = errors.findOne("errorToken").errors;
+		  var errorsCurrent = errors.findOne(errorId).errors;
 		  console.log("errorsCurrent: " + errorsCurrent);
 		  if (errorsCurrent < 3){
-			errors.update("errorToken", {$inc: {errors: 1 }});
+			errors.update(errorId, {$inc: {errors: 1 }});
 			return true;
 		  } else {
 			  return false;
@@ -162,7 +164,6 @@ Meteor.startup(function () {
 	  
 	  
 	});
-    
   
 	  function initialize() {
 		//just keep one game in the database in this version 
@@ -177,10 +178,16 @@ Meteor.startup(function () {
 		gameCollection.insert(game);
 		
 		//set clues
-		clues.insert({clue: 8, _id: "clueToken"});
+		clues.remove({});
+		clueId = clues.insert({clue: 8});
+		 var cluesCurrent = clues.findOne(clueId).clue;
+		  console.log("cluesCurrent: " + cluesCurrent);
 		
 		//set errors
-		errors.insert({errors: 0, _id: "errorToken"});
+		errors.remove({});
+		errorId = errors.insert({errors: 0});
+		 var errorsCurrent = errors.findOne(errorId).errors;
+		  console.log("errorsCurrent: " + errorsCurrent);
 		
 		//remove any database values that were present
 		fireworkCards.remove({});//delete all records ( this will only work on server side)
@@ -352,6 +359,16 @@ Meteor.publish('game', function() {
 Meteor.publish('discard', function() {
 	//sort by most recent changes
 	return discardCollection.find();
+});
+
+Meteor.publish('cluesValue', function() {
+	//sort by most recent changes
+	return clues.find();
+});
+
+Meteor.publish('errorsValue', function() {
+	//sort by most recent changes
+	return errors.find();
 });
 
 // Meteor.publish("productinfo", function () { 

@@ -24,6 +24,8 @@ Meteor.subscribe('player_area');
 Meteor.subscribe('discard');
 Meteor.subscribe('playerTurn');
 Meteor.subscribe('game');
+Meteor.subscribe('cluesValue');
+Meteor.subscribe('errorsValue');
 
 //var errors = 0;
 //var clues = 8;//normally start at 8, adjusted for testing
@@ -83,12 +85,12 @@ Template.play_area.helpers({
 
 Template.Counters.helpers({
 	error: function() {
-		var errorsCurrent =  errors.findOne("errorToken").errors;
+		var errorsCurrent =  errors.findOne({}).errors;
 		 console.log("errorsCurrent: " + errorsCurrent);
 		return errorsCurrent;
 	},
 	clues: function() {
-		 var cluesCurrent = clues.findOne("clueToken").clue;
+		 var cluesCurrent = clues.findOne({}).clue;
 		  console.log("cluesCurrent: " + cluesCurrent);
 		return cluesCurrent;
 	},
@@ -108,7 +110,9 @@ Template.discardBoard.helpers({
 });
 function cardClick (handOwner, otherPlayer, cardClicked){
 	var state = Session.get("playState");
-	if (state != "gameOver" && errors <= 3) {
+	var errorsCurrent = errors.findOne({}).errors;
+	console.log(errorsCurrent + " " + state);
+	if (state != "gameOver" && errorsCurrent <= 3) {
 		var turn = Session.get("playerTurn");
 		var player = turn;
 		
@@ -127,15 +131,13 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 			return;
 		} else if (state == "play" && turn == handOwner) {
 			Meteor.call('playACard', handOwner, card , function(error,result){
-				var errors = Session.get('errors');
 				//window.alert(typeof card.cardValue);
 				if((result == false) ){
 					Meteor.call("increaseError", function(error,result){
 						if(result) {
 							//if increase an error
 							swal("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
-							console.log("Errors: " + errors);
-							Session.set("errors", errors);
+							console.log("Errors: " + errorsCurrent);
 							Session.set("playerTurn", "No one");
 							return;
 						
@@ -235,7 +237,7 @@ Template.playerActions.events({
 	if (state != "gameOver") {
 		var turn = Session.get("playerTurn");
 		if (turn != "null")	{
-		var cluesCurrent = clues.findOne("clueToken").clue;
+		var cluesCurrent = clues.findOne({}).clue;
 		  
 		  if(cluesCurrent <= 8 && cluesCurrent > 0 ){
 
@@ -264,7 +266,7 @@ Template.playerActions.events({
 		var turn = Session.get("playerTurn");
 		if (turn != "null")	{
 			
-		  var cluesCurrent = clues.findOne("clueToken").clue;
+		  var cluesCurrent = clues.findOne({}).clue;
 		  if(cluesCurrent <= 8 && cluesCurrent >0 ){
 			
 			var state = Session.get("playState");
@@ -326,7 +328,7 @@ Template.newGame.events({
 	'click #player1': function(event, template) {
 	//remove any database values that are present
 		var state = Session.get("playState");
-		if (state != "gameOver" && errors <= 3) {
+		if (state != "gameOver") {
 			Session.set("playerTurn", "player1");
 			Session.set ("playState", "inactive");
 		} else {
@@ -336,7 +338,7 @@ Template.newGame.events({
 	},
 	'click #player2': function(event, template) {
 		var state = Session.get("playState");
-		if (state != "gameOver" && errors <= 3) {
+		if (state != "gameOver") {
 			Session.set("playerTurn", "player2");
 			Session.set ("playState", "inactive");
 		} else {
