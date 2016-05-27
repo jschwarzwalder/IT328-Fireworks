@@ -28,8 +28,8 @@ Meteor.subscribe('game');
 //var errors = 0;
 //var clues = 8;//normally start at 8, adjusted for testing
 var state = "inactive"
-Session.set("errors", errors);
-Session.set("clues", clues);
+//Session.set("errors", errors);
+//Session.set("clues", clues);
 Session.set ("playState", state );
 Session.set("playerTurn", "player1");
 
@@ -83,10 +83,14 @@ Template.play_area.helpers({
 
 Template.Counters.helpers({
 	error: function() {
-		return errors.findOne("errorToken").errors;
+		var errorsCurrent =  errors.findOne("errorToken").errors;
+		 console.log("errorsCurrent: " + errorsCurrent);
+		return errorsCurrent;
 	},
 	clues: function() {
-		return clues.findOne("clueToken").clue;
+		 var cluesCurrent = clues.findOne("clueToken").clue;
+		  console.log("cluesCurrent: " + cluesCurrent);
+		return cluesCurrent;
 	},
 	playerTurn: function(){
 		return Session.get("playerTurn");
@@ -231,8 +235,9 @@ Template.playerActions.events({
 	if (state != "gameOver") {
 		var turn = Session.get("playerTurn");
 		if (turn != "null")	{
-		  var clues = Session.get('clues');
-		  if(clues <= 8 && clues > 0 ){
+		var cluesCurrent = clues.findOne("clueToken").clue;
+		  
+		  if(cluesCurrent <= 8 && cluesCurrent > 0 ){
 
 			var state = Session.get("playState");
 			if (state != "gameOver") {
@@ -258,8 +263,9 @@ Template.playerActions.events({
 	if (state != "gameOver") {
 		var turn = Session.get("playerTurn");
 		if (turn != "null")	{
-		  var clues = Session.get('clues');
-		  if(clues <= 8 && clues >0 ){
+			
+		  var cluesCurrent = clues.findOne("clueToken").clue;
+		  if(cluesCurrent <= 8 && cluesCurrent >0 ){
 			
 			var state = Session.get("playState");
 			if (state != "gameOver") {
@@ -306,8 +312,8 @@ Template.newGame.events({
 	'click #newGame': function(event, template) {
 	//remove any database values that are present
 		
-			Session.set("errors", 0);
-			Session.set("clues", 8);
+			//Session.set("errors", 0);
+			//Session.set("clues", 8);
 			Session.set ("playState", "inactive" );
 			Session.set("playerTurn", "player1");
 			
