@@ -6,6 +6,8 @@ import { player2HandCollection } from '../collection/collection.js';
 import { play_area_collection } from '../collection/collection.js'; 
 import { discardCollection }  from '../collection/collection.js';
 import { gameCollection }  from '../collection/collection.js';
+import { clues } from '../collection/collection.js';
+import { errors } from '../collection/collection.js';
 //server
 
  /*
@@ -92,8 +94,6 @@ Meteor.startup(function () {
 		gameCollection.update({"gameNo" : 1, "cluesLeft":{ $gt: 0}},  {$inc:{"cluesLeft": -1 }});
 	  },
 	  
-	 
-	  
 	  clueNumber: function(ValueofCard , player){
 		var gameAllowed = true;
 		
@@ -130,7 +130,23 @@ Meteor.startup(function () {
 	//	return false;
 	//  }
 	gameCollection.update({"gameNo" : 1, "cluesLeft":{ $gt: 0}},  {$inc:{"cluesLeft": -1 }});
-	  }
+	  },
+	  
+	  increaseClue: function (){
+		  
+	  },
+	  
+	  decreaseClue: function (){
+		  
+	  },
+	  
+	  increaseError: function (){
+		  
+	  },
+	  
+	  decreaseError: function (){
+		  
+	  },
 	  
 	});
     
@@ -140,12 +156,15 @@ Meteor.startup(function () {
 		var game = {
 			"gameNo": 1,
 			"cluesLeft": 8,
-			"errors": 2
+			"errors": 0
 		};
 		//remove old scores
 		gameCollection.remove({});
 		//initialize a new game
 		gameCollection.insert(game);
+		
+		//set clues
+		clues.update({}, {$set {clue: 8})
 		
 		//remove any database values that were present
 		fireworkCards.remove({});//delete all records ( this will only work on server side)
