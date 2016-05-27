@@ -140,7 +140,7 @@ Meteor.startup(function () {
 		var game = {
 			"gameNo": 1,
 			"cluesLeft": 8,
-			"errors": 0
+			"errors": 2
 		};
 		//remove old scores
 		gameCollection.remove({});
@@ -197,7 +197,6 @@ Meteor.startup(function () {
 				playerhand.insert(drawCard(fireworkCards));
 				return true;
 			} else {
-				console.log(gameCollection.update({"gameNo" : 1, "errors":{ $lt: 3}},  {$inc:{"errors": 1 }}));
 				//if it does not, add that card to the discard area
 				discardCollection.insert(card);
 				
@@ -228,7 +227,7 @@ Meteor.startup(function () {
 			return true;
 		} else {
 			
-			console.log(gameCollection.update({"gameNo" : 1, "errors":{ $lt: 3}},  {$inc:{"errors": 1 }}));
+			gameCollection.update({"gameNo" : 1},  {$inc:{"errors": 1 }});
 			//else add to discard 
 			discardCollection.insert(card);
 			
