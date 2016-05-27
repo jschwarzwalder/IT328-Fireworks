@@ -24,8 +24,8 @@ Meteor.subscribe('player_area');
 Meteor.subscribe('discard');
 Meteor.subscribe('playerTurn');
 Meteor.subscribe('game');
-Meteor.subscribe('cluesValue');
-Meteor.subscribe('errorsValue');
+Meteor.subscribe('clues');
+Meteor.subscribe('errors');
 
 //var errors = 0;
 //var clues = 8;//normally start at 8, adjusted for testing

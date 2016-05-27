@@ -361,14 +361,14 @@ Meteor.publish('discard', function() {
 	return discardCollection.find();
 });
 
-Meteor.publish('cluesValue', function() {
-	//sort by most recent changes
-	return clues.find();
+Meteor.publish('clues', function() {
+	//return clues
+	return clues.find({});
 });
 
-Meteor.publish('errorsValue', function() {
-	//sort by most recent changes
-	return errors.find();
+Meteor.publish('errors', function() {
+	//return errors
+	return errors.find({});
 });
 
 // Meteor.publish("productinfo", function () { 
