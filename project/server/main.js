@@ -133,32 +133,37 @@ Meteor.startup(function () {
 	  },
 	  
 	  increaseClue: function (){
-		  var cluesCurrent = clues.findOne({_id: "clueTokens"}).clue;
+		  var cluesCurrent = clues.findOne("clueToken").clue;
 		  console.log("cluesCurrent: " + cluesCurrent);
 		  if (cluesCurrent < 8){
-			clues.update({_id: 'clueTokens'}, {$inc {clue: 1 }});
+			clues.update("clueToken", {$inc: {clue: 1 }});
 		  }
 	  },
 	  
 	  decreaseClue: function (){
-		  var cluesCurrent = clues.findOne({_id: "clueTokens"}).clue;
+		  var cluesCurrent = clues.findOne("clueToken").clue;
 		  console.log("cluesCurrent: " + cluesCurrent);
 		  if (cluesCurrent < 8){
-			clues.update({_id: "clueTokens"}, {$inc {clue: -1 }});
+			clues.update("clueToken", {$inc: {clue: -1 }});
 		  }
 	  },
 	  
 	  increaseError: function (){
-		  var errorsCurrent = errors.findOne({_id: "errorTokens"}).errors;
+		  var errorsCurrent = errors.findOne("errorToken").errors;
 		  console.log("errorsCurrent: " + errorsCurrent);
 		  if (errorsCurrent < 3){
-			clues.update({_id: "errorTokens"}, {$inc {clue: 1 }});
+			errors.update("errorToken", {$inc: {errors: 1 }});
 			return true;
 		  }
 	  },
 	  
 	  decreaseError: function (){
-		  
+		  var errorsCurrent = errors.findOne("errorToken").errors;
+		  console.log("errorsCurrent: " + errorsCurrent);
+		  if (errorsCurrent < 3){
+			errors.update("errorToken", {$inc: {errors: -1 }});
+			return true;
+		  }
 	  },
 	  
 	});
@@ -177,8 +182,10 @@ Meteor.startup(function () {
 		gameCollection.insert(game);
 		
 		//set clues
-		clues.insert({clue: 8, _id: "clueTokens"});
-		errors.insert({errors: 0, _id: "errorTokens"});
+		clues.insert({clue: 8, _id: "clueToken"});
+		
+		//set errors
+		errors.insert({errors: 0, _id: "errorToken"});
 		
 		//remove any database values that were present
 		fireworkCards.remove({});//delete all records ( this will only work on server side)
