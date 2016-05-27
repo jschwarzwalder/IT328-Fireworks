@@ -133,15 +133,28 @@ Meteor.startup(function () {
 	  },
 	  
 	  increaseClue: function (){
-		  clues.insert({}, {$set {clue: 8});
+		  var cluesCurrent = clues.findOne({_id: "clueTokens"}).clue;
+		  console.log("cluesCurrent: " + cluesCurrent);
+		  if (cluesCurrent < 8){
+			clues.update({_id: 'clueTokens'}, {$inc {clue: 1 }});
+		  }
 	  },
 	  
 	  decreaseClue: function (){
-		  
+		  var cluesCurrent = clues.findOne({_id: "clueTokens"}).clue;
+		  console.log("cluesCurrent: " + cluesCurrent);
+		  if (cluesCurrent < 8){
+			clues.update({_id: "clueTokens"}, {$inc {clue: -1 }});
+		  }
 	  },
 	  
 	  increaseError: function (){
-		  
+		  var errorsCurrent = errors.findOne({_id: "errorTokens"}).errors;
+		  console.log("errorsCurrent: " + errorsCurrent);
+		  if (errorsCurrent < 3){
+			clues.update({_id: "errorTokens"}, {$inc {clue: 1 }});
+			return true;
+		  }
 	  },
 	  
 	  decreaseError: function (){
