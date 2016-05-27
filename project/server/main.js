@@ -133,7 +133,7 @@ Meteor.startup(function () {
 	  },
 	  
 	  increaseClue: function (){
-		  
+		  clues.insert({}, {$set {clue: 8});
 	  },
 	  
 	  decreaseClue: function (){
@@ -164,7 +164,8 @@ Meteor.startup(function () {
 		gameCollection.insert(game);
 		
 		//set clues
-		clues.update({}, {$set {clue: 8})
+		clues.insert({clue: 8, _id: "clueTokens"});
+		errors.insert({errors: 0, _id: "errorTokens"});
 		
 		//remove any database values that were present
 		fireworkCards.remove({});//delete all records ( this will only work on server side)
