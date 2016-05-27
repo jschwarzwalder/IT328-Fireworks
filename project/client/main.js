@@ -154,13 +154,9 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 						return;
 					}
 					//THIS PARTS NEEDS TO BE FIXED
-					else if (clues < 8 ) {
-						clues ++;
-						console.log("Clues: " + clues);
-						Session.set("clues", clues);
-						swal("Congratulations, by playing a 5 \nYou can get an extra clue");
-					} else {
-						swal("Congratulation by playing a 5 \nYou finished " + card.cardColor);
+					 else {
+						Meteor.call("increaseClue");
+						swal("Congratulation by playing a 5 \nYou can get an extra clue\nYou have now finished " + card.cardColor);
 					}
 					
 				
@@ -172,14 +168,7 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 		} else if (state == "discard" && turn == handOwner) {
 			Meteor.call('discardACard', handOwner, card, function(error,result){
 				if(result) {
-					//var clues = Session.get('clues');
-					//if(clues < 8 ){
-					//	clues ++;
-					//	console.log("Clues: " + clues);
-					//	Session.set("clues", clues);
-					//} else {
-					//	console.log("Do Nothing... You have all your clues!");
-					//} 
+					Meteor.call("increaseClue");
 					swal("You discarded a "+ card.cardColor + " " + card.cardValue);
 				}
 				Session.set ("playState", "inactive");
@@ -190,15 +179,8 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 		else if (state == "clueColor" && turn == otherPlayer) {
 			//console.log(handOwner);
 			Meteor.call('clueColor', card.cardColor , handOwner);
-			
-//		  var clues = Session.get("clues");
-//		 
-//		  if (clues > 0 ) {
-//			   
-//			  clues --;
-//			  console.log("Clues: " + clues);
-//			  Session.set("clues", clues);
-//          } 
+			Meteor.call("decreaseClue");
+
 		  //reset state of game
 		  Session.set ("playState", "inactive");
 		  Session.set("playerTurn", "No one");
@@ -209,14 +191,8 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 			Meteor.call('clueNumber', card.cardValue, handOwner);
 				//it pratically shouldn't game over they can continue with no clue so we have to restrict them from giving clue
 				//Session.set ("playState", "gameOver");		
+			Meteor.call("decreaseClue");
 			
-//		 var clues = Session.get("clues");
-//		  if (clues > 0) {
-//			   
-//			  clues --;
-//			 console.log("Clues: " + clues);
-//			  Session.set("clues", clues);
-//          } 
 		  Session.set ("playState", "inactive");
 		  Session.set("playerTurn", "No one");
 		

@@ -143,7 +143,7 @@ Meteor.startup(function () {
 	  decreaseClue: function (){
 		  var cluesCurrent = clues.findOne("clueToken").clue;
 		  console.log("cluesCurrent: " + cluesCurrent);
-		  if (cluesCurrent < 8){
+		  if (cluesCurrent > 0){
 			clues.update("clueToken", {$inc: {clue: -1 }});
 		  }
 	  },
