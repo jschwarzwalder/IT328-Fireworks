@@ -175,37 +175,37 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 							return;
 						} 
 					});
-				} 
-				
 				//if current player was able to play a card, and that card has a value of 5
-				if (card.cardValue == 5 ) {
-					//get number of clues currently available from Collection
-					var cluesCurrent = clues.findOne({}).clue;
-					
-					//increase the clues available
-					Meteor.call("increaseClue");
-					//count how many cards with value 5 have been played
-					var containsallfives = play_area_collection.find({cardValue: 5}).count();
-					
-					if (containsallfives == 5){
-						swal("Congratulations!\nYou won the game\nClick New Game to play again");
-						Session.set ("playState", "gameOver");
-						return;//exit function early 
-						
-						//if current player has not played all 5 cards with value 5
-						
-					} else {
-						
-						swal("Congratulation by playing a 5 \nYou can get an extra clue\nYou have now finished " + card.cardColor);
-					} 
-					
+				} else if (card.cardValue == 5 && result) {
+				//get number of clues currently available from Collection
+				var cluesCurrent = clues.findOne({}).clue;
+				console.log ("Before: " + cluesCurrent);
+				//increase the clues available
+				Meteor.call("increaseClue");
+				console.log ("After: " + cluesCurrent);
+				//count how many cards with value 5 have been played
+				var containsallfives = play_area_collection.find({cardValue: 5}).count();
 				
+				if (containsallfives == 5){
+					Meteor.call("increaseClue");
+					swal("Congratulations!\nYou won the game\nClick New Game to play again");
+					Session.set ("playState", "gameOver");
+					return;//exit function early 
+					
+					//if current player has not played all 5 cards with value 5
+					
+				} else {
+					Meteor.call("increaseClue");
+					swal("Congratulation by playing a 5 \nYou can get an extra clue\nYou have now finished " + card.cardColor);
 				} 
-				//after card is played and we have adjusted the clues and errors 
-				//than set state to inactive and current player to no one
-				Session.set ("playState", "inactive");
-				Session.set("playerTurn", "No one");
-			});
+			}
+		});
+			 
+			//after card is played and we have adjusted the clues and errors 
+			//than set state to inactive and current player to no one
+			Session.set ("playState", "inactive");
+			Session.set("playerTurn", "No one");
+		
 
 		} else if (state == "discard" && turn == handOwner) {
 			Meteor.call('discardACard', handOwner, card, function(error,result){
