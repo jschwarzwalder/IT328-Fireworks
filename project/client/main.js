@@ -41,7 +41,7 @@ var state = "inactive"
 Session.set ("playState", state );
 
 //until we get routing this allows hotseat. By default when game begins or page refreshed it is player1's turn
-Session.set("playerTurn", "player1");
+Session.set("playerTurn", "No one");
 
  /*Array of arrays
  This is a sample play area which is stack of 5 columns of cards. The first column is red cards with 1 and 2 .... 
@@ -263,7 +263,7 @@ Template.playerActions.events({
 	if (state != "gameOver") {
 		var turn = Session.get("playerTurn");
 		//swal("turn: " + turn);
-		if (turn != "no one")	{
+		if (turn != "No one")	{
 		//set state to play card
 
 				Session.set("playState", "play");
@@ -279,7 +279,7 @@ Template.playerActions.events({
 	var state = Session.get("playState");
 	if (state != "gameOver") {
 		var turn = Session.get("playerTurn");
-		if (turn != "no one")	{
+		if (turn != "No one")	{
 		var cluesCurrent = clues.findOne({}).clue;
 		  
 		  if(cluesCurrent <= 8 && cluesCurrent > 0 ){
@@ -307,7 +307,7 @@ Template.playerActions.events({
 	var state = Session.get("playState");
 	if (state != "gameOver") {
 		var turn = Session.get("playerTurn");
-		if (turn != "no one")	{
+		if (turn != "No one")	{
 			
 		  var cluesCurrent = clues.findOne({}).clue;
 		  if(cluesCurrent <= 8 && cluesCurrent >0 ){
@@ -335,7 +335,7 @@ Template.playerActions.events({
 	if (state != "gameOver") {
 		//set state to discards
 		var turn = Session.get("playerTurn");
-		if (turn != "no one")	{
+		if (turn != "No one")	{
 		
 			var state = Session.get("playState");
 			if (state != "gameOver") {
