@@ -8,6 +8,8 @@ import { Meteor } from 'meteor/meteor';
 //server
 //import { deck } from '../collection/collection.js';
 //import { fireworkCards } from '../collection/collection.js';
+
+//import Collections so we can use .find() 
 import { player1HandCollection } from '../collection/collection.js';
 import { player2HandCollection } from '../collection/collection.js';
 import { play_area_collection } from '../collection/collection.js'; 
@@ -18,21 +20,27 @@ import { errors } from '../collection/collection.js';
 
 
 //sort discards - 	discardCollection.find({}, {sort :[["cardColor", "asc"], ["cardValue", "asc"]]});
+
+//subscribe to Collections so we can have permission to view the data when we call .find()
 Meteor.subscribe('player1Hand');
 Meteor.subscribe('player2Hand');
 Meteor.subscribe('player_area');
 Meteor.subscribe('discard');
 Meteor.subscribe('playerTurn');
-Meteor.subscribe('game');
+Meteor.subscribe('game'); 
+// I don't know if game has the clues and errors inside so I used the clues and errors collections you created in the collection file
 Meteor.subscribe('clues');
 Meteor.subscribe('errors');
 
 //var errors = 0;
 //var clues = 8;//normally start at 8, adjusted for testing
+
+//playerState is used to determing if game is over, 
+//and whether a button has been pressed before clicking on a card
 var state = "inactive"
-//Session.set("errors", errors);
-//Session.set("clues", clues);
 Session.set ("playState", state );
+
+//until we get routing this allows hotseat. By default when game begins or page refreshed it is player1's turn
 Session.set("playerTurn", "player1");
 
  /*Array of arrays
@@ -51,6 +59,8 @@ Template.opponentHand.helpers({
 		return this.clueColor 
 	},
 	turn: function(){
+		//until we get routing this allows hotseat. 
+		//It controls whether cards are visible or display card backs
 		var turn = Session.get("playerTurn");
 		return turn == "player1"
 	}
@@ -66,6 +76,9 @@ Template.playerHand.helpers({
 		return this.clueColor 
 	}, 
 	turn: function() {
+		//until we get routing this allows hotseat. 
+		//It controls whether cards are visible or display card backs
+		
 		var turn = Session.get("playerTurn");
 		return turn == "player2"
 	}
@@ -85,12 +98,16 @@ Template.play_area.helpers({
 
 Template.Counters.helpers({
 	error: function() {
+		//returns errors in errors Collection and should allow template to display value
 		var errorsCurrent =  errors.findOne({}).errors;
+		//testing to if findOne({}) worked
 		 console.log("errorsCurrent: " + errorsCurrent);
 		return errorsCurrent;
 	},
 	clues: function() {
+		//returns clues in clues Collection and should allow template to display value
 		 var cluesCurrent = clues.findOne({}).clue;
+		 //testing to if findOne({}) worked
 		  console.log("cluesCurrent: " + cluesCurrent);
 		return cluesCurrent;
 	},
@@ -109,33 +126,43 @@ Template.discardBoard.helpers({
 	}
 });
 function cardClick (handOwner, otherPlayer, cardClicked){
+	//Which stat is the game currently in?
 	var state = Session.get("playState");
+	//How many errors do we have in errors Collection
 	var errorsCurrent = errors.findOne({}).errors;
+	//testing to see if findOne({}) worked
 	console.log(errorsCurrent + " " + state);
+	
+	//if Game is not over and we have less than or equal to 3 errors 
+	//perform action on card
+	//otherwise set state to gameOver and pop up message to player
 	if (state != "gameOver" && errorsCurrent <= 3) {
+		//get information about current player and save it to player
 		var turn = Session.get("playerTurn");
 		var player = turn;
 		
-			
-		//console.log(this);
+		//store card passed through when function is called.
 		var card = cardClicked;
-		
-		//console.log(turn);
-		//console.log("playerHand")
-		//swal(player);
+
 		if (state == "inactive"){
+			//if player hasn't click on an action button, remind them to click on button first
 			swal("Please press Play, Discard or Clue before selecting a card");
 			return;
 		} else if ((state == "play" || state =="discard") && turn == otherPlayer){
+			//if current player clicks on face up cards when trying to play or discard
+			//remind them the face up cards are not their hand.
 			swal("That is not your hand!");
 			return;
 		} else if (state == "play" && turn == handOwner) {
+			//if current player clicks on the cards in their hand after pressing play action button
 			Meteor.call('playACard', handOwner, card , function(error,result){
 				//window.alert(typeof card.cardValue);
+				
+				//if card could not be played then increase error tokens
 				if((result == false) ){
 					Meteor.call("increaseError", function(error,result){
 						if(result) {
-							//if increase an error
+							//if increase an error returns true, alert player which card they played
 							swal("Error. That card is not playable.\nIt was a "+ card.cardColor + " " + card.cardValue);
 							console.log("Errors: " + errorsCurrent);
 							Session.set("playerTurn", "No one");
@@ -149,20 +176,27 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 						} 
 					});
 				}
-
+				//if current player was able to play a card, and that card has a value of 5
 				if (card.cardValue == 5 ) {
-					var clues = Session.get("clues");
+					//get number of clues currently available from Collection
+					var cluesCurrent = clues.findOne({}).clue;
+					
+					//count how many cards with value 5 have been played
 					var containsallfives = play_area_collection.find({cardValue: 5}).count();
-					console.log(containsallfives);
+					
 					if (containsallfives == 5){
 						swal("Congratulations!\nYou won the game\nClick New Game to play again");
 						Session.set ("playState", "gameOver");
 						return;
-					}
-					//THIS PARTS NEEDS TO BE FIXED
-					 else {
+						
+						//if current player has not played all 5 cards with value 5
+						//and if game has less than 8 clues available
+						//increase the clues
+					} else if (cluesCurrent < 8){
 						Meteor.call("increaseClue");
 						swal("Congratulation by playing a 5 \nYou can get an extra clue\nYou have now finished " + card.cardColor);
+					} else {
+						swal("Congratulation by playing a 5 \nYou have now finished " + card.cardColor);
 					}
 					
 				
