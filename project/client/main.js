@@ -187,7 +187,7 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 					if (containsallfives == 5){
 						swal("Congratulations!\nYou won the game\nClick New Game to play again");
 						Session.set ("playState", "gameOver");
-						return;
+						return;//exit function early 
 						
 						//if current player has not played all 5 cards with value 5
 						//and if game has less than 8 clues available
@@ -201,6 +201,8 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 					
 				
 				} 
+				//after card is played and we have adjusted the clues and errors 
+				//than set state to inactive and current player to no one
 				Session.set ("playState", "inactive");
 				Session.set("playerTurn", "No one");
 			});
@@ -211,14 +213,19 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 					Meteor.call("increaseClue");
 					swal("You discarded a "+ card.cardColor + " " + card.cardValue);
 				}
+				//after card is discarded and we have adjusted the clues  
+				//than set state to inactive and current player to no one
 				Session.set ("playState", "inactive");
 				Session.set("playerTurn", "No one");
 			});	
 		}
 		//color clue 
 		else if (state == "clueColor" && turn == otherPlayer) {
-			//console.log(handOwner);
+			//if current player clicks on opponents hand after clicking on ClueColor action button
+			
+			//clue color
 			Meteor.call('clueColor', card.cardColor , handOwner);
+			//decrease the clue value in the Collection
 			Meteor.call("decreaseClue");
 
 		  //reset state of game
@@ -226,19 +233,24 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 		  Session.set("playerTurn", "No one");
 		}
 		//number clue
-		 else if (state == "clueNum" && turn == otherPlayer) {
+		 else if (state == "clueNum" && turn == otherPlayer) {			
+			//if current player clicks on opponents hand after clicking on ClueNum action button
 			
+			//clue number
 			Meteor.call('clueNumber', card.cardValue, handOwner);
-				//it pratically shouldn't game over they can continue with no clue so we have to restrict them from giving clue
-				//Session.set ("playState", "gameOver");		
+			
+			//decrease the clue value in the Collection	
 			Meteor.call("decreaseClue");
 			
+		  //reset state of game
 		  Session.set ("playState", "inactive");
 		  Session.set("playerTurn", "No one");
 		
 		}
 		
 	} else {
+		
+		//if state is gameOver or errors > 3
 		Session.set ("playState", "gameOver");
 		swal("Game Over! \nClick New Game to play again");
 		return;
