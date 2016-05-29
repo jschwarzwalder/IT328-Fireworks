@@ -159,7 +159,7 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 				//window.alert(typeof card.cardValue);
 				
 				//if card could not be played then increase error tokens
-				if((result == false) ){
+				if(result == false){
 					Meteor.call("increaseError", function(error,result){
 						if(result) {
 							//if increase an error returns true, alert player which card they played
@@ -175,12 +175,15 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 							return;
 						} 
 					});
-				}
+				} 
+				
 				//if current player was able to play a card, and that card has a value of 5
 				if (card.cardValue == 5 ) {
 					//get number of clues currently available from Collection
 					var cluesCurrent = clues.findOne({}).clue;
 					
+					//increase the clues available
+					Meteor.call("increaseClue");
 					//count how many cards with value 5 have been played
 					var containsallfives = play_area_collection.find({cardValue: 5}).count();
 					
@@ -190,9 +193,9 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 						return;//exit function early 
 						
 						//if current player has not played all 5 cards with value 5
-						//increase the clues available
+						
 					} else {
-						Meteor.call("increaseClue");
+						
 						swal("Congratulation by playing a 5 \nYou can get an extra clue\nYou have now finished " + card.cardColor);
 					} 
 					
