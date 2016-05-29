@@ -190,14 +190,11 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 						return;//exit function early 
 						
 						//if current player has not played all 5 cards with value 5
-						//and if game has less than 8 clues available
-						//increase the clues
-					} else if (cluesCurrent < 8){
+						//increase the clues available
+					} else {
 						Meteor.call("increaseClue");
 						swal("Congratulation by playing a 5 \nYou can get an extra clue\nYou have now finished " + card.cardColor);
-					} else {
-						swal("Congratulation by playing a 5 \nYou have now finished " + card.cardColor);
-					}
+					} 
 					
 				
 				} 
@@ -266,7 +263,7 @@ Template.playerActions.events({
 	if (state != "gameOver") {
 		var turn = Session.get("playerTurn");
 		//swal("turn: " + turn);
-		if (turn != "null")	{
+		if (turn != "no one")	{
 		//set state to play card
 
 				Session.set("playState", "play");
@@ -282,7 +279,7 @@ Template.playerActions.events({
 	var state = Session.get("playState");
 	if (state != "gameOver") {
 		var turn = Session.get("playerTurn");
-		if (turn != "null")	{
+		if (turn != "no one")	{
 		var cluesCurrent = clues.findOne({}).clue;
 		  
 		  if(cluesCurrent <= 8 && cluesCurrent > 0 ){
@@ -310,7 +307,7 @@ Template.playerActions.events({
 	var state = Session.get("playState");
 	if (state != "gameOver") {
 		var turn = Session.get("playerTurn");
-		if (turn != "null")	{
+		if (turn != "no one")	{
 			
 		  var cluesCurrent = clues.findOne({}).clue;
 		  if(cluesCurrent <= 8 && cluesCurrent >0 ){
@@ -338,7 +335,7 @@ Template.playerActions.events({
 	if (state != "gameOver") {
 		//set state to discards
 		var turn = Session.get("playerTurn");
-		if (turn != "null")	{
+		if (turn != "no one")	{
 		
 			var state = Session.get("playState");
 			if (state != "gameOver") {
