@@ -22,3 +22,4 @@ session
 accounts-password
 ian:accounts-ui-bootstrap-3
 kit:sweetalert
+iron:router
