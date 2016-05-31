@@ -64,10 +64,25 @@ img.discard-thumb{
 	text-align:center;
 	font-weight: 600;
 }
-/* body{
+.bkg-img{
 	 background: url("fireworks.png"), rgba(255, 0, 0, 0.25);
-	 background-size:contain;
-	  background-repeat: no-repeat;
+	
 	background-attachment: fixed;
 	 color: white;
-} */
+	 width:100%;
+    height:850px;
+	text-align: center;
+	
+	 
+} 
+.title{
+	color: #CEF0D4; font-family: 'Rouge Script', cursive; font-size: 45px; font-weight: normal; line-height: 48px; margin: 0 0 50px; text-align: center; text-shadow: 1px 1px 2px #082b34;
+	text-align: center;
+	 margin: auto;
+	 padding:100px;
+}
+#btn_start{
+	font-size: 45px;
+	text-align: center;
+	 margin: auto;
+}
