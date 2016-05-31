@@ -135,19 +135,11 @@ Meteor.startup(function () {
 	  },
 	  
 	  increaseClue: function (){
-		  var cluesCurrent = clues.findOne(clueId).clue;
-		  console.log("cluesCurrent: " + cluesCurrent);
-		  if (cluesCurrent < 8){
-			clues.update(clueId, {$inc: {clue: 1 }});
-		  }
+		  clueChange(1);
 	  },
 	  
 	  decreaseClue: function (){
-		  var cluesCurrent = clues.findOne(clueId).clue;
-		  console.log("cluesCurrent: " + cluesCurrent);
-		  if (cluesCurrent > 0){
-			clues.update(clueId, {$inc: {clue: -1 }});
-		  }
+		 clueChange(-1);
 	  },
 	  
 	  increaseError: function (){
@@ -221,7 +213,7 @@ Meteor.startup(function () {
 	  }
 
 	  function play(playerhand, card){ 
-		console.log("you've entered the play a card fucntion  \n \n \n \n");
+		//console.log("you've entered the play a card fucntion  \n \n \n \n");
 		var play_area_card = play_area_collection.findOne({cardColor: card.cardColor});
 		
 		//find that card color in play area
@@ -238,6 +230,7 @@ Meteor.startup(function () {
 				//draw new card
 				playerhand.insert(drawCard(fireworkCards));
 				return true;
+				
 			} else {
 				//if it does not, add that card to the discard area
 				discardCollection.insert(card);
@@ -266,6 +259,10 @@ Meteor.startup(function () {
 			//draw new card
 			playerhand.insert(drawCard(fireworkCards));
 			
+			if (card.cardValue == 5){
+				clueChange(1);
+			}
+			
 			return true;
 		} else {
 			
@@ -282,12 +279,20 @@ Meteor.startup(function () {
 		}
 
 	}
+	
+	  function clueChange(num){
+		  var cluesCurrent = clues.findOne(clueId).clue;
+		  console.log("cluesCurrent: " + cluesCurrent);
+		  if (cluesCurrent < 8){
+			clues.update(clueId, {$inc: {clue: num }});
+		  }
+	  }
 			
 
 	  
 	function discard(playerhand, card) {
 		 
-		console.log("you've entered the discard fucntion  \n \n \n \n")
+		//console.log("you've entered the discard fucntion  \n \n \n \n")
 		
 		
 		//add card from hand to discards 

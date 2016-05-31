@@ -176,18 +176,19 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 						} 
 					});
 				//if current player was able to play a card, and that card has a value of 5
-				} else if (card.cardValue == 5 && result) {
-				//get number of clues currently available from Collection
+				} 
+				if (card.cardValue == 5) {
+				/* //get number of clues currently available from Collection
 				var cluesCurrent = clues.findOne({}).clue;
 				console.log ("Before: " + cluesCurrent);
 				//increase the clues available
 				Meteor.call("increaseClue");
-				console.log ("After: " + cluesCurrent);
+				console.log ("After: " + cluesCurrent); */
 				//count how many cards with value 5 have been played
 				var containsallfives = play_area_collection.find({cardValue: 5}).count();
 				
 				if (containsallfives == 5){
-					Meteor.call("increaseClue");
+					//Meteor.call("increaseClue");
 					swal("Congratulations!\nYou won the game\nClick New Game to play again");
 					Session.set ("playState", "gameOver");
 					return;//exit function early 
@@ -195,7 +196,7 @@ function cardClick (handOwner, otherPlayer, cardClicked){
 					//if current player has not played all 5 cards with value 5
 					
 				} else {
-					Meteor.call("increaseClue");
+					//Meteor.call("increaseClue");
 					swal("Congratulation by playing a 5 \nYou can get an extra clue\nYou have now finished " + card.cardColor);
 				} 
 			}
