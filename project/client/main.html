@@ -5,9 +5,12 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
   <title>Firework Game!</title>
   <link rel="stylesheet" type="text/css" href="main.css">
 </head>
+<template name="welcome">
+ 
+</template>
 
-<body>
-	<div id="navbar" class="navbar-collapse collapse">
+<template name="navigation">
+  <div id="navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav navbar-right">
 		  <li>{{> loginButtons}}</li>
 		</ul>
@@ -16,8 +19,8 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 	<div class="row-fluid">
 	  
 	  <div class="col-lg-2">
-		
-          {{> Counters}}
+		 {{> Counters}}
+         
   
 	  </div>
 	  
@@ -30,20 +33,25 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 		
         <div class="col-lg-3" style="border: dashed">
           {{> discardBoard}}
+		  
+		  
         </div>
     
 		
 		
 		
   </div>
-</body>
+</template>
+
 
 
 <!-- this template is for the splash screen --> 
-<template name="start">
-  <button url="New Game.png">Start Button</button>
+<template name="welcomeboard">
+  <button  id="btn_start" url="New Game.png">Start Button</button>
   <img src="fireworks.png" class="img-responsive">
 </template>
+
+
 <template name="discardBoard">
 <div class="text-center">
 	  <h3> Discard Board </h3>
@@ -232,4 +240,6 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 	
 </template>
 	
-	
+<template name="register">
+    <h2>Register</h2>
+</template>

@@ -401,15 +401,14 @@ Template.playerHand.events({
 	cardClick ("player1", "player2", this);
 	}
 });
-//Template.Counters.events({
-//	//create a new activity document
-//		var newGame = {
-//			gameNo: 1;
-//			cluesLeft: 80;
-//		};
-//		//insert our new record on the server side
-//		Meteor.call('gameInsert', newGame);
-//});
+
+//Start button click it goes to start the game
+Template.welcomeboard.events({
+    'click #btn_start': function(event){
+        event.preventDefault();
+            Router.go('/start');
+    }
+});
 Template.opponentHand.events({
 	'click a.selectedCard': function(event, template) {
 	cardClick ("player2", "player1", this);
