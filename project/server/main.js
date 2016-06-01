@@ -283,8 +283,11 @@ Meteor.startup(function () {
 	  function clueChange(num){
 		  var cluesCurrent = clues.findOne(clueId).clue;
 		  console.log("cluesCurrent: " + cluesCurrent);
-		  if (cluesCurrent < 8){
-			clues.update(clueId, {$inc: {clue: num }});
+		  if (num < 0 && cluesCurrent >0 ){
+			clues.update(clueId, {$inc: {"clue": num }});
+		  }
+		  else if(num > 0 && cluesCurrent <= 8 ){
+			clues.update(clueId, {$inc: {"clue": num }});
 		  }
 	  }
 			
