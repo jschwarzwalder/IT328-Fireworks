@@ -286,7 +286,7 @@ Meteor.startup(function () {
 		  if (num < 0 && cluesCurrent > 0 ){
 			clues.update(clueId, {$inc: {"clue": num }});
 		  }
-		  else if(num > 0 && cluesCurrent <= 8 ){
+		  else if(num > 0 && cluesCurrent < 8 ){
 			clues.update(clueId, {$inc: {"clue": num }});
 		  }
 	  }
