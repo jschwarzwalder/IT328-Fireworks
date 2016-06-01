@@ -13,3 +13,18 @@ Router.route('/', function () {
 Router.route('/start', function () {
   this.render('navigation');
 });
+
+Router.route('/login', function () {
+  this.render('login');
+});
+//use a hook to prevent unauthorized access to templated with data
+Router.onBeforeAction( function() {
+    if (Meteor.user() && !Meteor.loggingIn) { //return undefined if no user is logged in
+        this.redirect('/login');
+    }else{
+        this.next(); //tell the router to continue
+    }
+}, {
+    except: ['login']
+    
+});

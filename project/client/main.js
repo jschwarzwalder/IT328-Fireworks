@@ -406,6 +406,11 @@ Template.playerHand.events({
 Template.welcomeboard.events({
     'click #btn_start': function(event){
         event.preventDefault();
+		Session.set ("playState", "inactive" );
+	   Session.set("playerTurn", "player1");
+			
+			
+            Meteor.call('startNewGame');
             Router.go('/start');
     }
 });
