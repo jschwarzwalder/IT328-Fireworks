@@ -75,6 +75,19 @@ img.discard-thumb{
 	
 	 
 } 
+
+.gamearea{
+	 background: rgba(255, 255, 255, 0.7) url("background.jpg") ;
+	opacity: 0.8;
+	
+	background-attachment: fixed;
+	 color: white;
+	 width:100%;
+    height:850px;
+	text-align: center;
+	
+	 
+} 
 .title{
 	color: #CEF0D4; font-family: 'Rouge Script', cursive; font-size: 45px; font-weight: normal; line-height: 48px; margin: 0 0 50px; text-align: center; text-shadow: 1px 1px 2px #082b34;
 	text-align: center;
@@ -85,4 +98,8 @@ img.discard-thumb{
 	font-size: 45px;
 	text-align: center;
 	 margin: auto;
+}
+a{
+	color: white;
+	font-size: 18px;
 }
