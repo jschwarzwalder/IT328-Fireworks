@@ -5,17 +5,17 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
   <title>Firework Game!</title>
   <link rel="shortcut icon" href="firework_icon.bmp">
   <link rel="stylesheet" type="text/css" href="main.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 </head>
 <template name="welcome">
  
 </template>
 
 <template name="navigation">
-  <div id="navbar" class="navbar-collapse collapse">
-		<ul class="nav navbar-nav navbar-right">
-		  <li>{{> loginButtons}}</li>
-		</ul>
-	</div><!--/.nav-collapse -->
+ {{> login_btn}}
   <h1 class="text-center">Firework Game!</h1>
 	<div class="row-fluid">
 	  
@@ -44,10 +44,17 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
   </div>
 </template>
 
-
+<template name="login_btn">
+<div id="navbar" class="navbar-collapse collapse">
+		<ul class="nav navbar-nav navbar-right">
+		  <li>{{> loginButtons}}</li>
+		</ul>
+  </div>
+</template>
 
 <!-- this template is for the splash screen --> 
 <template name="welcomeboard">
+<!--/.nav-collapse -->
 <div class="bkg-img">
 <div class="container">
 <div class="row">
@@ -252,7 +259,19 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 </template>
 
 <template name="login">
+	
+
+ <div class="bkg-img">
   <div class="container">
-    <h3>Please login </h3>
+    
+	
+	<div class="pull-left" style="padding:50px 0">
+	<h3 > Please Sign in </h3>
+	<button class="btn btn-progress left">{{>loginButtons}}</button>
+	</div>
+	<div class="text-center" style="padding:25% 0">
+	<button  id="btn_start" class="btn btn-success">Start</button>  </div>
+	
+  </div>
   </div>
 </template>

@@ -18,13 +18,16 @@ Router.route('/login', function () {
   this.render('login');
 });
 //use a hook to prevent unauthorized access to templated with data
-Router.onBeforeAction( function() {
-    if (Meteor.user() && !Meteor.loggingIn) { //return undefined if no user is logged in
-        this.redirect('/login');
-    }else{
-        this.next(); //tell the router to continue
-    }
-}, {
-    except: ['login']
-    
+Router.onBeforeAction(function () {
+  // all properties available in the route function
+  // are also available here such as this.params
+
+  if (!Meteor.userId()) {
+    // if the user is not logged in, render the Login template
+    this.render('Login');
+  } else {
+    // otherwise don't hold up the rest of hooks or our route/action function
+    // from running
+    this.next();
+  }
 });

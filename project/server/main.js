@@ -332,9 +332,9 @@ Meteor.publish('player1Hand', function() {
    if(user) { 
 		//sort by most recent changes
 		return player1HandCollection.find();
-		console.log(user);	 
+		console.log("User id:" + user + "is logged in");	 
 	} else {
-		console.log("Please Log In");
+		console.log("Player 1 is not logged in");
 		
 	} 
 });
@@ -344,12 +344,12 @@ Meteor.publish('player2Hand', function() {
   // user = this.users.findOne({_id:this.userId})
   user = this.userId;
    if(user) {
-	console.log(user);
+	console.log("User id:" + user + "is logged in");
 	//sort by most recent changes
 	return player2HandCollection.find();
 	
 	} else {
-		console.log("Please log in");
+		console.log("Player 2 is not logged in");
 	}
    
    
