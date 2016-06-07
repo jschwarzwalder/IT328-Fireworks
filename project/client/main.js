@@ -412,7 +412,7 @@ Template.instructions.events({
 	'click #btn_back': function(event){
         event.preventDefault();
 	
-            Router.go('/start');
+            Router.go('/play');
     }
 })
 //Start button click it goes to start the game
@@ -424,7 +424,12 @@ Template.welcomeboard.events({
 			
 			
             Meteor.call('startNewGame');
-            Router.go('/start');
+            Router.go('/play');
+    }, 
+	'click #btn_resume': function(event){
+        event.preventDefault();
+	
+            Router.go('/play');
     }
 });
 Template.opponentHand.events({
