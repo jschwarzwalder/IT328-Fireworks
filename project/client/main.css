@@ -48,6 +48,14 @@ img.discard-thumb{
     background-repeat: no-repeat;
 
 }
+#btn_resume{
+	width: 150px;
+    height: 90px;
+	background-size: 150px 90px;
+    background-image: url('resume.png');
+    background-repeat: no-repeat;
+
+}
 
 #cluecolor {
 	width: 85px;
@@ -110,10 +118,10 @@ img.discard-thumb{
 	
 	background-attachment: fixed;
 	 color: white;
-	 text-shadow: -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000; 
+	 text-shadow: -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000; 
 	 width:100%;
     height:850px;
 	text-align: center;

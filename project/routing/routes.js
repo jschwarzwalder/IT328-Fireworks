@@ -10,7 +10,7 @@ Router.route('/', function () {
   this.render('welcomeboard');
 });
 
-Router.route('/start', function () {
+Router.route('/play', function () {
   this.render('navigation');
 });
 
