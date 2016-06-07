@@ -7,6 +7,7 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
   <link rel="stylesheet" type="text/css" href="main.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 </head>
@@ -48,7 +49,7 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 <template name="login_btn">
 <div id="navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav navbar-right">
-		  <li>  {{> loginButtons}} <i class="fa fa-lock" aria-hidden="true"></i></li>
+		  <li>  {{> loginButtons}} </li>
 		</ul>
   </div>
 </template>
@@ -222,14 +223,15 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 </template>
 
 <template name="instructions">
-  <div class="contains">
+ <div class="container">
+	
 	<p><button  id="btn_back" class="pull-right" name="btn_back"></button></p>
-	<h1> Firework Game </h1>
+	<h1> Fireworks Game </h1>
 	<p> A collaborative game, where you and your partner give each other clues and try to play cards of the same color in order from 1 to 5. </p>
 	<p> In this game you cannot see the cards in your hand, so its up to your partner to give you clues on what action to take</p>
 	
 	<h3>Cards</h3>
-	<p>Deck has cards in five colors: black, blue, green, red, yellow</p>
+	<p>The deck has cards in five colors: black, blue, green, red, yellow</p>
 	
 	<h3>Each color in the deck has:</h3>
 	<ul>
@@ -242,9 +244,14 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 	
 	<p>When playing a card you can only play a card on top of a card that is one less than the card you are playing. If you've not played a card of that color, you can play a card with value 1 into the play area.</p>
 	
-	<h3>Clues</h3>
+	<h3><i class="fa fa-flag" aria-hidden="true"></i> Clues</h3>
 	<p>When you give your partner a clue, you must clue all of the cards with the same color or the same number value.</p>
-	<p> In each game you can give 8 clues. If you discard or successfully play a 5 you can get a clue token back, but you can never have more than 8 clues</p>
+	<p> In each game you can give 8 clues. If you discard a card or successfully play a card 5 you can get a clue token back, but you can never have more than 8 clues</p>
+	
+	<h3><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Errors</h3>
+	<p>When the play area is empty, when a player plays a card that is not 1 an error happened.</p>
+	<p>When there are cards on the play area, if the player plays a card that is out of sequence or on the wrong color, and error increases.</p>
+	<p>You cannot have more than 3 errors. </p>
 	
 	<h3>Goal</h3>
 	<p>The goal of the game is to play cards successfully. <br />
