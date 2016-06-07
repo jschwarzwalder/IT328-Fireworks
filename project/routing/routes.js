@@ -14,6 +14,10 @@ Router.route('/start', function () {
   this.render('navigation');
 });
 
+Router.route('/help', function () {
+  this.render('instructions');
+});
+
 Router.route('/login', function () {
   this.render('login');
 });

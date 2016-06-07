@@ -197,6 +197,7 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 <template name="Counters">
   
   {{> newGame}}
+
   <h3> {{playerTurn}} is Playing </h3>
   
   <h3>Errors: {{error}}</h3>
@@ -206,7 +207,8 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
  </template>
 
  <template name="newGame">
-	<p><button id="newGame" name="newGame"> </button></p>
+	<p><button id="newGame" name="newGame"> </button> </p>
+	<p><button  id="btn_help" name="btn_help"></button></p>
 	<div class="row-fluid">
 	<button id="player1" class="btn btn-warning" name="player1"> Player 1 </button>
 	<button id="player2" class="btn btn-primary" name="player2"> Player 2 </button>
@@ -257,6 +259,7 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 	<p>If you and your partner make a total of 3 errors, the ends the game.</p>
 	<p>Also if you run out of cards in the deck that will end the game.</p>
 	
+	<p><button  id="btn_back" name="btn_back"></button></p>
 </template>
 
 <template name="login">
@@ -266,12 +269,9 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
   <div class="container">
     
 	
-	<div class="pull-left" style="padding:50px 0">
-	<h3 > Please Sign in </h3>
-	<button class="btn btn-progress left">{{>loginButtons}}</button>
-	</div>
+	 {{> login_btn}}
 	<div class="text-center" style="padding:25% 0">
-	<button  id="btn_start" class="btn btn-success">Start</button>  </div>
+	<button  id="btn_start" name="btn_start"></button>  </div>
 	
   </div>
   </div>

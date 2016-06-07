@@ -24,6 +24,31 @@ img.discard-thumb{
     background-repeat: no-repeat;
 
 }
+#btn_back {
+	width: 85px;
+    height: 50px;
+	background-size: 80px 48px;
+    background-image: url('back.png');
+    background-repeat: no-repeat;
+
+}
+#btn_help {
+	width: 85px;
+    height: 50px;
+	background-size: 80px 48px;
+    background-image: url('Help.png');
+    background-repeat: no-repeat;
+
+}
+#btn_start{
+	width: 150px;
+    height: 90px;
+	background-size: 150px 90px;
+    background-image: url('start.png');
+    background-repeat: no-repeat;
+
+}
+
 #cluecolor {
 	width: 85px;
     height: 50px;
@@ -75,6 +100,9 @@ img.discard-thumb{
 	
 	 
 } 
+.bkg-img .dropdown-menu {
+	background-color: black;
+}
 
 .gamearea{
 	 background: rgba(255, 255, 255, 0.7) url("background.jpg") ;
@@ -82,6 +110,10 @@ img.discard-thumb{
 	
 	background-attachment: fixed;
 	 color: white;
+	 text-shadow: -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000; 
 	 width:100%;
     height:850px;
 	text-align: center;
@@ -94,11 +126,7 @@ img.discard-thumb{
 	 margin: auto;
 	 padding:100px;
 }
-#btn_start{
-	font-size: 45px;
-	text-align: center;
-	 margin: auto;
-}
+
 a{
 	color: white;
 	font-size: 18px;

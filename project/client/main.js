@@ -389,9 +389,15 @@ Template.newGame.events({
 			Session.set("playerTurn", "player2");
 			Session.set ("playState", "inactive");
 		} else {
-		swal("Game Over \nClick New Game to play again")
-	}
-	} 
+		swal("Game Over \nClick New Game to play again");
+		}
+	}, 
+	'click #btn_help': function(event){
+        event.preventDefault();
+	
+            Router.go('/help');
+    }
+	 
 	
 });
 Template.playerHand.events({
@@ -402,6 +408,13 @@ Template.playerHand.events({
 	}
 });
 
+Template.instructions.events({
+	'click #btn_back': function(event){
+        event.preventDefault();
+	
+            Router.go('/start');
+    }
+})
 //Start button click it goes to start the game
 Template.welcomeboard.events({
     'click #btn_start': function(event){
