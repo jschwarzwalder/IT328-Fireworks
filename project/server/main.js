@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { deck } from '../collection/collection.js';
+import { play_area } from '../collection/collection.js';
 import { fireworkCards } from '../collection/collection.js';
 import { player1HandCollection } from '../collection/collection.js';
 import { player2HandCollection } from '../collection/collection.js';
@@ -40,6 +41,9 @@ Meteor.startup(function () {
 		newGame(5,fireworkCards, player1HandCollection, player2HandCollection )
 		discardCollection.remove({});
 		play_area_collection.remove({});
+		for( var i = 0 ; i < play_area.length ; i ++){
+		 play_area_collection.insert(play_area[i]);
+		}
 	  },
 	  playACard: function(playerhand, card){
 		  //console.log("Playing Card: " + card)
@@ -186,6 +190,9 @@ Meteor.startup(function () {
 		//create the deck
 		for( var i = 0 ; i < deck.length ; i ++){
 		 fireworkCards.insert(deck[i]);
+		}
+		for( var i = 0 ; i < play_area.length ; i ++){
+		 play_area_collection.insert(play_area[i]);
 		}
 	  }
 	  

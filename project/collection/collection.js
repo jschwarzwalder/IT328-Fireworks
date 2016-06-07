@@ -484,3 +484,30 @@ export const discards = [
  }
  ];
  
+export const play_area = [
+{
+	 cardValue : 0, 
+	 cardColor: "Green",
+	 image: "green.png",
+},
+{
+	 cardValue : 0, 
+	 cardColor: "Black",
+	 image: "black.png",
+},
+{
+	 cardValue : 0, 
+	 cardColor: "Blue",
+	 image: "blue.png",
+},
+{
+	 cardValue : 0, 
+	 cardColor: "Yellow",
+	 image: "yellow.png",
+},
+{
+	 cardValue : 0, 
+	 cardColor: "Red",
+	 image: "red.png",
+}
+]

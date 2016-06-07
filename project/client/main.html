@@ -181,11 +181,7 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 	
 	<ul class="list-inline">
 	{{#unless empty}}
-	<li><img src="red.png" class="img-responsive"> </li>
-	<li><img src="blue.png" class="img-responsive"> </li>
-	<li><img src="red.png" class="img-responsive"> </li>
-	<li><img src="green.png" class="img-responsive"> </li>
-	<li><img src="yellow.png" class="img-responsive"> </li>
+		<li class="vertical">Played Cards</li>
 	{{/unless}}
 	  {{#each card}}
 		<li><img src="{{this.image}}" class="img-responsive"> </li>
@@ -227,6 +223,7 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 </template>
 
 <template name="instructions">
+<div class="jumbotron">
  <div class="container">
 	
 	<p><button  id="btn_back" class="pull-right" name="btn_back"></button></p>
@@ -268,6 +265,7 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 	<p>Also if you run out of cards in the deck that will end the game.</p>
 	
 	<p><button  id="btn_back" class="pull-right" name="btn_back"></button></p>
+	</div>
 	</div>
 </template>
 
