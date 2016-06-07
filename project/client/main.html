@@ -10,9 +10,9 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 </head>
-<template name="welcome">
+<!--<template name="welcome">
  
-</template>
+</template>-->
 
 <template name="navigation">
 <div class="gamearea">
@@ -48,7 +48,7 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 <template name="login_btn">
 <div id="navbar" class="navbar-collapse collapse">
 		<ul class="nav navbar-nav navbar-right">
-		  <li>{{> loginButtons}}</li>
+		  <li>  {{> loginButtons}} <i class="fa fa-lock" aria-hidden="true"></i></li>
 		</ul>
   </div>
 </template>
@@ -59,15 +59,10 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 <div class="bkg-img">
 <div class="container">
 <div class="row">
-
   <div class="span8 offset2"> <h3 class="text-wartning title"> Welcome to Firework Game </h3> <br/></div>
-  
   <button  id="btn_start" class="btn btn-success">Start</button>  </div>
-  
- 
-    </div>
-  
- </div>
+</div>
+</div>
 </template>
 
 
@@ -227,6 +222,8 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 </template>
 
 <template name="instructions">
+  <div class="contains">
+	<p><button  id="btn_back" class="pull-right" name="btn_back"></button></p>
 	<h1> Firework Game </h1>
 	<p> A collaborative game, where you and your partner give each other clues and try to play cards of the same color in order from 1 to 5. </p>
 	<p> In this game you cannot see the cards in your hand, so its up to your partner to give you clues on what action to take</p>
@@ -259,7 +256,8 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 	<p>If you and your partner make a total of 3 errors, the ends the game.</p>
 	<p>Also if you run out of cards in the deck that will end the game.</p>
 	
-	<p><button  id="btn_back" name="btn_back"></button></p>
+	<p><button  id="btn_back" class="pull-right" name="btn_back"></button></p>
+	</div>
 </template>
 
 <template name="login">
@@ -270,9 +268,7 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
     
 	
 	 {{> login_btn}}
-	<div class="text-center" style="padding:25% 0">
-	<button  id="btn_start" name="btn_start"></button>  </div>
-	
+	<h3> <i class="fa fa-key" aria-hidden="true"></i> Please log in to access the Fireworks Game</h3>
   </div>
   </div>
 </template>
