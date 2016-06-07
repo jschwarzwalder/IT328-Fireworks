@@ -15,6 +15,9 @@ export const clues = new Mongo.Collection("clues");
 export const errors = new Mongo.Collection("errors");
 export const playerTurn = new Mongo.Collection("playerTurn");
 
+//example from Josh
+export const matchesCollection = new Mongo.Collection('matches');
+
 export const gameCollection = new Mongo.Collection("game");
 
 //export access to any data to start our application
