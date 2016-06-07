@@ -120,7 +120,7 @@ body {
 	margin: 2% 5%;
 }
 .gamearea{
-	opacity: 1;
+	opacity: 1.0;
 	background-attachment: fixed;
 	 color: white;
 	 text-shadow: -2px -2px 0 #000,

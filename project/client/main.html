@@ -228,7 +228,7 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 	
 	<p><button  id="btn_back" class="pull-right" name="btn_back"></button></p>
 	<h1> Fireworks Game </h1>
-	<p> A collaborative game, where you and your partner give each other clues and try to play cards of the same color in order from 1 to 5. </p>
+	<p> Fireworks is a collaborative game, where you and your partner give each other clues and try to play cards of the same color in order from 1 to 5. </p>
 	<p> In this game you cannot see the cards in your hand, so its up to your partner to give you clues on what action to take</p>
 	
 	<h3>Cards</h3>
@@ -251,12 +251,12 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 	
 	<h3><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Errors</h3>
 	<p>When the play area is empty, when a player plays a card that is not 1 an error happened.</p>
-	<p>When there are cards on the play area, if the player plays a card that is out of sequence or on the wrong color, and error increases.</p>
+	<p>If there are cards on the play area, if the player plays a card that is out of sequence or on the wrong color, and error increases.</p>
 	<p>You cannot have more than 3 errors. </p>
 	
 	<h3>Goal</h3>
-	<p>The goal of the game is to play cards successfully. <br />
-	At the end of the game you total the values of all played cards</p>
+	<p>The goal of the game is to play cards successfully. </p>
+	<p>At the end of the game you total the values of all played cards</p>
 	<p>A perfect game is to play all of the colors up to 5 with a score of 25, but most good games will be have a score around 20.</p>
 	
 	<h3>End of Game</h3>
@@ -279,5 +279,75 @@ Authors: Sahba Bahizad, Jami Schwarzwalder
 	 {{> login_btn}}
 	<h3> <i class="fa fa-key" aria-hidden="true"></i> Please log in to access the Fireworks Game</h3>
   </div>
+  </div>
+</template>
+
+
+<template name="josh">
+  <div class="container">
+    <h1>Welcome to My Card Game!</h1>
+    {{> loginButtons}}
+    <br><br>
+
+    <div class="col-lg-6">
+      {{> game}}
+    </div>
+    <div class="col-lg-6">
+      {{> matches}}
+    </div>
+  </div>
+</template>
+
+<template name="game">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3>Game</h3>
+    </div>
+    <div class="panel-body">
+      {{#if matchReady}}
+        <div class="col-lg-6">
+          <img src="{{playerCards 1}}" id="player1">
+          <h3>{{match.user1.username}}</h3>
+        </div>
+        <div class="col-lg-6">
+          <img src="{{playerCards 2}}" id="player2">
+          <h3>{{match.user2.username}}</h3>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+</template>
+
+<template name="matches">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3>Current Matches</h3>
+    </div>
+    <div class="panel-body">
+      {{#if loggedIn}}
+        <form id="newMatchForm">
+          <input type="text" id="matchName" placeholder="Match Name..." class="form-control">
+          <button type="button" class="form-control btn btn-info">+</button>
+        </form>
+
+        <div class="matchGroup">
+          {{#each allMatches}}
+            <div>
+              {{name}} - {{getMatchPlayers this}} 
+              <!-- cannot join a match you are already part of -->
+              {{#unless playerInMatch this}}
+                {{#unless matchFull this}}
+                  <a class="joinMatch" data-id="{{_id}}" href="#">Join</a>
+                {{else}}
+                  (Match Full)
+                {{/unless}}
+              {{else}}
+                (Your Match)
+              {{/unless}}
+            </div>
+          {{/each}}
+        </div>
+      {{/if}}
+    </div>
   </div>
 </template>
